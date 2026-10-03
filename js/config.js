@@ -14,7 +14,7 @@
 window.RILES_CONFIG = {
   // 1. Microsoft Clarity (100% Gratuit - Heatmaps & Enregistrement vidéo des sessions)
   // Crée un projet sur https://clarity.microsoft.com -> récupère l'ID (ex: "lz9x8abcd")
-  CLARITY_PROJECT_ID: "",
+  CLARITY_PROJECT_ID: "ys3jwzqq4h",
 
   // 2. PostHog (Gratuit jusqu'à 1M events/mois - Entonnoir de clics & A/B test)
   // Crée un projet EU sur https://eu.posthog.com -> Project API Key (ex: "phc_...")
