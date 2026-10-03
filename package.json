@@ -1,0 +1,10 @@
+{
+  "name": "landing-riles",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing Page & Simulateur Interactif de pré-lancement Riles (Netlify + Analytics externes)",
+  "scripts": {
+    "start": "npx --yes serve . -l 3030",
+    "dev": "npx --yes serve . -l 3030"
+  }
+}
