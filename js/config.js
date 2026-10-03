@@ -18,7 +18,7 @@ window.RILES_CONFIG = {
 
   // 2. PostHog (Gratuit jusqu'à 1M events/mois - Entonnoir de clics & A/B test)
   // Crée un projet EU sur https://eu.posthog.com -> Project API Key (ex: "phc_...")
-  POSTHOG_API_KEY: "",
+  POSTHOG_API_KEY: "phc_up5r2TeCUma3Fmq6LHyieLHeJ7GV9MkJY5gCrDi4MfEb",
   POSTHOG_HOST: "https://eu.i.posthog.com",
 
   // 3. Google Analytics 4 (Optionnel - ID de mesure ex: "G-XXXXXXXXXX")
