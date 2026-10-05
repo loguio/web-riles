@@ -874,66 +874,425 @@ body {
 .modal-card {
   background: #fff;
   width: 100%;
-  max-width: 500px;
+  max-width: 540px;
   border-radius: var(--radius-xl);
-  padding: 32px;
-  box-shadow: var(--shadow-lg);
+  padding: 28px 26px;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.28);
   position: relative;
-  max-height: 92vh;
+  max-height: 94vh;
   overflow-y: auto;
+  border: 1.5px solid var(--slate-200);
 }
 
 .modal-close {
   position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 34px;
-  height: 34px;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1px solid var(--slate-200);
-  background: var(--slate-50);
+  background: var(--slate-100);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 15px;
   color: var(--slate-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  z-index: 10;
 }
 
-.form-group {
-  margin-bottom: 16px;
+.modal-close:hover {
+  background: var(--slate-200);
+  color: var(--slate-900);
 }
 
-.form-label {
-  display: block;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: var(--slate-800);
+/* En-tête type Maquettes (Logo P + Slogan + Compteur) */
+.modal-brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-right: 36px;
+}
+
+.modal-brand-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-step-counter {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--brand);
+  background: var(--brand-light);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--brand-border);
+}
+
+/* Barre de progression par segments (comme onboarding-3.png) */
+.onboarding-progress-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--slate-200);
+  transition: background 0.25s ease;
+}
+
+.progress-segment.active {
+  background: var(--brand);
+}
+
+.modal-step-title {
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: -0.025em;
+  color: var(--slate-900);
+  line-height: 1.2;
   margin-bottom: 6px;
 }
 
-.form-input,
-.form-select {
-  width: 100%;
-  padding: 13px 15px;
-  font-size: 15px;
+.modal-step-desc {
+  font-size: 13.5px;
+  color: var(--slate-600);
+  margin-bottom: 18px;
+}
+
+.modal-section-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--slate-700);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+/* Grille 2x2 des Cartes d'Objectifs (Tactiles) */
+.card-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.choice-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--slate-200);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.16s ease;
+  position: relative;
+}
+
+.choice-card:hover {
+  border-color: var(--brand);
+  background: var(--slate-50);
+}
+
+.choice-card.active {
+  border-color: var(--brand);
+  background: var(--brand-light);
+  box-shadow: 0 4px 14px rgba(255, 77, 28, 0.14);
+}
+
+.choice-card-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.choice-card-body {
+  flex: 1;
+}
+
+.choice-card-title {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1.2;
+}
+
+.choice-card-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--slate-500);
+  margin-top: 2px;
+  line-height: 1.25;
+}
+
+.choice-card.active .choice-card-title {
+  color: var(--brand-dark);
+}
+
+.choice-check {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--brand);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.15s ease;
+}
+
+.choice-card.active .choice-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Groupe de chips d'application & montre */
+.chips-selector-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-choice {
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1.5px solid var(--slate-200);
+  background: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--slate-700);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip-choice:hover {
+  border-color: var(--slate-400);
+  background: var(--slate-50);
+}
+
+.chip-choice.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255, 77, 28, 0.25);
+}
+
+/* Bouton Retour Étape */
+.btn-step-back {
+  background: none;
+  border: none;
+  color: var(--slate-600);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-step-back:hover {
+  color: var(--brand);
+}
+
+/* Bannière résumé du profil créé */
+.summary-pill-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--emerald-50);
+  border: 1px solid #A7F3D0;
   border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+/* Input moderne avec icône */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  font-size: 18px;
+  color: var(--slate-400);
+  pointer-events: none;
+}
+
+.form-input-lg {
+  padding: 15px 16px 15px 48px;
+  font-size: 15.5px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
   border: 1.5px solid var(--slate-200);
   background: var(--slate-50);
   color: var(--slate-900);
-  font-family: inherit;
 }
 
-.form-input:focus,
-.form-select:focus {
-  outline: none;
-  border-color: var(--brand);
+.form-input-lg:focus {
   background: #fff;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(255, 77, 28, 0.12);
+  outline: none;
 }
 
-.founder-offer-box {
-  background: var(--brand-light);
+.form-trust-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--slate-400);
+  margin-top: 14px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   ÉTAPE 3 : DOSSARD DIGITAL BÊTA (RACE BIB TICKET)
+   ========================================================================== */
+.race-bib-ticket {
+  background: #fff;
+  border: 2px dashed var(--slate-300);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.bib-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--slate-100);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.bib-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--slate-700);
+}
+
+.bib-tag {
+  background: var(--slate-900);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+}
+
+.bib-body {
+  text-align: center;
+  padding: 6px 0 14px;
+}
+
+.bib-number {
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--brand);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bib-category {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--slate-800);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bib-athlete {
+  font-size: 11.5px;
+  color: var(--slate-500);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.bib-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--slate-100);
+  padding-top: 10px;
+}
+
+.bib-stamp {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--emerald-600);
+  background: var(--emerald-50);
+  border: 1px solid #A7F3D0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+.bib-barcode {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--slate-400);
+}
+
+/* Carte Offre Membre Fondateur */
+.founder-offer-card {
+  background: linear-gradient(135deg, #FFF5F1 0%, #FFFFFF 100%);
   border: 1.5px solid var(--brand);
   border-radius: var(--radius-md);
   padding: 18px;
-  margin: 18px 0;
+  box-shadow: 0 6px 20px rgba(255, 77, 28, 0.1);
+  margin-bottom: 16px;
+}
+
+.founder-offer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.founder-fire-badge {
+  font-size: 11px;
+  font-weight: 850;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.founder-spots {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--slate-500);
+}
+
+/* Boîte de parrainage */
+.share-box {
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  padding: 16px;
 }
 
 /* ==========================================================================

@@ -488,28 +488,133 @@
   }
 
   // ============================================================================
-  // 5. MODAL FAKE DOOR EN 2 TEMPS (CAPTURE WAITLIST + INTENTION D'ACHAT -50%)
+  // 5. MODAL INTERACTIF MULTI-ÉTAPES (QUIZ CARTES + ACCÈS BÊTA + DOSSARD VIP)
   // ============================================================================
+  const GOAL_LABELS = {
+    semi: "Semi-Marathon (21,1 km)",
+    marathon: "Marathon (42,195 km)",
+    "10k": "10 km / 5 km",
+    reprise: "Reprise / Plaisir"
+  };
+
+  const APP_LABELS = {
+    campus: "Campus Coach",
+    runna: "Runna",
+    runmotion: "RunMotion Coach",
+    kiprun: "Kiprun Pacer",
+    garmin_coach: "Garmin Coach",
+    pdf_excel: "Plan PDF / Excel",
+    club_coach: "Coach de Club / Nolio",
+    feeling: "Au feeling"
+  };
+
+  const WATCH_LABELS = {
+    garmin: "Montre Garmin",
+    apple_watch: "Apple Watch",
+    coros: "Montre COROS",
+    polar_suunto: "Polar / Suunto",
+    phone_only: "Téléphone seul (Strava / Nike)"
+  };
+
+  state.selectedApp = "campus";
+  state.selectedWatch = "garmin";
+
+  function syncModalCardsUI() {
+    // 1. Cartes d'objectif
+    document.querySelectorAll("[data-choice-goal]").forEach(function (card) {
+      card.classList.toggle(
+        "active",
+        card.getAttribute("data-choice-goal") === state.selectedGoal
+      );
+    });
+    const hiddenGoal = document.getElementById("form-hidden-goal");
+    if (hiddenGoal) hiddenGoal.value = state.selectedGoal;
+
+    // 2. Chips application actuelle
+    document.querySelectorAll("[data-choice-app]").forEach(function (chip) {
+      chip.classList.toggle(
+        "active",
+        chip.getAttribute("data-choice-app") === state.selectedApp
+      );
+    });
+    const hiddenApp = document.getElementById("form-hidden-app");
+    if (hiddenApp) hiddenApp.value = state.selectedApp;
+
+    // 3. Chips montre / GPS
+    document.querySelectorAll("[data-choice-watch]").forEach(function (chip) {
+      chip.classList.toggle(
+        "active",
+        chip.getAttribute("data-choice-watch") === state.selectedWatch
+      );
+    });
+    const hiddenWatch = document.getElementById("form-hidden-watch");
+    if (hiddenWatch) hiddenWatch.value = state.selectedWatch;
+  }
+
+  function goToModalStep(stepNumber) {
+    const s1 = document.getElementById("modal-step-1");
+    const s2 = document.getElementById("modal-step-2");
+    const s3 = document.getElementById("modal-step-3");
+    const seg1 = document.getElementById("prog-seg-1");
+    const seg2 = document.getElementById("prog-seg-2");
+    const counter = document.getElementById("modal-step-counter");
+
+    if (stepNumber === 1) {
+      if (s1) s1.style.display = "block";
+      if (s2) s2.style.display = "none";
+      if (s3) s3.style.display = "none";
+      if (seg1) seg1.classList.add("active");
+      if (seg2) seg2.classList.remove("active");
+      if (counter) counter.textContent = "Étape 1 / 2";
+    } else if (stepNumber === 2) {
+      if (s1) s1.style.display = "none";
+      if (s2) s2.style.display = "block";
+      if (s3) s3.style.display = "none";
+      if (seg1) seg1.classList.add("active");
+      if (seg2) seg2.classList.add("active");
+      if (counter) counter.textContent = "Étape 2 / 2";
+
+      // Mise à jour de la synthèse personnalisée
+      const summaryText = document.getElementById("summary-pill-text");
+      if (summaryText) {
+        const goalTxt = GOAL_LABELS[state.selectedGoal] || "Semi-Marathon";
+        const appTxt = APP_LABELS[state.selectedApp] || "Campus Coach";
+        const watchTxt = WATCH_LABELS[state.selectedWatch] || "Montre Garmin";
+        summaryText.textContent = "Objectif " + goalTxt + " • " + appTxt + " • " + watchTxt;
+      }
+
+      // Focus automatique sur l'email
+      setTimeout(function () {
+        const emailInput = document.getElementById("form-email");
+        if (emailInput) emailInput.focus();
+      }, 100);
+    } else if (stepNumber === 3) {
+      if (s1) s1.style.display = "none";
+      if (s2) s2.style.display = "none";
+      if (s3) s3.style.display = "block";
+      if (seg1) seg1.classList.add("active");
+      if (seg2) seg2.classList.add("active");
+      if (counter) counter.textContent = "Dossard Officiel ✓";
+    }
+  }
+
   function openWaitlistModal(triggerSource) {
     trackEvent("fake_door_clicked", { trigger_source: triggerSource });
 
     const modal = document.getElementById("waitlist-modal");
     if (!modal) return;
 
-    // Pré-remplir les champs cachés pour Netlify Forms
+    // Pré-remplir les champs cachés Netlify
     const angleInput = document.getElementById("form-hidden-angle");
     const utmInput = document.getElementById("form-hidden-utm");
     const scenarioInput = document.getElementById("form-hidden-scenario");
-    const goalSelect = document.getElementById("form-goal");
 
     if (angleInput) angleInput.value = state.angle;
-    if (utmInput)
-      utmInput.value = state.utmSource + " / " + state.utmCampaign;
+    if (utmInput) utmInput.value = state.utmSource + " / " + state.utmCampaign;
     if (scenarioInput) scenarioInput.value = state.selectedScenario;
-    if (goalSelect && state.selectedGoal) {
-      goalSelect.value = state.selectedGoal;
-    }
 
+    syncModalCardsUI();
+    goToModalStep(1);
     modal.classList.add("open");
   }
 
@@ -521,33 +626,30 @@
   async function handleWaitlistSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const email = (document.getElementById("form-email") || {}).value || "";
-    const goal = (document.getElementById("form-goal") || {}).value || "semi";
-    const currentApp =
-      (document.getElementById("form-current-app") || {}).value || "none";
-    const watchBrand =
-      (document.getElementById("form-watch") || {}).value || "garmin";
+    const emailInput = document.getElementById("form-email");
+    const email = emailInput ? emailInput.value.trim() : "";
+    if (!email) return;
 
     state.submittedEmail = email;
 
     trackEvent("waitlist_lead_submitted", {
-      goal: goal,
-      current_app: currentApp,
-      watch_brand: watchBrand
+      goal: state.selectedGoal,
+      current_app: state.selectedApp,
+      watch_brand: state.selectedWatch
     });
 
     if (window.posthog && typeof window.posthog.identify === "function") {
       window.posthog.identify(email, {
         email: email,
-        goal: goal,
-        current_app: currentApp,
-        watch_brand: watchBrand,
+        goal: state.selectedGoal,
+        current_app: state.selectedApp,
+        watch_brand: state.selectedWatch,
         angle: state.angle,
         utm_source: state.utmSource
       });
     }
 
-    // 1. Envoi natif à Netlify Forms (fonctionne automatiquement une fois sur Netlify)
+    // 1. Envoi natif à Netlify Forms
     const formData = new FormData(form);
     try {
       await fetch("/", {
@@ -559,7 +661,7 @@
       console.info("[Netlify Forms] Mode local détecté :", err.message);
     }
 
-    // 2. Envoi optionnel vers un Webhook externe (Make, Zapier, Formspree, Supabase...)
+    // 2. Envoi optionnel vers un Webhook externe
     if (cfg.EXTERNAL_WEBHOOK_URL) {
       try {
         await fetch(cfg.EXTERNAL_WEBHOOK_URL, {
@@ -567,9 +669,9 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: email,
-            goal: goal,
-            currentApp: currentApp,
-            watchBrand: watchBrand,
+            goal: state.selectedGoal,
+            currentApp: state.selectedApp,
+            watchBrand: state.selectedWatch,
             angle: state.angle,
             utmSource: state.utmSource,
             utmCampaign: state.utmCampaign,
@@ -582,11 +684,18 @@
       }
     }
 
-    // Bascule sur l'étape 2 du modal (Test d'intention d'achat Membre Fondateur + Parrainage)
-    const step1 = document.getElementById("modal-step-1");
-    const step2 = document.getElementById("modal-step-2");
-    if (step1) step1.style.display = "none";
-    if (step2) step2.style.display = "block";
+    // 3. Bascule sur l'étape 3 : Le Dossard Digital Bêta officiel
+    goToModalStep(3);
+
+    // Personnalisation du dossard
+    const bibCat = document.getElementById("bib-category-text");
+    const bibAth = document.getElementById("bib-athlete-text");
+    if (bibCat) {
+      bibCat.textContent = "CATÉGORIE : " + (GOAL_LABELS[state.selectedGoal] || "SEMI-MARATHON").toUpperCase();
+    }
+    if (bibAth) {
+      bibAth.textContent = "ATHLÈTE : " + email;
+    }
 
     // Génération du lien de parrainage unique
     const refCode = btoa(email).replace(/[^a-zA-Z0-9]/g, "").slice(0, 8);
@@ -599,6 +708,16 @@
       state.angle;
     const refInput = document.getElementById("referral-link-input");
     if (refInput) refInput.value = shareUrl;
+
+    // Bouton de partage WhatsApp pré-rempli
+    const waBtn = document.getElementById("whatsapp-share-btn");
+    if (waBtn) {
+      const waText = encodeURIComponent(
+        "Regarde ce coach running IA : tu lui dis que t'as que 30 min ou mal aux jambes et il recalcule toute ta semaine sans culpabilité ! Teste le simulateur ici : " +
+          shareUrl
+      );
+      waBtn.href = "https://api.whatsapp.com/send?text=" + waText;
+    }
   }
 
   async function handleFounderOfferClaim() {
@@ -610,7 +729,7 @@
       price_tested: "49_eur_year"
     });
 
-    // Envoie également l'intention d'achat à Netlify Forms
+    // Envoi de l'intention d'achat à Netlify Forms
     try {
       const params = new URLSearchParams({
         "form-name": "riles-founder-intent",
@@ -630,7 +749,7 @@
 
     const btn = document.getElementById("claim-founder-btn");
     if (btn) {
-      btn.textContent = "✓ Tarif Membre Fondateur (-50%) réservé sur ton email !";
+      btn.textContent = "✓ Tarif Membre Fondateur (-50%) verrouillé pour toi !";
       btn.style.background = "#059669";
       btn.disabled = true;
     }
@@ -675,6 +794,7 @@
         state.selectedGoal = btn.getAttribute("data-sim-goal");
         state.hasInteractedWithSim = true;
         renderSimulator();
+        syncModalCardsUI();
         trackEvent("simulator_goal_changed", { goal: state.selectedGoal });
       });
     });
@@ -691,6 +811,55 @@
         });
       });
     });
+
+    // Écouteurs de choix dans le Modal Onboarding :
+    // A. Cartes d'objectif
+    document.querySelectorAll("[data-choice-goal]").forEach(function (card) {
+      card.addEventListener("click", function () {
+        state.selectedGoal = card.getAttribute("data-choice-goal");
+        syncModalCardsUI();
+        trackEvent("modal_goal_selected", { goal: state.selectedGoal });
+      });
+    });
+
+    // B. Chips application actuelle
+    document.querySelectorAll("[data-choice-app]").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        state.selectedApp = chip.getAttribute("data-choice-app");
+        syncModalCardsUI();
+        trackEvent("modal_app_selected", { app: state.selectedApp });
+      });
+    });
+
+    // C. Chips montre / GPS
+    document.querySelectorAll("[data-choice-watch]").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        state.selectedWatch = chip.getAttribute("data-choice-watch");
+        syncModalCardsUI();
+        trackEvent("modal_watch_selected", { watch: state.selectedWatch });
+      });
+    });
+
+    // D. Bouton Étape Suivante (Étape 1 -> Étape 2)
+    const nextBtn = document.getElementById("btn-next-step");
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        trackEvent("modal_step1_validated", {
+          goal: state.selectedGoal,
+          app: state.selectedApp,
+          watch: state.selectedWatch
+        });
+        goToModalStep(2);
+      });
+    }
+
+    // E. Bouton Retour Étape (Étape 2 -> Étape 1)
+    const backBtn = document.getElementById("btn-back-step");
+    if (backBtn) {
+      backBtn.addEventListener("click", function () {
+        goToModalStep(1);
+      });
+    }
 
     // Tous les boutons qui ouvrent le Fake Door / Waitlist
     document.querySelectorAll("[data-open-waitlist]").forEach(function (btn) {

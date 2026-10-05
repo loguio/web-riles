@@ -402,140 +402,263 @@
   </footer>
 
   <!-- ========================================================================
-       MODAL FAKE DOOR EN 2 TEMPS (CAPTURE WAITLIST + TEST INTENTION D'ACHAT)
+       MODAL ONBOARDING INTERACTIF TYPE RUNNING APP (FUSION DESIGN FIGMA)
        ======================================================================== -->
   <div id="waitlist-modal" class="modal-backdrop" role="dialog" aria-modal="true">
     <div class="modal-card">
       <button type="button" id="modal-close-btn" class="modal-close" aria-label="Fermer">✕</button>
 
-      <!-- ÉTAPE 1 : CAPTURE DU LEAD QUALIFIÉ -->
-      <div id="modal-step-1">
-        <div class="badge-eyebrow" style="margin-bottom: 12px;">ACCÈS PRIORITAIRE BÊTA PRIVÉE</div>
-        <h3 style="font-size: 24px; font-weight: 850; margin-bottom: 8px;">
-          Génère ton plan adaptatif sur tes 6 derniers mois
-        </h3>
-        <p style="font-size: 14.5px; color: var(--slate-600); margin-bottom: 20px;">
-          Nous ouvrons la Bêta par vagues de 50 coureurs pour garantir un suivi physiologique parfait. Réserve ton accès gratuit en 15 secondes :
-        </p>
-
-        <!-- Formulaire compatible Netlify Forms nativement -->
-        <form
-          id="waitlist-form"
-          name="riles-beta-waitlist"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
-          <input type="hidden" name="form-name" value="riles-beta-waitlist" />
-          <input type="hidden" name="bot-field" />
-          <input type="hidden" id="form-hidden-angle" name="marketing_angle" value="guilt" />
-          <input type="hidden" id="form-hidden-utm" name="utm_info" value="direct" />
-          <input type="hidden" id="form-hidden-scenario" name="simulated_scenario" value="late_work_30m" />
-
-          <div class="form-group">
-            <label class="form-label" for="form-email">Ton adresse email *</label>
-            <input
-              type="email"
-              id="form-email"
-              name="email"
-              class="form-input"
-              placeholder="ex: camille.runner@gmail.com"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="form-goal">Ton prochain objectif course *</label>
-            <select id="form-goal" name="goal" class="form-select" required>
-              <option value="semi">Semi-Marathon</option>
-              <option value="marathon">Marathon</option>
-              <option value="10k">10 km / 5 km</option>
-              <option value="trail">Trail / Course nature</option>
-              <option value="reprise">Courir régulièrement sans me blesser</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="form-current-app">Comment planifies-tu tes séances aujourd'hui ? *</label>
-            <select id="form-current-app" name="current_app" class="form-select" required>
-              <option value="campus">Campus Coach</option>
-              <option value="runna">Runna</option>
-              <option value="garmin_coach">Suggestions Garmin / Montre</option>
-              <option value="kiprun">Kiprun Pacer / Decathlon</option>
-              <option value="pdf_excel">Plan PDF / Feuille Excel</option>
-              <option value="feeling">Au feeling (sans plan fixe)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="form-watch">Quelle application ou montre utilises-tu ?</label>
-            <select id="form-watch" name="watch_ecosystem" class="form-select">
-              <option value="strava_garmin">Garmin + Strava</option>
-              <option value="strava_only">Strava (Téléphone / Autre montre)</option>
-              <option value="apple_watch">Apple Watch</option>
-              <option value="coros_polar_suunto">COROS / Polar / Suunto</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 6px;">
-            Réserver ma place en Bêta + Mon Audit 6 mois →
-          </button>
-          <p style="text-align: center; font-size: 12px; color: var(--slate-500); margin-top: 10px;">
-            🔒 Zéro spam. Tu recevras ton lien d'invitation dès l'ouverture de ta vague.
-          </p>
-        </form>
+      <!-- EN-TÊTE PROGRESSIF TYPE MAQUETTES (LOGO P + TON PLAN À TON RYTHME) -->
+      <div class="modal-brand-header">
+        <div class="modal-brand-left">
+          <span class="brand-icon" style="width: 32px; height: 32px; font-size: 16px; border-radius: 9px;">P</span>
+          <span style="font-weight: 800; font-size: 14px; color: var(--slate-700);">Ton plan, à ton rythme</span>
+        </div>
+        <span id="modal-step-counter" class="modal-step-counter">Étape 1 / 2</span>
       </div>
 
-      <!-- ÉTAPE 2 : CONFIRMATION + TEST D'INTENTION D'ACHAT (MEMBRE FONDATEUR) + PARRAINAGE -->
-      <div id="modal-step-2" style="display: none;">
-        <div class="readiness-pill" style="margin-bottom: 12px;">✓ Place réservée sur la liste d'attente (#142)</div>
-        <h3 style="font-size: 23px; font-weight: 850; margin-bottom: 8px;">
-          Bienvenue dans le peloton de tête !
-        </h3>
-        <p style="font-size: 14px; color: var(--slate-600);">
-          Ton inscription est bien enregistrée. Avant de fermer cette fenêtre, voici deux avantages réservés aux premiers inscrits :
-        </p>
+      <!-- BARRE DE PROGRESSION PAR SEGMENTS ORANGE (COMME ONBOARDING-3.PNG) -->
+      <div class="onboarding-progress-bar">
+        <div class="progress-segment active" id="prog-seg-1"></div>
+        <div class="progress-segment" id="prog-seg-2"></div>
+      </div>
 
-        <!-- TEST D'INTENTION D'ACHAT (SKIN IN THE GAME) -->
-        <div class="founder-offer-box">
-          <div style="font-size: 11.5px; font-weight: 800; color: var(--brand); text-transform: uppercase; margin-bottom: 4px;">
-            🔥 OFFRE MEMBRE FONDATEUR (LIMITÉE AUX 100 PREMIERS)
+      <!-- FORMULAIRE NETLIFY EMBARQUÉ (TRANSMISSION SANS FAILLE DES DONNÉES) -->
+      <form
+        id="waitlist-form"
+        name="riles-beta-waitlist"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="riles-beta-waitlist" />
+        <input type="hidden" name="bot-field" />
+        <input type="hidden" id="form-hidden-angle" name="marketing_angle" value="guilt" />
+        <input type="hidden" id="form-hidden-utm" name="utm_info" value="direct" />
+        <input type="hidden" id="form-hidden-scenario" name="simulated_scenario" value="late_work_30m" />
+        
+        <!-- Champs dynamiques synchronisés par les cartes tactiles -->
+        <input type="hidden" id="form-hidden-goal" name="goal" value="semi" />
+        <input type="hidden" id="form-hidden-app" name="current_app" value="campus" />
+        <input type="hidden" id="form-hidden-watch" name="watch_ecosystem" value="strava_garmin" />
+
+        <!-- ==================================================================
+             ÉTAPE 1 : QUIZ INTERACTIF EN CARTES (ZÉRO SELECT, 100% TACTILE)
+             ================================================================== -->
+        <div id="modal-step-1">
+          <div style="font-size: 11.5px; font-weight: 800; color: var(--brand); text-transform: uppercase; margin-bottom: 6px;">
+            ÉTAPE 1 SUR 2 • PERSONNALISATION
           </div>
-          <strong style="display: block; font-size: 16px; margin-bottom: 6px;">
-            Bloquer -50 % à vie sur le mode Pro Adaptatif (0 € à payer aujourd'hui)
-          </strong>
-          <p style="font-size: 13.5px; color: var(--slate-700); margin-bottom: 12px;">
-            En tant que bêta-testeur de la première heure, veux-tu verrouiller ton tarif à <strong>49 €/an au lieu de 99 €/an</strong> (après tes 14 jours d'essai gratuit) si l'application te convainc au lancement ?
+          <h3 class="modal-step-title">Quel est ton prochain défi running ?</h3>
+          <p class="modal-step-desc">
+            Sélectionne ton objectif pour que l'IA calibre tes zones d'allure et ton plan.
           </p>
-          <button
-            type="button"
-            id="claim-founder-btn"
-            class="btn btn-primary btn-sm"
-            style="width: 100%;"
-          >
-            Oui, verrouiller mon statut Membre Fondateur (-50%)
+
+          <!-- 1. GRILLE D'OBJECTIFS (4 CARTES TACTILES) -->
+          <div class="card-options-grid">
+            <button type="button" class="choice-card active" data-choice-goal="semi">
+              <div class="choice-card-icon">🏅</div>
+              <div class="choice-card-body">
+                <span class="choice-card-title">Semi-Marathon</span>
+                <span class="choice-card-sub">21,1 km • Chrono ou 1er défi</span>
+              </div>
+              <span class="choice-check">✓</span>
+            </button>
+
+            <button type="button" class="choice-card" data-choice-goal="marathon">
+              <div class="choice-card-icon">🏃</div>
+              <div class="choice-card-body">
+                <span class="choice-card-title">Marathon</span>
+                <span class="choice-card-sub">42,195 km • Le graal d'endurance</span>
+              </div>
+              <span class="choice-check">✓</span>
+            </button>
+
+            <button type="button" class="choice-card" data-choice-goal="10k">
+              <div class="choice-card-icon">⚡</div>
+              <div class="choice-card-body">
+                <span class="choice-card-title">10 km / 5 km</span>
+                <span class="choice-card-sub">Vitesse, VMA & allures</span>
+              </div>
+              <span class="choice-check">✓</span>
+            </button>
+
+            <button type="button" class="choice-card" data-choice-goal="reprise">
+              <div class="choice-card-icon">🌲</div>
+              <div class="choice-card-body">
+                <span class="choice-card-title">Reprise / Plaisir</span>
+                <span class="choice-card-sub">Régularité & zéro blessure</span>
+              </div>
+              <span class="choice-check">✓</span>
+            </button>
+          </div>
+
+          <!-- 2. COMMENT T'ENTRAÎNES-TU AUJOURD'HUI ? (CHIPS INTERACTIVES) -->
+          <div style="margin-top: 22px;">
+            <label class="modal-section-label">Comment prépares-tu tes courses aujourd'hui ?</label>
+            <div class="chips-selector-group">
+              <button type="button" class="chip-choice active" data-choice-app="campus">🧢 Campus Coach</button>
+              <button type="button" class="chip-choice" data-choice-app="runna">🏃‍♂️ Runna</button>
+              <button type="button" class="chip-choice" data-choice-app="runmotion">🏔️ RunMotion Coach</button>
+              <button type="button" class="chip-choice" data-choice-app="kiprun">👟 Kiprun Pacer</button>
+              <button type="button" class="chip-choice" data-choice-app="garmin_coach">⌚ Garmin Coach / Suggestions</button>
+              <button type="button" class="chip-choice" data-choice-app="pdf_excel">📄 Plan PDF / Excel</button>
+              <button type="button" class="chip-choice" data-choice-app="club_coach">🎽 Coach de Club / Nolio</button>
+              <button type="button" class="chip-choice" data-choice-app="feeling">🎯 Au feeling (sans plan)</button>
+            </div>
+          </div>
+
+          <!-- 3. ÉCOSYSTÈME MONTRE / GPS MATÉRIEL -->
+          <div style="margin-top: 20px;">
+            <label class="modal-section-label">Quelle montre ou GPS utilises-tu pour courir ?</label>
+            <div class="chips-selector-group">
+              <button type="button" class="chip-choice active" data-choice-watch="garmin">⌚ Garmin (Forerunner, Fenix...)</button>
+              <button type="button" class="chip-choice" data-choice-watch="apple_watch">🍎 Apple Watch (Ultra, Series...)</button>
+              <button type="button" class="chip-choice" data-choice-watch="coros">🧭 COROS (Pace, Apex...)</button>
+              <button type="button" class="chip-choice" data-choice-watch="polar_suunto">❄️ Polar ou Suunto</button>
+              <button type="button" class="chip-choice" data-choice-watch="phone_only">📱 Téléphone seul (Strava / Nike)</button>
+            </div>
+            <p style="font-size: 11.5px; color: var(--slate-500); margin-top: 6px;">
+              🟠 Synchronisation automatique avec ton historique <strong>Strava</strong> incluse dans la Bêta.
+            </p>
+          </div>
+
+          <button type="button" id="btn-next-step" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 24px;">
+            Continuer vers mon accès Bêta →
           </button>
         </div>
 
-        <!-- BOUCLE VIRALE COUPE-FILE -->
-        <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-md); padding: 14px;">
-          <strong style="font-size: 13.5px; display: block; margin-bottom: 4px;">
-            🚀 Coupe-file : Passe en tête de liste
-          </strong>
-          <p style="font-size: 12.5px; color: var(--slate-600); margin-bottom: 10px;">
-            Partage ce lien à un pote de course : dès qu'il teste le simulateur, tu gagnes 50 places sur l'accès Bêta.
+        <!-- ==================================================================
+             ÉTAPE 2 : ACCÈS BÊTA & EMAIL QUALIFIÉ
+             ================================================================== -->
+        <div id="modal-step-2" style="display: none;">
+          <button type="button" id="btn-back-step" class="btn-step-back">
+            ← Modifier mon profil
+          </button>
+
+          <!-- BADGE DE SYNTHÈSE DE PROFIL CRÉÉ -->
+          <div class="summary-pill-banner">
+            <span style="font-size: 16px;">✨</span>
+            <div>
+              <div style="font-size: 11px; font-weight: 800; color: var(--emerald-600); text-transform: uppercase;">
+                PROFIL ENTRAÎNEMENT PRÊT
+              </div>
+              <div id="summary-pill-text" style="font-size: 13.5px; font-weight: 700; color: var(--slate-800);">
+                Objectif Semi-Marathon • Écosystème Garmin + Strava
+              </div>
+            </div>
+          </div>
+
+          <h3 class="modal-step-title" style="margin-top: 16px;">
+            Où envoyer ton accès Bêta prioritaire ?
+          </h3>
+          <p class="modal-step-desc">
+            Nous ouvrons la Bêta privée par vagues de 50 coureurs pour assurer un suivi individualisé par l'IA.
           </p>
+
+          <div class="form-group" style="margin-top: 20px;">
+            <label class="form-label" for="form-email">Ton adresse email *</label>
+            <div class="input-with-icon">
+              <span class="input-icon">✉️</span>
+              <input
+                type="email"
+                id="form-email"
+                name="email"
+                class="form-input form-input-lg"
+                placeholder="camille.runner@gmail.com"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" id="btn-submit-waitlist" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 14px;">
+            Réserver mon Dossard Bêta (#142) →
+          </button>
+
+          <div class="form-trust-footer">
+            <span>🔒 Données privées chiffrées</span>
+            <span>•</span>
+            <span>Zéro publicité</span>
+            <span>•</span>
+            <span>Désinscription en 1 clic</span>
+          </div>
+        </div>
+      </form>
+
+      <!-- ==================================================================
+           ÉTAPE 3 : ÉCRAN DE SUCCÈS — LE DOSSARD DIGITAL BÊTA & OFFRE FONDATEUR
+           ================================================================== -->
+      <div id="modal-step-3" style="display: none;">
+        <!-- VRAI DOSSARD DIGITAL ATHLÉTIQUE (RACE BIB) -->
+        <div class="race-bib-ticket">
+          <div class="bib-header">
+            <div class="bib-logo">
+              <span class="brand-icon" style="width: 24px; height: 24px; font-size: 13px; border-radius: 6px;">P</span>
+              <span>RILES ATHLETICS • VAGUE BÊTA 2026</span>
+            </div>
+            <span class="bib-tag">OFFICIEL</span>
+          </div>
+
+          <div class="bib-body">
+            <div class="bib-number">#0142</div>
+            <div class="bib-category" id="bib-category-text">CATÉGORIE : SEMI-MARATHON</div>
+            <div class="bib-athlete" id="bib-athlete-text">ATHLÈTE : camille.runner@gmail.com</div>
+          </div>
+
+          <div class="bib-footer">
+            <span class="bib-stamp">✓ ACCÈS BÊTA VALIDÉ</span>
+            <div class="bib-barcode">|||| | ||||| || |||||| | |||</div>
+          </div>
+        </div>
+
+        <!-- CARTE OFFRE MEMBRE FONDATEUR (TEST DE PRIX / SKIN IN THE GAME) -->
+        <div class="founder-offer-card">
+          <div class="founder-offer-top">
+            <span class="founder-fire-badge">🔥 PRIVILÈGE PREMIER PELOTON</span>
+            <span class="founder-spots">Places restantes : 38 / 100</span>
+          </div>
+
+          <h4 style="font-size: 17px; font-weight: 850; color: var(--slate-900); margin-bottom: 6px;">
+            Bloquer -50% à vie sur l'abonnement Pro
+          </h4>
+          <p style="font-size: 13px; color: var(--slate-600); margin-bottom: 14px;">
+            Après tes 14 jours d'essai gratuit, garde ton tarif Membre Fondateur à <strong>49 €/an au lieu de 99 €/an</strong> sans engagement (0 € à payer aujourd'hui).
+          </p>
+
+          <button type="button" id="claim-founder-btn" class="btn btn-primary" style="width: 100%;">
+            Oui, bloquer mon tarif Membre Fondateur (-50%)
+          </button>
+        </div>
+
+        <!-- COUPE-FILE VIRAL PARTAGEABLE -->
+        <div class="share-box">
+          <div style="font-weight: 800; font-size: 13.5px; color: var(--slate-800); margin-bottom: 4px;">
+            🚀 Fais monter ton dossard dans la file
+          </div>
+          <p style="font-size: 12.5px; color: var(--slate-600); margin-bottom: 12px;">
+            Partage ton lien unique : dès qu'un pote teste le simulateur, tu gagnes 50 places pour la prochaine vague.
+          </p>
+
           <div style="display: flex; gap: 8px;">
             <input
               type="text"
               id="referral-link-input"
               class="form-input"
-              style="font-size: 12.5px; padding: 8px 10px;"
+              style="font-size: 12.5px; padding: 10px 12px;"
               readonly
             />
-            <button type="button" id="copy-referral-btn" class="btn btn-secondary btn-sm">
+            <button type="button" id="copy-referral-btn" class="btn btn-secondary btn-sm" style="flex-shrink: 0;">
               Copier
             </button>
+            <a
+              id="whatsapp-share-btn"
+              href="#"
+              target="_blank"
+              class="btn btn-secondary btn-sm"
+              style="flex-shrink: 0; background: #25D366; color: #fff; border-color: #25D366;"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
       </div>
