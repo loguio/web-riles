@@ -454,7 +454,7 @@
             Sélectionne ton objectif pour que l'IA calibre tes zones d'allure et ton plan.
           </p>
 
-          <!-- 1. GRILLE D'OBJECTIFS (4 CARTES TACTILES) -->
+          <!-- 1. GRILLE D'OBJECTIFS (AVEC RETOUR DU TRAIL & REPRISE) -->
           <div class="card-options-grid">
             <button type="button" class="choice-card active" data-choice-goal="semi">
               <div class="choice-card-icon">🏅</div>
@@ -483,47 +483,61 @@
               <span class="choice-check">✓</span>
             </button>
 
-            <button type="button" class="choice-card" data-choice-goal="reprise">
+            <button type="button" class="choice-card" data-choice-goal="trail">
               <div class="choice-card-icon">🌲</div>
               <div class="choice-card-body">
-                <span class="choice-card-title">Reprise / Plaisir</span>
-                <span class="choice-card-sub">Régularité & zéro blessure</span>
+                <span class="choice-card-title">Trail & Nature</span>
+                <span class="choice-card-sub">Dénivelé, D+ & gestion d'allure</span>
+              </div>
+              <span class="choice-check">✓</span>
+            </button>
+
+            <button type="button" class="choice-card choice-card-full" data-choice-goal="reprise">
+              <div class="choice-card-icon">🛡️</div>
+              <div class="choice-card-body">
+                <span class="choice-card-title">Reprise / Zéro Blessure</span>
+                <span class="choice-card-sub">Régularité, reprise progressive & protection des tendons</span>
               </div>
               <span class="choice-check">✓</span>
             </button>
           </div>
 
-          <!-- 2. COMMENT T'ENTRAÎNES-TU AUJOURD'HUI ? (CHIPS INTERACTIVES) -->
-          <div style="margin-top: 22px;">
-            <label class="modal-section-label">Comment prépares-tu tes courses aujourd'hui ?</label>
-            <div class="chips-selector-group">
-              <button type="button" class="chip-choice active" data-choice-app="campus">🧢 Campus Coach</button>
-              <button type="button" class="chip-choice" data-choice-app="runna">🏃‍♂️ Runna</button>
-              <button type="button" class="chip-choice" data-choice-app="runmotion">🏔️ RunMotion Coach</button>
-              <button type="button" class="chip-choice" data-choice-app="kiprun">👟 Kiprun Pacer</button>
-              <button type="button" class="chip-choice" data-choice-app="garmin_coach">⌚ Garmin Coach / Suggestions</button>
-              <button type="button" class="chip-choice" data-choice-app="pdf_excel">📄 Plan PDF / Excel</button>
-              <button type="button" class="chip-choice" data-choice-app="club_coach">🎽 Coach de Club / Nolio</button>
-              <button type="button" class="chip-choice" data-choice-app="feeling">🎯 Au feeling (sans plan)</button>
+          <!-- 2. COMMENT T'ENTRAÎNES-TU AUJOURD'HUI ? (LISTE DÉROULANTE ÉPURÉE) -->
+          <div style="margin-top: 20px;">
+            <label class="modal-section-label" for="form-current-app">Comment prépares-tu tes courses aujourd'hui ?</label>
+            <div style="position: relative;">
+              <select id="form-current-app" class="custom-modern-select">
+                <option value="campus" selected>🧢 Campus Coach</option>
+                <option value="runna">🏃‍♂️ Runna</option>
+                <option value="runmotion">🏔️ RunMotion Coach</option>
+                <option value="kiprun">👟 Kiprun Pacer (Decathlon)</option>
+                <option value="garmin_coach">⌚ Garmin Coach / Suggestions de la montre</option>
+                <option value="pdf_excel">📄 Plan PDF / Tableau Excel</option>
+                <option value="club_coach">🎽 Entraîneur de Club / Nolio</option>
+                <option value="feeling">🎯 Au feeling (sans plan fixe)</option>
+              </select>
             </div>
           </div>
 
-          <!-- 3. ÉCOSYSTÈME MONTRE / GPS MATÉRIEL -->
-          <div style="margin-top: 20px;">
-            <label class="modal-section-label">Quelle montre ou GPS utilises-tu pour courir ?</label>
-            <div class="chips-selector-group">
-              <button type="button" class="chip-choice active" data-choice-watch="garmin">⌚ Garmin (Forerunner, Fenix...)</button>
-              <button type="button" class="chip-choice" data-choice-watch="apple_watch">🍎 Apple Watch (Ultra, Series...)</button>
-              <button type="button" class="chip-choice" data-choice-watch="coros">🧭 COROS (Pace, Apex...)</button>
-              <button type="button" class="chip-choice" data-choice-watch="polar_suunto">❄️ Polar ou Suunto</button>
-              <button type="button" class="chip-choice" data-choice-watch="phone_only">📱 Téléphone seul (Strava / Nike)</button>
+          <!-- 3. ÉCOSYSTÈME MONTRE / GPS MATÉRIEL (LISTE DÉROULANTE ÉPURÉE) -->
+          <div style="margin-top: 16px;">
+            <label class="modal-section-label" for="form-watch">Quelle montre ou GPS utilises-tu pour courir ?</label>
+            <div style="position: relative;">
+              <select id="form-watch" class="custom-modern-select">
+                <option value="garmin" selected>⌚ Garmin (Forerunner, Fenix, Epix...)</option>
+                <option value="apple_watch">🍎 Apple Watch (Ultra, Series, SE)</option>
+                <option value="coros">🧭 COROS (Pace, Apex, Vertix)</option>
+                <option value="polar">❄️ Polar (Pacer, Vantage, Grit...)</option>
+                <option value="suunto">⛰️ Suunto (Race, Peak, Vertical...)</option>
+                <option value="phone_only">📱 Téléphone seul en poche (Strava / Nike)</option>
+              </select>
             </div>
             <p style="font-size: 11.5px; color: var(--slate-500); margin-top: 6px;">
               🟠 Synchronisation automatique avec ton historique <strong>Strava</strong> incluse dans la Bêta.
             </p>
           </div>
 
-          <button type="button" id="btn-next-step" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 24px;">
+          <button type="button" id="btn-next-step" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 22px;">
             Continuer vers mon accès Bêta →
           </button>
         </div>

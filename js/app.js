@@ -494,6 +494,7 @@
     semi: "Semi-Marathon (21,1 km)",
     marathon: "Marathon (42,195 km)",
     "10k": "10 km / 5 km",
+    trail: "Trail & Nature (D+)",
     reprise: "Reprise / Plaisir"
   };
 
@@ -512,7 +513,8 @@
     garmin: "Montre Garmin",
     apple_watch: "Apple Watch",
     coros: "Montre COROS",
-    polar_suunto: "Polar / Suunto",
+    polar: "Montre Polar",
+    suunto: "Montre Suunto",
     phone_only: "Téléphone seul (Strava / Nike)"
   };
 
@@ -530,23 +532,19 @@
     const hiddenGoal = document.getElementById("form-hidden-goal");
     if (hiddenGoal) hiddenGoal.value = state.selectedGoal;
 
-    // 2. Chips application actuelle
-    document.querySelectorAll("[data-choice-app]").forEach(function (chip) {
-      chip.classList.toggle(
-        "active",
-        chip.getAttribute("data-choice-app") === state.selectedApp
-      );
-    });
+    // 2. Liste déroulante application actuelle
+    const appSelect = document.getElementById("form-current-app");
+    if (appSelect && appSelect.value !== state.selectedApp) {
+      appSelect.value = state.selectedApp;
+    }
     const hiddenApp = document.getElementById("form-hidden-app");
     if (hiddenApp) hiddenApp.value = state.selectedApp;
 
-    // 3. Chips montre / GPS
-    document.querySelectorAll("[data-choice-watch]").forEach(function (chip) {
-      chip.classList.toggle(
-        "active",
-        chip.getAttribute("data-choice-watch") === state.selectedWatch
-      );
-    });
+    // 3. Liste déroulante montre / GPS
+    const watchSelect = document.getElementById("form-watch");
+    if (watchSelect && watchSelect.value !== state.selectedWatch) {
+      watchSelect.value = state.selectedWatch;
+    }
     const hiddenWatch = document.getElementById("form-hidden-watch");
     if (hiddenWatch) hiddenWatch.value = state.selectedWatch;
   }
@@ -822,23 +820,27 @@
       });
     });
 
-    // B. Chips application actuelle
-    document.querySelectorAll("[data-choice-app]").forEach(function (chip) {
-      chip.addEventListener("click", function () {
-        state.selectedApp = chip.getAttribute("data-choice-app");
-        syncModalCardsUI();
+    // B. Liste déroulante application actuelle
+    const appSelect = document.getElementById("form-current-app");
+    if (appSelect) {
+      appSelect.addEventListener("change", function () {
+        state.selectedApp = appSelect.value;
+        const hiddenApp = document.getElementById("form-hidden-app");
+        if (hiddenApp) hiddenApp.value = state.selectedApp;
         trackEvent("modal_app_selected", { app: state.selectedApp });
       });
-    });
+    }
 
-    // C. Chips montre / GPS
-    document.querySelectorAll("[data-choice-watch]").forEach(function (chip) {
-      chip.addEventListener("click", function () {
-        state.selectedWatch = chip.getAttribute("data-choice-watch");
-        syncModalCardsUI();
+    // C. Liste déroulante montre / GPS
+    const watchSelect = document.getElementById("form-watch");
+    if (watchSelect) {
+      watchSelect.addEventListener("change", function () {
+        state.selectedWatch = watchSelect.value;
+        const hiddenWatch = document.getElementById("form-hidden-watch");
+        if (hiddenWatch) hiddenWatch.value = state.selectedWatch;
         trackEvent("modal_watch_selected", { watch: state.selectedWatch });
       });
-    });
+    }
 
     // D. Bouton Étape Suivante (Étape 1 -> Étape 2)
     const nextBtn = document.getElementById("btn-next-step");
