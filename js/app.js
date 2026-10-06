@@ -1,5 +1,14 @@
 (function () {
-  const cfg = window.RILES_CONFIG || {};
+  // Clés publiques client de télémétrie (Clarity & PostHog)
+  // Strictement limitées à l'envoi d'événements sans aucun droit d'administration
+  const cfg = {
+    CLARITY_PROJECT_ID: "ys3jwzqq4h",
+    POSTHOG_API_KEY: "phc_up5r2TeCUma3Fmq6LHyieLHeJ7GV9MkJY5gCrDi4MfEb",
+    POSTHOG_HOST: "https://eu.i.posthog.com",
+    GA4_MEASUREMENT_ID: "",
+    EXTERNAL_WEBHOOK_URL: "",
+    ALLOW_ANGLE_SWITCHER_IN_PROD: false
+  };
 
   // ============================================================================
   // 1. DÉTECTION DES PARAMÈTRES URL (ANGLE MARKETING + UTM + REFERRAL)
@@ -420,6 +429,81 @@
           ]
         }
       }
+    },
+    trail: {
+      label: "Objectif Trail (35 km • 1 500m D+)",
+      scenarios: {
+        initial: {
+          readiness: "87% • Bloc D+ nominal",
+          coachNote:
+            "Semaine orientée dénivelé et renforcement musculaire excentrique. Clique sur un imprévu pour voir comment Riles réajuste la séance de côtes et préserve tes jambes pour le week-end.",
+          days: [
+            { d: "Lun", title: "Repos", meta: "Récup passive", status: "done" },
+            { d: "Mar", title: "Footing D+", meta: "50m • 8 km • 350m D+", status: "done" },
+            { d: "Mer", title: "Répétitions Côtes", meta: "1h10 • 10×1m D+ raide", status: "normal" },
+            { d: "Jeu", title: "Footing plat Z2", meta: "45m • Zéro D+", status: "normal" },
+            { d: "Ven", title: "Repos", meta: "Mobilité & gainage", status: "normal" },
+            { d: "Sam", title: "Pré-fatigue", meta: "1h00 • 10 km • 400m D+", status: "normal" },
+            { d: "Dim", title: "Sortie Longue Trail", meta: "2h45 • 22 km • 1 100m D+", status: "normal" }
+          ]
+        },
+        late_work_30m: {
+          readiness: "92% • Renforcement excentrique express sauvé",
+          coachNote:
+            "Tu n'as que 30 min ce soir : au lieu d'1h10, on fait 30 min d'escaliers ou de côte raide en bas de chez toi (8 montées dynamiques + descente souple) pour garder la puissance. J'ajoute 200m de D+ sur ta sortie trail de dimanche !",
+          days: [
+            { d: "Lun", title: "Repos", meta: "Récup passive", status: "done" },
+            { d: "Mar", title: "Footing D+", meta: "50m • 8 km • 350m D+", status: "done" },
+            { d: "Mer", title: "Escaliers / Côte", meta: "30m • 8 montées", status: "adapted", badge: "Express 30m" },
+            { d: "Jeu", title: "Footing plat Z2", meta: "45m • Zéro D+", status: "normal" },
+            { d: "Ven", title: "Repos", meta: "Mobilité", status: "normal" },
+            { d: "Sam", title: "Pré-fatigue", meta: "1h00 • 10 km • 400m D+", status: "normal" },
+            { d: "Dim", title: "SL Trail + D+", meta: "3h00 • 24 km • 1 300m D+", status: "rebalanced", badge: "+200m D+ compensé" }
+          ]
+        },
+        bad_sleep: {
+          readiness: "73% • Fibres musculaires protégées",
+          coachNote:
+            "Enchaîner des côtes et descentes raides sur une nuit de 5h détruit les fibres musculaires sans surcompensation. On remplace par 35 min de footing plat très souple, et on reporte le travail de dénivelé à samedi.",
+          days: [
+            { d: "Lun", title: "Repos", meta: "Récup passive", status: "done" },
+            { d: "Mar", title: "Footing D+", meta: "50m • 8 km • 350m D+", status: "done" },
+            { d: "Mer", title: "Footing Plat Doux", meta: "35m • Plat strict", status: "adapted", badge: "Allégé IA" },
+            { d: "Jeu", title: "Repos complet", meta: "Sommeil prioritaire", status: "rebalanced", badge: "Repos" },
+            { d: "Ven", title: "Footing régén.", meta: "40m • Z2", status: "rebalanced", badge: "Décalé" },
+            { d: "Sam", title: "Côtes 8×1m", meta: "1h05 • 600m D+", status: "rebalanced", badge: "Qualité D+" },
+            { d: "Dim", title: "Sortie Longue Trail", meta: "2h30 • 20 km • 900m D+", status: "normal" }
+          ]
+        },
+        sore_calf: {
+          readiness: "77% • Triceps sural & tendons déchargés",
+          coachNote:
+            "Alerte mollet en trail = zéro montée sur la pointe des pieds et zéro descente brusque pendant 72h. On bascule ce soir sur du vélo ou marche active, et on réduit le dénivelé négatif de la sortie longue de dimanche pour sécuriser le tendon d'Achille.",
+          days: [
+            { d: "Lun", title: "Repos", meta: "Récup passive", status: "done" },
+            { d: "Mar", title: "Footing D+", meta: "50m • 8 km • 350m D+", status: "done" },
+            { d: "Mer", title: "Vélo / Marche Z1", meta: "45m • Zéro choc", status: "adapted", badge: "Zéro impact" },
+            { d: "Jeu", title: "Repos & Glace", meta: "Mobilité cheville", status: "rebalanced", badge: "Soin" },
+            { d: "Ven", title: "Test Plat Herbe", meta: "30m • Terrain souple", status: "rebalanced", badge: "Test doux" },
+            { d: "Sam", title: "Repos pré-trail", meta: "Assimilation", status: "rebalanced", badge: "Repos" },
+            { d: "Dim", title: "Trail D+ modéré", meta: "2h15 • 18 km • 600m D+", status: "rebalanced", badge: "D- allégé" }
+          ]
+        },
+        no_thursday: {
+          readiness: "89% • Semaine trail adaptée",
+          coachNote:
+            "Jeudi soir bloqué : Riles décale ton footing d'assimilation sur le vendredi midi, permettant de garder les jambes légères avant d'attaquer le bloc du week-end.",
+          days: [
+            { d: "Lun", title: "Repos", meta: "Récup passive", status: "done" },
+            { d: "Mar", title: "Footing D+", meta: "50m • 8 km • 350m D+", status: "done" },
+            { d: "Mer", title: "Répétitions Côtes", meta: "1h10 • 10×1m D+ raide", status: "normal" },
+            { d: "Jeu", title: "Jeudi Sanctuarisé", meta: "0 km • Repos", status: "adapted", badge: "Règle IA" },
+            { d: "Ven", title: "Footing plat", meta: "45m • Z2", status: "rebalanced", badge: "Déplacé" },
+            { d: "Sam", title: "Pré-fatigue", meta: "55m • 9 km • 350m D+", status: "rebalanced", badge: "Ajusté" },
+            { d: "Dim", title: "Sortie Longue Trail", meta: "2h45 • 22 km • 1 100m D+", status: "normal" }
+          ]
+        }
+      }
     }
   };
 
@@ -506,7 +590,8 @@
     garmin_coach: "Garmin Coach",
     pdf_excel: "Plan PDF / Excel",
     club_coach: "Coach de Club / Nolio",
-    feeling: "Au feeling"
+    feeling: "Au feeling",
+    autre: "Autre application"
   };
 
   const WATCH_LABELS = {
@@ -576,7 +661,12 @@
       const summaryText = document.getElementById("summary-pill-text");
       if (summaryText) {
         const goalTxt = GOAL_LABELS[state.selectedGoal] || "Semi-Marathon";
-        const appTxt = APP_LABELS[state.selectedApp] || "Campus Coach";
+        const otherInput = document.getElementById("form-other-app-text");
+        const customTxt = otherInput ? otherInput.value.trim() : "";
+        const appTxt =
+          state.selectedApp === "autre" && customTxt
+            ? customTxt
+            : APP_LABELS[state.selectedApp] || "Campus Coach";
         const watchTxt = WATCH_LABELS[state.selectedWatch] || "Montre Garmin";
         summaryText.textContent = "Objectif " + goalTxt + " • " + appTxt + " • " + watchTxt;
       }
@@ -630,9 +720,20 @@
 
     state.submittedEmail = email;
 
+    let reportedApp = state.selectedApp || "campus";
+    if (state.selectedApp === "autre") {
+      const otherInput = document.getElementById("form-other-app-text");
+      const customVal = otherInput ? otherInput.value.trim() : "";
+      if (customVal) {
+        reportedApp = "autre: " + customVal;
+      }
+    }
+    const hiddenApp = document.getElementById("form-hidden-app");
+    if (hiddenApp) hiddenApp.value = reportedApp;
+
     trackEvent("waitlist_lead_submitted", {
       goal: state.selectedGoal,
-      current_app: state.selectedApp,
+      current_app: reportedApp,
       watch_brand: state.selectedWatch
     });
 
@@ -640,7 +741,7 @@
       window.posthog.identify(email, {
         email: email,
         goal: state.selectedGoal,
-        current_app: state.selectedApp,
+        current_app: reportedApp,
         watch_brand: state.selectedWatch,
         angle: state.angle,
         utm_source: state.utmSource
@@ -827,6 +928,17 @@
         state.selectedApp = appSelect.value;
         const hiddenApp = document.getElementById("form-hidden-app");
         if (hiddenApp) hiddenApp.value = state.selectedApp;
+
+        // Afficher/masquer le champ texte libre si "autre" est choisi
+        const otherWrap = document.getElementById("form-other-app-wrapper");
+        const otherInput = document.getElementById("form-other-app-text");
+        if (otherWrap) {
+          otherWrap.style.display = appSelect.value === "autre" ? "block" : "none";
+          if (appSelect.value === "autre" && otherInput) {
+            otherInput.focus();
+          }
+        }
+
         trackEvent("modal_app_selected", { app: state.selectedApp });
       });
     }

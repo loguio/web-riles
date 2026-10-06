@@ -2,13 +2,55 @@
   publish = "."
   command = "echo 'Site statique prêt pour Netlify'"
 
+# ==============================================================================
+# SÉCURITÉ : BLOCAGE DES FICHIERS DE CONFIGURATION, DEV ET DOCUMENTATION
+# ==============================================================================
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/js/config.js"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/*.json"
+  to = "/index.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/*.md"
+  to = "/index.html"
+  status = 404
+  force = true
+
+# ==============================================================================
+# EN-TÊTES HTTP DE SÉCURITÉ STRICTS (Zero iframe, anti-sniffing, CSP)
+# ==============================================================================
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    X-XSS-Protection = "1; mode=block"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms https://eu-assets.i.posthog.com https://us-assets.i.posthog.com https://eu.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.clarity.ms https://eu.i.posthog.com https://*.posthog.com; frame-ancestors 'none';"
 
+# ==============================================================================
+# CACHE IMMUTABLE POUR ASSETS STATIQUES (Images maquettes & icônes)
+# ==============================================================================
 [[headers]]
   for = "/assets/*"
   [headers.values]
