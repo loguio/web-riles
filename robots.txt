@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap officiel pour les moteurs de recherche (Google, Bing, DuckDuckGo)
+Sitemap: https://riles.run/sitemap.xml
