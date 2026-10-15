@@ -1009,6 +1009,8 @@
     const seg1 = document.getElementById('prog-seg-1');
     const seg2 = document.getElementById('prog-seg-2');
     const counter = document.getElementById('modal-step-counter');
+    const modal = document.getElementById('waitlist-modal');
+    if (modal) modal.setAttribute('aria-labelledby', 'modal-step-title-' + stepNumber);
 
     if (stepNumber === 1) {
       if (s1) s1.style.display = 'block';
@@ -1054,11 +1056,14 @@
     }
   }
 
+  let lastModalTrigger = null;
+
   function openWaitlistModal(triggerSource) {
     trackEvent('fake_door_clicked', { trigger_source: triggerSource });
 
     const modal = document.getElementById('waitlist-modal');
     if (!modal) return;
+    lastModalTrigger = document.activeElement;
 
     // Pré-remplir les champs cachés Netlify
     const angleInput = document.getElementById('form-hidden-angle');
@@ -1072,11 +1077,22 @@
     syncModalCardsUI();
     goToModalStep(1);
     modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    const closeBtn = document.getElementById('modal-close-btn');
+    if (closeBtn) {
+      setTimeout(function () {
+        closeBtn.focus();
+      }, 60);
+    }
   }
 
   function closeWaitlistModal() {
     const modal = document.getElementById('waitlist-modal');
     if (modal) modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (lastModalTrigger && typeof lastModalTrigger.focus === 'function') {
+      lastModalTrigger.focus();
+    }
   }
 
   async function handleWaitlistSubmit(e) {
@@ -1226,7 +1242,7 @@
     const btn = document.getElementById('claim-founder-btn');
     if (btn) {
       btn.textContent = '✓ Tarif Membre Fondateur (-50%) verrouillé pour toi !';
-      btn.style.background = '#059669';
+      btn.style.background = '#036b4d';
       btn.disabled = true;
     }
   }
@@ -1380,6 +1396,34 @@
     // Fermeture modal
     const closeBtn = document.getElementById('modal-close-btn');
     if (closeBtn) closeBtn.addEventListener('click', closeWaitlistModal);
+
+    // Échap ferme la modale + piège de focus
+    document.addEventListener('keydown', function (e) {
+      const modal = document.getElementById('waitlist-modal');
+      if (!modal || !modal.classList.contains('open')) return;
+      if (e.key === 'Escape') {
+        closeWaitlistModal();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const focusables = Array.from(
+        modal.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter(function (el) {
+        return el.offsetParent !== null || el === document.activeElement;
+      });
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
 
     const modalBackdrop = document.getElementById('waitlist-modal');
     if (modalBackdrop) {
