@@ -229,3 +229,30 @@ test('mobile reflow guard: responsive overrides stay in CSS', () => {
   );
   assert.match(css, /--border-strong:/, 'interactive boundary token must exist');
 });
+
+test('colour declarations reference tokens, not raw literals', () => {
+  const css = read('css/styles.css');
+  const allowed = [
+    /^#fff(f{0,1})$/i, // white text on dark surfaces / badges
+    /^#0f172a$/i, // dark label on orange buttons
+    /^#1a1a1a$/i, // phone bezels
+    /^#e2e8f0$/i, // legacy border inside tokens only
+    /^#cbd5e1$/i,
+    /^rgba\(255,\s*255,\s*255,\s*[\d.]+\)$/,
+    /^rgba\(15,\s*23,\s*42,\s*[\d.]+\)$/,
+    /^rgba\(0,\s*0,\s*0,\s*[\d.]+\)$/,
+  ];
+  const offenders = [];
+  css.split('\n').forEach((line, i) => {
+    if (line.trim().startsWith('--')) return; // token definitions
+    const m = line.match(/(?:^|[\s{;])((?:color|background|background-color|border|border-[a-z-]+)\s*:\s*[^;]+)/);
+    if (!m) return;
+    const raw = m[1].match(/#[0-9a-fA-F]{3,8}|rgba?\([^)]*\)/g) || [];
+    for (const value of raw) {
+      if (!allowed.some((re) => re.test(value.trim()))) {
+        offenders.push(`line ${i + 1}: ${value} in "${m[1].trim().slice(0, 80)}"`);
+      }
+    }
+  });
+  assert.deepEqual(offenders, [], `raw colour literals must use tokens:\n${offenders.join('\n')}`);
+});
