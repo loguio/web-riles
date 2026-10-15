@@ -71,14 +71,14 @@
    -------------------------------------------------------------------------- */
 
 :root {
-  --bg: #f8fafc;
+  --bg: #f1f5f9;
   --bg-2: #ffffff;
   --bg-dark: #0f172a;
   --ink: #0f172a;
-  --ink-soft: #64748b;
-  --ink-faint: #64748b;
+  --ink-soft: #556376;
+  --ink-faint: #5b6b82;
   --border: #e2e8f0;
-  --border-soft: #f1f5f9;
+  --border-soft: #e8edf3;
   --border-strong: #7c8797;
 
   --primary: #ff5722;
@@ -86,9 +86,9 @@
   --primary-soft: #fff5f2;
   --primary-border: #ffe4dc;
 
-  --success: #047857;
-  --success-soft: #ecfdf5;
-  --success-ink: #065f46;
+  --success: #0e7490;
+  --success-soft: #ecfeff;
+  --success-ink: #155e75;
 
   --warn: #b45309;
   --danger: #ef4444;
@@ -319,7 +319,7 @@ ol {
   top: 0;
   z-index: 50;
   height: auto;
-  background: rgba(248, 250, 252, 0.86);
+  background: var(--bg);
   backdrop-filter: saturate(180%) blur(14px);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--border);
@@ -1064,7 +1064,7 @@ section.padded {
 
 .day-card.rebalanced {
   background: var(--success-soft);
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: var(--success);
 }
 .day-badge.rebalanced {
   background: var(--success);
@@ -1267,7 +1267,7 @@ section.padded {
   margin-top: 3px;
   border-radius: 4px;
   background: var(--success-soft);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid var(--success);
   flex-shrink: 0;
 }
 
@@ -2036,7 +2036,7 @@ select.form-input {
 
 /* step 3: bib */
 .race-bib-ticket {
-  border: 2px dashed #cbd5e1;
+  border: 2px dashed var(--border-strong);
   border-radius: var(--radius-lg);
   padding: 16px 18px;
   margin-bottom: 20px;
@@ -2055,7 +2055,7 @@ select.form-input {
   text-transform: uppercase;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px dashed #cbd5e1;
+  border-bottom: 1px dashed var(--border-strong);
 }
 
 .bib-tag {
@@ -2106,7 +2106,7 @@ select.form-input {
   color: var(--success);
   letter-spacing: 0.14em;
   padding-top: 10px;
-  border-top: 1px dashed #cbd5e1;
+  border-top: 1px dashed var(--border-strong);
 }
 
 .bib-stamp {
