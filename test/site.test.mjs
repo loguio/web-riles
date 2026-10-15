@@ -148,3 +148,84 @@ test('analytics trackers only load after cookie consent', () => {
   assert.match(js, /storedConsent === 'granted'/, 'trackers must only load on explicit consent');
   assert.match(js, /showCookieConsentBanner\(\)/, 'banner must be shown when no choice is stored');
 });
+
+// --- WCAG contrast guard -------------------------------------------------
+function tokenMap(css) {
+  const root = css.slice(css.indexOf(':root'), css.indexOf('}', css.indexOf(':root')));
+  const map = {};
+  for (const m of root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,6})\s*;/g)) {
+    map[m[1]] = m[2];
+  }
+  return map;
+}
+
+function hexToRgb(hex) {
+  let h = hex.replace('#', '');
+  if (h.length === 3)
+    h = h
+      .split('')
+      .map((c) => c + c)
+      .join('');
+  return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+}
+
+function relLum(hex) {
+  const [r, g, b] = hexToRgb(hex).map((v) =>
+    v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4),
+  );
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function contrast(a, b) {
+  const la = relLum(a);
+  const lb = relLum(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+test('design tokens preserve WCAG AA text and component contrast', () => {
+  const tokens = tokenMap(read('css/styles.css'));
+
+  // Every pair here is either body text (4.5:1) or a component boundary (3:1).
+  const checks = [
+    ['ink', 'bg', 4.5],
+    ['ink', 'bg-2', 4.5],
+    ['ink-soft', 'bg', 4.5],
+    ['ink-soft', 'bg-2', 4.5],
+    ['ink-faint', 'bg', 4.5],
+    ['ink-faint', 'bg-2', 4.5],
+    ['ink', 'primary', 4.5],
+    ['success', 'bg-2', 4.5],
+    ['primary-dark', 'primary-soft', 4.5],
+    ['primary-dark', 'bg-2', 4.5],
+    ['ink-soft', 'bg', 4.5],
+    ['border-strong', 'bg-2', 3],
+    ['border-strong', 'bg', 3],
+  ];
+
+  for (const [fg, bg, min] of checks) {
+    assert.ok(tokens[fg], `missing token --${fg}`);
+    assert.ok(tokens[bg], `missing token --${bg}`);
+    const ratio = contrast(tokens[fg], tokens[bg]);
+    assert.ok(ratio >= min, `--${fg} on --${bg} is ${ratio.toFixed(2)}:1, expected >= ${min}:1`);
+  }
+});
+
+test('mobile reflow guard: responsive overrides stay in CSS', () => {
+  const css = read('css/styles.css');
+  assert.match(
+    css,
+    /@media \(max-width: 640px\)[\s\S]*?\.week-calendar-grid[\s\S]*?repeat\(2, minmax\(0, 1fr\)\)/,
+    'week calendar must collapse to 2 columns on small screens',
+  );
+  assert.match(
+    css,
+    /\.cookie-banner[\s\S]*?flex-direction: column/,
+    'cookie banner must stack on mobile',
+  );
+  assert.match(
+    css,
+    /\.readiness-pill[\s\S]*?white-space: normal/,
+    'readiness pill must wrap instead of overflow',
+  );
+  assert.match(css, /--border-strong:/, 'interactive boundary token must exist');
+});

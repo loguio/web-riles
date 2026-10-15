@@ -132,21 +132,19 @@
               Boulot tard, nuit de 5h ou imprévu jeudi ? Arrête d'abandonner ton plan. Parle au
               coach IA : il rééquilibre ta semaine sans te griller.
             </p>
-    <div class="container" style="padding-top: 20px; padding-bottom: 20px">
-      <div class="hero-trust" role="list">
-        <span class="trust-item" role="listitem"
-          ><span class="trust-check">✓</span> Calibré sur tes 6 derniers mois d'activités Strava /
-          Garmin</span
-        >
-        <span class="trust-item" role="listitem"
-          ><span class="trust-check">✓</span> Modèle de charge Banister (ATL / CTL / TSB) + règle
-          des +10 %</span
-        >
-        <span class="trust-item" role="listitem"
-          ><span class="trust-check">✓</span> Pas de CB pour tester le simulateur</span
-        >
-      </div>
-    </div>
+            <div class="hero-trust" role="list">
+              <span class="trust-item" role="listitem"
+                ><span class="trust-check">✓</span> Calibré sur tes 6 derniers mois d'activités
+                Strava / Garmin</span
+              >
+              <span class="trust-item" role="listitem"
+                ><span class="trust-check">✓</span> Modèle de charge Banister (ATL / CTL / TSB) +
+                règle des +10 %</span
+              >
+              <span class="trust-item" role="listitem"
+                ><span class="trust-check">✓</span> Pas de CB pour tester le simulateur</span
+              >
+            </div>
             <div class="hero-ctas">
               <a href="#simulateur" class="btn btn-primary btn-lg"
                 >⚡ Tester sur un imprévu (20 sec)</a
@@ -242,7 +240,7 @@
             <!-- Left: goals then scenarios -->
             <div>
               <p class="sim-step-label">1. Choisis ta prépa actuelle</p>
-              <div class="goal-selector" style="grid-template-columns: repeat(4, 1fr)">
+              <div class="goal-selector">
                 <button type="button" class="goal-btn" data-sim-goal="10k">
                   <span class="goal-label">10 km</span>
                   <span class="goal-sub">Viser 45 min</span>
@@ -493,18 +491,7 @@
             <div class="row-label">Capacité</div>
             <div>Plans PDF / apps</div>
             <div class="hide-mobile">Montre connectée</div>
-            <div
-              class="cell riles"
-              style="
-                margin: -16px -8px;
-                padding: 16px 8px;
-                background: var(--primary-soft);
-                border-left: 1px solid var(--primary-border);
-                border-right: 1px solid var(--primary-border);
-              "
-            >
-              Riles
-            </div>
+            <div class="cell riles">Riles</div>
           </div>
           <div class="comparison-row">
             <div class="row-label">Recalcule sur imprévu</div>
@@ -631,16 +618,7 @@
               <button type="button" class="btn btn-primary btn-lg" data-open-waitlist="footer_cta">
                 Demander un accès Bêta →
               </button>
-              <a
-                href="#simulateur"
-                class="btn btn-secondary btn-lg"
-                style="
-                  background: rgba(255, 255, 255, 0.08);
-                  color: #fff;
-                  border-color: rgba(255, 255, 255, 0.18);
-                "
-                >Tester le simulateur</a
-              >
+              <a href="#simulateur" class="btn btn-secondary btn-lg">Tester le simulateur</a>
             </div>
             <p class="footnote">
               Note : tarif fondateur indicatif. Les fonctionnalités Pro, la synchronisation complète
@@ -655,17 +633,7 @@
                 App Expo / React Native, déjà opérationnelle pour les membres bêta invités. iOS et
                 Android à venir au store.
               </p>
-              <ul
-                style="
-                  margin-top: 14px;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 8px;
-                  color: rgba(255, 255, 255, 0.85);
-                  font-size: 14px;
-                  line-height: 1.4;
-                "
-              >
+              <ul class="founder-feature-list">
                 <li style="display: flex; gap: 10px">
                   <span style="color: var(--primary)">→</span> 4 onglets : Accueil, Calendrier,
                   Running Club, Profil
@@ -685,17 +653,15 @@
               </ul>
               <div class="founder-offer-card">
                 <div class="founder-fire-badge">Privilège premier peloton</div>
-                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.75)">
+                <div class="founder-offer-copy">
                   Statut de membre fondateur réservé à cause bêta. Tarif indicatif : 49 euros par an
                   prévu au lieu de 99 euros par an, à valider au lancement.
                 </div>
-                <div class="founder-price" style="color: #fff">
-                  <old>99 €/an</old>49 €/an
-                  <span style="font-size: 12px; color: rgba(255, 255, 255, 0.6); font-weight: 400"
-                    >(indicatif)</span
-                  >
+                <div class="founder-price">
+                  <s>99 €/an</s>49 €/an
+                  <span class="founder-price-note">(indicatif)</span>
                 </div>
-                <div class="founder-offer-note" style="color: rgba(255, 255, 255, 0.5)">
+                <div class="founder-offer-note">
                   Pas de CB aujourd'hui. Engagement prévu à l'ouverture de la bêta.
                 </div>
               </div>
@@ -763,7 +729,9 @@
 
         <!-- STEP 1 -->
         <div id="modal-step-1">
-          <h3 class="modal-step-title">Quel est ton prochain défi running ?</h3>
+          <h3 class="modal-step-title" id="modal-step-title-1">
+            Quel est ton prochain défi running ?
+          </h3>
           <p class="modal-step-desc">
             On personnalise l'exemple pour voir ce que Riles ferait sur ta semaine.
           </p>
@@ -813,9 +781,9 @@
             </button>
           </div>
 
-          <div class="modal-section-label" for="form-current-app">
+          <label class="modal-section-label" for="form-current-app">
             Comment prépares-tu tes courses aujourd'hui ?
-          </div>
+          </label>
           <div style="margin-bottom: 16px">
             <select id="form-current-app" class="custom-modern-select">
               <option value="campus" selected>🧢 Campus Coach</option>
@@ -839,9 +807,9 @@
             />
           </div>
 
-          <div class="modal-section-label" for="form-watch" style="margin-top: 8px">
+          <label class="modal-section-label" for="form-watch" style="margin-top: 8px">
             Quelle montre ou GPS utilises-tu pour courir ?
-          </div>
+          </label>
           <div style="margin-bottom: 20px">
             <select id="form-watch" class="custom-modern-select">
               <option value="garmin" selected>⌚ Garmin (Forerunner, Fenix, Epix...)</option>
@@ -875,7 +843,9 @@
             >
           </div>
 
-          <h3 class="modal-step-title">Où envoyer ton accès Bêta prioritaire ?</h3>
+          <h3 class="modal-step-title" id="modal-step-title-2">
+            Où envoyer ton accès Bêta prioritaire ?
+          </h3>
           <p class="modal-step-desc">On te prévient dès qu'une place de bêta s'ouvre.</p>
 
           <form
@@ -970,7 +940,7 @@
               Bloquer -50 % à vie sur l'abonnement Pro
             </div>
             <div class="founder-price">
-              <old>99 €/an</old>49 €/an
+              <s>99 €/an</s>49 €/an
               <span style="font-size: 12px; color: var(--ink-faint); font-weight: 400"
                 >(indicatif)</span
               >
@@ -1010,8 +980,7 @@
                 href="#"
                 target="_blank"
                 rel="noopener"
-                class="btn btn-secondary btn-sm"
-                style="background: #25d366; color: #fff; border-color: #25d366"
+                class="btn btn-success btn-sm"
                 >WhatsApp</a
               >
             </div>

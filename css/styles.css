@@ -76,20 +76,21 @@
   --bg-dark: #0f172a;
   --ink: #0f172a;
   --ink-soft: #64748b;
-  --ink-faint: #94a3b8;
+  --ink-faint: #64748b;
   --border: #e2e8f0;
   --border-soft: #f1f5f9;
+  --border-strong: #7c8797;
 
   --primary: #ff5722;
-  --primary-dark: #e64a19;
+  --primary-dark: #c53e10;
   --primary-soft: #fff5f2;
   --primary-border: #ffe4dc;
 
-  --success: #10b981;
+  --success: #047857;
   --success-soft: #ecfdf5;
   --success-ink: #065f46;
 
-  --warn: #fb923c;
+  --warn: #b45309;
   --danger: #ef4444;
   --info: #3b82f6;
 
@@ -146,6 +147,10 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3,
@@ -165,7 +170,7 @@ ol {
 }
 
 a {
-  color: var(--primary);
+  color: var(--primary-dark);
   text-decoration: none;
 }
 a:hover {
@@ -301,8 +306,8 @@ ol {
 }
 .angle-pill.active {
   background: var(--primary);
-  border-color: var(--primary);
-  color: #fff;
+  border-color: var(--primary-dark);
+  color: #0f172a;
 }
 
 /* --------------------------------------------------------------------------
@@ -365,7 +370,7 @@ ol {
 .brand-logo small {
   font-weight: 700;
   font-size: 11px;
-  color: var(--primary);
+  color: var(--primary-dark);
   margin-left: 4px;
   font-family: 'JetBrains Mono', monospace;
 }
@@ -393,6 +398,18 @@ ol {
 .nav-links a:hover {
   color: var(--ink);
   background: var(--border-soft);
+}
+
+.brand-logo {
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.nav-links a.btn-primary {
+  color: #0f172a;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
 }
 
 /* --------------------------------------------------------------------------
@@ -427,21 +444,34 @@ ol {
 
 .btn-primary {
   background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
-  box-shadow: var(--shadow-brand);
+  color: #0f172a;
+  border-color: var(--primary-dark);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn-primary:hover {
-  background: var(--primary-dark);
+  background: var(--primary);
   border-color: var(--primary-dark);
-  color: #fff;
+  color: #0f172a;
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
   background: var(--bg-2);
   color: var(--ink);
   border-color: var(--border);
+}
+
+.btn-success {
+  background: var(--success);
+  color: #fff;
+  border-color: var(--success);
+}
+
+.btn-success:hover {
+  background: var(--success-ink);
+  border-color: var(--success-ink);
+  color: #fff;
 }
 
 .btn-secondary:hover {
@@ -452,10 +482,12 @@ ol {
 .btn-sm {
   padding: 8px 14px;
   font-size: 13px;
+  min-height: 40px;
 }
 .btn-lg {
   padding: 14px 22px;
   font-size: 16px;
+  min-height: 48px;
 }
 
 .btn-block {
@@ -494,7 +526,7 @@ ol {
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--primary);
+  color: var(--primary-dark);
   display: inline-block;
   margin-bottom: 16px;
 }
@@ -564,9 +596,10 @@ ol {
 .phones-stage {
   position: relative;
   width: 100%;
-  height: 420px;
-  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  max-width: min(420px, 100%);
   margin: 0 auto;
+  min-height: 240px;
 }
 
 .phone-frame {
@@ -708,8 +741,7 @@ ol {
    -------------------------------------------------------------------------- */
 
 section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+  contain-intrinsic-size: auto 320px;
 }
 
 section.padded {
@@ -720,7 +752,7 @@ section.padded {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--primary-dark);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -785,7 +817,7 @@ section.padded {
 .sim-step-number {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: var(--primary);
+  color: var(--primary-dark);
   font-weight: 700;
   letter-spacing: 0.14em;
   margin-bottom: 12px;
@@ -800,7 +832,7 @@ section.padded {
 
 .goal-btn {
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   padding: 12px 8px;
   text-align: left;
@@ -830,7 +862,7 @@ section.padded {
   border-color: var(--primary-border);
 }
 .goal-btn.active {
-  border-color: var(--primary);
+  border-color: var(--primary-dark);
   background: var(--primary-soft);
   transform: translateY(-1px);
 }
@@ -853,7 +885,7 @@ section.padded {
   gap: 12px;
   width: 100%;
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   padding: 11px 14px;
   cursor: pointer;
@@ -901,7 +933,7 @@ section.padded {
   border-color: var(--primary-border);
 }
 .scenario-btn.active {
-  border-color: var(--primary);
+  border-color: var(--primary-dark);
   background: var(--primary-soft);
   transform: translateY(-1px);
 }
@@ -925,6 +957,11 @@ section.padded {
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border-soft);
+  flex-wrap: wrap;
+}
+
+.sim-output-header > * {
+  min-width: 0;
 }
 
 .sim-output-goal {
@@ -943,12 +980,15 @@ section.padded {
   border: 1px solid var(--primary-border);
   padding: 4px 9px;
   border-radius: var(--radius-sm);
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 55%;
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .week-calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 6px;
 }
 
@@ -966,7 +1006,7 @@ section.padded {
 
 .day-name {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--ink-faint);
@@ -982,7 +1022,7 @@ section.padded {
 }
 
 .day-meta {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--ink-soft);
   line-height: 1.2;
   flex-grow: 1;
@@ -991,7 +1031,7 @@ section.padded {
 .day-badge {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
   padding: 3px 6px;
@@ -1004,10 +1044,10 @@ section.padded {
 /* day-card states (classes injected by app.js - must keep these exact names) */
 .day-card.done {
   background: var(--bg);
-  opacity: 0.7;
+  color: var(--ink-soft);
 }
 .day-badge.done {
-  background: var(--border);
+  background: var(--bg);
   color: var(--ink-soft);
 }
 
@@ -1015,10 +1055,10 @@ section.padded {
   background: var(--primary-soft);
   border-color: var(--primary-border);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-brand);
+  box-shadow: var(--shadow-lg);
 }
 .day-badge.adapted {
-  background: var(--primary);
+  background: var(--primary-dark);
   color: #fff;
 }
 
@@ -1046,7 +1086,7 @@ section.padded {
   justify-content: space-between;
   gap: 12px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.14em;
   color: var(--primary-dark);
@@ -1103,8 +1143,11 @@ section.padded {
 
 @media (max-width: 640px) {
   .week-calendar-grid {
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 4px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .day-card {
+    min-height: 84px;
   }
   .simulator-card {
     padding: 18px 16px;
@@ -1113,8 +1156,51 @@ section.padded {
     white-space: normal;
     max-width: 100%;
   }
+  .cookie-banner {
+    flex-direction: column;
+    align-items: stretch;
+    bottom: 8px;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+  .cookie-banner-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .cookie-banner-actions .btn-primary,
+  .cookie-banner-actions .btn-secondary {
+    white-space: normal;
+    min-width: 0;
+  }
   .floating-badge,
   .floating-badge-bottom {
+    position: relative;
+    display: block;
+    inset: auto;
+    margin: 0 0 12px;
+    max-width: 100%;
+    transform: none;
+    order: -1;
+  }
+  .phones-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    aspect-ratio: auto;
+    max-width: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+  .phone-frame,
+  .phone-secondary {
+    position: static;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+    transform: none;
+    inset: auto;
+  }
+  .phone-secondary {
     display: none;
   }
   .goal-selector {
@@ -1226,10 +1312,10 @@ section.padded {
 }
 
 .metric-row-value.accent {
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 .metric-row-value.warn {
-  color: var(--success);
+  color: var(--warn);
 }
 
 /* pillars (3 source cells - asymmetric) */
@@ -1259,7 +1345,7 @@ section.padded {
 .pillar .pillar-index {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: var(--primary);
+  color: var(--primary-dark);
   font-weight: 700;
   letter-spacing: 0.14em;
   margin-bottom: 10px;
@@ -1446,7 +1532,9 @@ section.padded {
     grid-template-columns: 1fr;
   }
   .apercu-card img {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 460 / 820;
+    height: auto;
+    object-fit: contain;
   }
 }
 
@@ -1456,18 +1544,16 @@ section.padded {
 
 .founder-section {
   padding: 88px 0;
-  background: var(--bg-dark);
-  color: #fff;
+  background: var(--bg-2);
+  color: var(--ink);
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .founder-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 100% 0%, rgba(255, 87, 34, 0.22), transparent 60%);
-  pointer-events: none;
+  content: none;
 }
 
 .founder-grid {
@@ -1482,7 +1568,7 @@ section.padded {
 .founder-section h2 {
   font-size: clamp(32px, 4.6vw, 46px);
   font-weight: 800;
-  color: #fff;
+  color: var(--ink);
   line-height: 1.04;
 }
 
@@ -1492,7 +1578,7 @@ section.padded {
 
 .founder-section .sub {
   font-size: 17px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--ink-soft);
   margin-top: 16px;
   max-width: 46ch;
   line-height: 1.5;
@@ -1511,9 +1597,9 @@ section.padded {
   gap: 7px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: var(--primary-soft);
+  border: 1px solid var(--primary-border);
+  color: var(--primary-dark);
   font-size: 13px;
   font-weight: 500;
 }
@@ -1531,38 +1617,37 @@ section.padded {
 
 .founder-section .footnote {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-faint);
   margin-top: 14px;
   max-width: 60ch;
   line-height: 1.5;
 }
 
 .founder-right .modal-preview {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 28px 24px;
-  backdrop-filter: blur(8px);
 }
 
 .founder-right h3 {
   font-size: 18px;
   font-weight: 800;
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 8px;
 }
 
 .founder-right p {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--ink-soft);
   line-height: 1.5;
 }
 
 .founder-right .founder-offer-card {
   margin-top: 18px;
   padding: 16px;
-  background: rgba(255, 87, 34, 0.12);
-  border: 1px solid rgba(255, 87, 34, 0.4);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
 }
 
@@ -1570,7 +1655,7 @@ founder-right .founder-fire-badge,
 .founder-section .founder-fire-badge {
   font-size: 12px;
   font-weight: 800;
-  color: #fff;
+  color: var(--primary-dark);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 6px;
@@ -1666,7 +1751,7 @@ founder-right .founder-fire-badge,
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--primary-dark);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1723,7 +1808,7 @@ founder-right .founder-fire-badge,
   cursor: pointer;
   padding: 14px;
   background: var(--bg-2);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   position: relative;
   transition:
@@ -1737,7 +1822,7 @@ founder-right .founder-fire-badge,
   transform: translateY(-1px);
 }
 .choice-card.active {
-  border-color: var(--primary);
+  border-color: var(--primary-dark);
   background: var(--primary-soft);
 }
 
@@ -1780,8 +1865,8 @@ founder-right .founder-fire-badge,
 
 .choice-card.active .choice-check {
   background: var(--primary);
-  border-color: var(--primary);
-  color: #fff;
+  border-color: var(--primary-dark);
+  color: #0f172a;
 }
 .choice-card.active .choice-check::after {
   content: '\2713';
@@ -1797,7 +1882,7 @@ founder-right .founder-fire-badge,
   width: 100%;
   padding: 12px 36px 12px 14px;
   font-size: 14px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   background: var(--bg-2)
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748B' d='M3 5l3 3 3-3'/%3E%3C/svg%3E")
@@ -1816,7 +1901,7 @@ founder-right .founder-fire-badge,
   border-color: var(--ink-faint);
 }
 .custom-modern-select:focus {
-  border-color: var(--primary);
+  border-color: var(--primary-dark);
   box-shadow: 0 0 0 3px var(--primary-soft);
   outline: none;
 }
@@ -1842,7 +1927,7 @@ select.form-input {
   width: 100%;
   padding: 13px 14px 13px 40px;
   font-size: 15px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   background: var(--bg-2);
   color: var(--ink);
@@ -1853,7 +1938,7 @@ select.form-input {
 }
 
 .form-input-lg:focus {
-  border-color: var(--primary);
+  border-color: var(--primary-dark);
   box-shadow: 0 0 0 3px var(--primary-soft);
   outline: none;
 }
@@ -1879,7 +1964,7 @@ select.form-input {
   height: 20px;
   min-width: 20px;
   margin-top: 2px;
-  accent-color: var(--primary);
+  accent-color: var(--primary-dark);
   cursor: pointer;
 }
 
@@ -1925,9 +2010,9 @@ select.form-input {
 
 .summary-pill-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--primary-dark);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1955,13 +2040,7 @@ select.form-input {
   border-radius: var(--radius-lg);
   padding: 16px 18px;
   margin-bottom: 20px;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 12px,
-    rgba(15, 23, 42, 0.02) 12px,
-    rgba(15, 23, 42, 0.02) 24px
-  );
+  background: var(--bg-2);
 }
 
 .bib-header {
@@ -1969,7 +2048,7 @@ select.form-input {
   justify-content: space-between;
   align-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.14em;
   color: var(--ink-faint);
@@ -1981,13 +2060,13 @@ select.form-input {
 
 .bib-tag {
   background: var(--primary);
-  color: #fff;
+  color: #0f172a;
   padding: 3px 8px;
   border-radius: 4px;
   font-family: 'Archivo', sans-serif;
   font-weight: 800;
   letter-spacing: 0.06em;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 .bib-number {
@@ -2044,8 +2123,8 @@ select.form-input {
 }
 
 .founder-offer-card {
-  background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   padding: 16px 18px;
   margin-top: 18px;
@@ -2073,7 +2152,7 @@ select.form-input {
   margin-top: 8px;
 }
 
-.founder-offer-card .founder-price old {
+.founder-offer-card .founder-price s {
   font-weight: 400;
   color: var(--ink-faint);
   text-decoration: line-through;
@@ -2085,6 +2164,34 @@ select.form-input {
   font-size: 11px;
   color: var(--ink-faint);
   margin-top: 4px;
+}
+
+.founder-feature-list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.4;
+  padding-left: 0;
+  list-style: none;
+}
+
+.founder-feature-list .accent-arrow {
+  color: var(--primary-dark);
+}
+
+.founder-offer-copy {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.founder-price-note {
+  font-size: 12px;
+  color: var(--ink-faint);
+  font-weight: 400;
 }
 
 .share-box {
@@ -2112,7 +2219,7 @@ select.form-input {
 .referral-input {
   flex: 1;
   padding: 8px 12px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
@@ -2127,9 +2234,9 @@ select.form-input {
 
 .footer {
   padding: 32px 0 24px;
-  background: var(--bg-dark);
-  color: rgba(255, 255, 255, 0.8);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--bg-2);
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
 }
 
 .footer .container {
@@ -2148,12 +2255,12 @@ select.form-input {
 .footer-brand {
   font-weight: 800;
   font-size: 17px;
-  color: #fff;
+  color: var(--ink);
 }
 
 .footer-tagline {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--ink-soft);
   margin-top: 4px;
 }
 
@@ -2169,7 +2276,7 @@ select.form-input {
   justify-content: space-between;
   gap: 16px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border);
   flex-wrap: wrap;
 }
 
@@ -2181,28 +2288,28 @@ select.form-input {
 
 .footer-legal a {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--ink-soft);
   text-decoration: none;
   transition: color var(--dur);
 }
 
 .footer-legal a:hover {
-  color: #fff;
+  color: var(--primary-dark);
 }
 
 .footer-copy {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--ink-faint);
   letter-spacing: 0.06em;
 }
 
 /* danger fix: keep legal page footer links readable */
 .footer a {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--ink-soft);
 }
 .footer a:hover {
-  color: #fff;
+  color: var(--primary-dark);
 }
 
 /* --------------------------------------------------------------------------
@@ -2309,13 +2416,15 @@ select.form-input {
     gap: 36px;
   }
   .hero-right {
-    order: -1;
+    order: 1;
   }
   .hero-title {
     max-width: none;
   }
   .phones-stage {
-    height: 420px;
+    height: auto;
+    min-height: 240px;
+    margin-top: 8px;
   }
   .phone-frame {
     width: 200px;
