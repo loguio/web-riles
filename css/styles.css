@@ -755,6 +755,16 @@ section.padded {
   margin-top: 8px;
 }
 
+.simulator-card,
+.simulator-card * {
+  min-width: 0;
+}
+
+.scenario-text-box {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .sim-steps-grid {
   display: grid;
   grid-template-columns: 1fr 1.35fr;
@@ -1091,6 +1101,22 @@ section.padded {
 }
 
 @media (max-width: 640px) {
+  .navbar-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .compat-chip {
+    white-space: normal;
+    max-width: 100%;
+  }
+  .nav-links {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
   .week-calendar-grid {
     grid-template-columns: repeat(4, 1fr);
   }
