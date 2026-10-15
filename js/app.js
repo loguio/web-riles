@@ -1261,6 +1261,23 @@
     }
     setupCookieConsent();
 
+    // Filet de sécurité visuel : aucune image ne doit jamais afficher
+    // l'icône "image cassée" du navigateur (réseau lent, cache vidé, blocage).
+    const IMAGE_FALLBACK =
+      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 466 811'%3E%3Crect width='466' height='811' fill='%23f1f5f9'/%3E%3Crect x='40' y='60' width='386' height='120' rx='18' fill='%23e2e8f0'/%3E%3Ctext x='233' y='430' font-family='Archivo,sans-serif' font-size='30' font-weight='700' fill='%2364748b' text-anchor='middle'%3ERiles%3C/text%3E%3C/svg%3E";
+    function guardImage(img) {
+      if (!img || img.dataset.fallbackGuard === '1') return;
+      img.dataset.fallbackGuard = '1';
+      const swap = function () {
+        if (img.dataset.fallbackApplied === '1') return;
+        img.dataset.fallbackApplied = '1';
+        img.src = IMAGE_FALLBACK;
+      };
+      img.addEventListener('error', swap);
+      if (img.complete && img.naturalWidth === 0) swap();
+    }
+    document.querySelectorAll('img').forEach(guardImage);
+
     // Consentement liste d'attente : horodatage ISO 8601 de la case cochée,
     // transmis avec la soumission du formulaire Netlify.
     const consentInput = document.getElementById('form-consent');
