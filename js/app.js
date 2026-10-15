@@ -203,21 +203,21 @@
       titleHtml:
         'Le premier plan running qui s\'adapte à <span class="highlight">ta vraie vie</span> en 10 secondes.',
       subtitle:
-        "Boulot tard, nuit de 5h ou imprévu jeudi soir ? Arrête d'abandonner ton plan. Parle au coach IA : il rééquilibre ta semaine sans te griller.",
+        'Boulot tard, nuit de 5h ou imprévu jeudi ? Parle au coach IA : il rééquilibre ta semaine sans culpabilité.',
     },
     injury: {
       eyebrow: 'PRÉVENTION SURCHARGE & MODÈLE PHYSIOLOGIQUE',
       titleHtml:
         'Quand ton corps dit stop, forcer la séance reste le chemin le plus court <span class="highlight">vers la blessure</span>.',
       subtitle:
-        "Riles croise tes 6 derniers mois Strava et Garmin, ton historique, ta charge d'entraînement, pour adapter tes allures et protéger tes tendons.",
+        "Riles croise tes 6 mois Strava et Garmin et ta charge d'entraînement pour adapter tes allures et protéger tes tendons.",
     },
     garmin: {
-      eyebrow: 'COMPATIBLE GARMIN • STRAVA • COROS • APPLE',
+      eyebrow: 'COMPATIBLE GARMIN • STRAVA • APPLE',
       titleHtml:
         'Ta montre te dit quoi courir. Riles est le premier coach <span class="highlight">avec qui tu peux négocier</span>.',
       subtitle:
-        'Ta montre ne sait pas que tu sors de réunion. Dis-le en une phrase : ton plan recalcule la séance et le week-end.',
+        'Ta montre ignore tes contraintes. Dis-le en une phrase : Riles recalcule séance et week-end.',
     },
   };
 
