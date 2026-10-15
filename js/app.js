@@ -203,21 +203,21 @@
       titleHtml:
         'Le premier plan running qui s\'adapte à <span class="highlight">ta vraie vie</span> en 10 secondes.',
       subtitle:
-        "Boulot tard, nuit de 5h ou imprévu jeudi soir ? Arrête d'abandonner ton plan ou d'empiler les séances ratées. Parle au coach IA : il rééquilibre le reste de ta semaine sans te griller.",
+        'Boulot tard, nuit de 5h ou imprévu jeudi ? Parle au coach IA : il rééquilibre ta semaine sans culpabilité.',
     },
     injury: {
       eyebrow: 'PRÉVENTION SURCHARGE & MODÈLE PHYSIOLOGIQUE',
       titleHtml:
         'Quand ton corps dit stop, forcer la séance reste le chemin le plus court <span class="highlight">vers la blessure</span>.',
       subtitle:
-        "Riles croise tes 6 derniers mois Strava/Garmin, ta fatigue nerveuse et tes imprévus quotidiens pour ajuster tes allures de seuil et préserver tes mollets jusqu'au jour J.",
+        "Riles croise tes 6 mois Strava et Garmin et ta charge d'entraînement pour adapter tes allures et protéger tes tendons.",
     },
     garmin: {
-      eyebrow: 'COMPATIBLE GARMIN • STRAVA • COROS • APPLE',
+      eyebrow: 'COMPATIBLE GARMIN • STRAVA • APPLE',
       titleHtml:
         'Ta montre te dit quoi courir. Riles est le premier coach <span class="highlight">avec qui tu peux négocier</span>.',
       subtitle:
-        'Ta montre ne sait pas que tu sors de réunion à 19h30 ou que tu ne peux jamais courir le jeudi. Dis-le en une phrase : ton plan recalcule instantanément la séance et le week-end.',
+        'Ta montre ignore tes contraintes. Dis-le en une phrase : Riles recalcule séance et week-end.',
     },
   };
 
@@ -251,7 +251,7 @@
       label: 'Objectif 10 km (45 min)',
       scenarios: {
         initial: {
-          readiness: '88% • Semaine nominale',
+          readiness: 'Semaine nominale',
           coachNote:
             'Semaine calibrée sur tes 6 derniers mois Strava (Allure Seuil : 4:30/km). Clique sur un imprévu à gauche pour voir comment Riles rééquilibre ta semaine.',
           days: [
@@ -265,7 +265,7 @@
           ],
         },
         late_work_30m: {
-          readiness: '91% • Stimulus préservé en 30 min',
+          readiness: 'Stimulus préservé en 30 min',
           coachNote:
             "Pas de souci pour le boulot ! Au lieu d'1h05 de piste, je te passe sur un Fartlek court de 30 min (6×1 min dynamique) en bas de chez toi. J'ajoute 10 min de rappel d'allure samedi pour ne rien perdre.",
           days: [
@@ -291,7 +291,7 @@
           ],
         },
         bad_sleep: {
-          readiness: '72% • Protection nerveuse activée',
+          readiness: 'Protection nerveuse activée',
           coachNote:
             "Forcer de la VMA après une nuit de 5h multiplie par 3 le risque de blessure sans gain cardio. On remplace aujourd'hui par 35 min d'aérobie très souple (Z1/Z2) et on décale la qualité à samedi.",
           days: [
@@ -329,7 +329,7 @@
           ],
         },
         sore_calf: {
-          readiness: '79% • Décharge biomécanique mollet',
+          readiness: 'Décharge biomécanique mollet',
           coachNote:
             "On protège immédiatement ton mollet : zéro travail de vitesse ou de côte sur les 72 prochaines heures. On remplace par du plat souple ou vélo, et j'allège le seuil de samedi.",
           days: [
@@ -361,7 +361,7 @@
           ],
         },
         no_thursday: {
-          readiness: '90% • Règle de vie enregistrée',
+          readiness: 'Règle de vie enregistrée',
           coachNote:
             "C'est noté dans tes Règles de Vie permanentes : ton jeudi soir est désormais sanctuarisé à 100%. J'ai déplacé ton footing d'assimilation sur vendredi sans toucher à ta sortie longue.",
           days: [
@@ -392,7 +392,7 @@
       label: 'Objectif Semi-Marathon (1h45)',
       scenarios: {
         initial: {
-          readiness: '88% • Charge optimale (CTL 52)',
+          readiness: 'Charge optimale',
           coachNote:
             'Semaine clé à J-6 semaines du Semi-Marathon. Clique sur un imprévu pour voir comment Riles adapte la séance de Mercredi (1h15 Seuil) et rééquilibre le reste de la semaine.',
           days: [
@@ -406,7 +406,7 @@
           ],
         },
         late_work_30m: {
-          readiness: '92% • Stimulus Seuil sauvé en 30 min',
+          readiness: 'Stimulus seuil sauvé en 30 min',
           coachNote:
             "Tu n'as que 30 min ce soir au lieu d'1h15 : on fait 10 min d'échauffement + 15 min de Tempo continu à 4:50/km + 5 min retour au calme. J'intègre le volume manquant sous forme d'un bloc de 15 min à allure Semi dimanche !",
           days: [
@@ -432,7 +432,7 @@
           ],
         },
         bad_sleep: {
-          readiness: '74% • Surcharge évitée',
+          readiness: 'Surcharge évitée',
           coachNote:
             "Nuit courte détectée : faire 14 km au seuil ce soir ferait exploser ta fatigue aiguë (ATL). Je remplace par un footing régénération de 35 min sans regarder l'allure, et je décale le travail d'allure Semi à samedi.",
           days: [
@@ -470,7 +470,7 @@
           ],
         },
         sore_calf: {
-          readiness: '80% • Protection tendineuse & musculaire',
+          readiness: 'Protection tendineuse & musculaire',
           coachNote:
             "Comme dans ton check-in RPE : j'annule les 3×8 min de seuil aujourd'hui pour préserver tes mollets. Repos ou vélo doux ce soir, footing test sur terrain plat vendredi, et allure contrôlée ce week-end.",
           days: [
@@ -502,7 +502,7 @@
           ],
         },
         no_thursday: {
-          readiness: '90% • Règle du jeudi enregistrée',
+          readiness: 'Règle du jeudi enregistrée',
           coachNote:
             "Nouvelle Règle de Vie ajoutée : « Pas de sortie le jeudi ». Ton footing d'assimilation bascule automatiquement au vendredi matin et ta sortie de samedi est ajustée pour garder 48h de fraîcheur avant la sortie longue.",
           days: [
@@ -539,7 +539,7 @@
       label: 'Objectif Marathon (3h45)',
       scenarios: {
         initial: {
-          readiness: '86% • Semaine de charge (56 km)',
+          readiness: 'Semaine de charge en place',
           coachNote:
             'Semaine marathon à 4 sorties. Sélectionne un imprévu à gauche pour voir comment Riles protège ton volume sans jamais te faire rattraper sauvagement une séance.',
           days: [
@@ -553,7 +553,7 @@
           ],
         },
         late_work_30m: {
-          readiness: '90% • Bloc Allure Marathon reporté intelligemment',
+          readiness: 'Bloc allure marathon reporté intelligemment',
           coachNote:
             "Seulement 30 min ce soir : fais un simple décrassage de 30 min pour évacuer le stress du boulot. Je déplace ton bloc d'Allure Marathon directement au cœur de ta sortie longue de dimanche (3×15 min à 5:18/km) !",
           days: [
@@ -591,7 +591,7 @@
           ],
         },
         bad_sleep: {
-          readiness: '75% • Assimilation prioritaire',
+          readiness: 'Assimilation prioritaire',
           coachNote:
             "En prépa marathon, le sommeil est ton premier entraînement. Dormir 1h de plus ce soir te fera progresser 3 fois plus qu'une séance bâclée. On coupe aujourd'hui et on lisse le volume sur jeudi et samedi.",
           days: [
@@ -623,7 +623,7 @@
           ],
         },
         sore_calf: {
-          readiness: '78% • Prévention périostite / tendinite',
+          readiness: 'Prévention périostite / tendinite',
           coachNote:
             "Alerte mollet en prépa marathon = prudence absolue. On neutralise l'impact mécanique pendant 48h et on réduit la sortie longue de dimanche de 25 à 20 km sur sol souple sans allure imposée.",
           days: [
@@ -667,7 +667,7 @@
           ],
         },
         no_thursday: {
-          readiness: '89% • Semaine 4 séances recalibrée',
+          readiness: 'Semaine 4 séances recalibrée',
           coachNote:
             "Ton jeudi est bloqué : Riles réorganise tes 4 séances sur Mardi, Mercredi, Vendredi et Dimanche pour éviter d'enchaîner 3 jours d'affilée le week-end.",
           days: [
@@ -704,7 +704,7 @@
       label: 'Objectif Trail (35 km • 1 500m D+)',
       scenarios: {
         initial: {
-          readiness: '87% • Bloc D+ nominal',
+          readiness: 'Bloc D+ nominal',
           coachNote:
             'Semaine orientée dénivelé et renforcement musculaire excentrique. Clique sur un imprévu pour voir comment Riles réajuste la séance de côtes et préserve tes jambes pour le week-end.',
           days: [
@@ -728,7 +728,7 @@
           ],
         },
         late_work_30m: {
-          readiness: '92% • Renforcement excentrique express sauvé',
+          readiness: 'Renforcement excentrique express sauvé',
           coachNote:
             "Tu n'as que 30 min ce soir : au lieu d'1h10, on fait 30 min d'escaliers ou de côte raide en bas de chez toi (8 montées dynamiques + descente souple) pour garder la puissance. J'ajoute 200m de D+ sur ta sortie trail de dimanche !",
           days: [
@@ -754,7 +754,7 @@
           ],
         },
         bad_sleep: {
-          readiness: '73% • Fibres musculaires protégées',
+          readiness: 'Fibres musculaires protégées',
           coachNote:
             'Enchaîner des côtes et descentes raides sur une nuit de 5h détruit les fibres musculaires sans surcompensation. On remplace par 35 min de footing plat très souple, et on reporte le travail de dénivelé à samedi.',
           days: [
@@ -797,7 +797,7 @@
           ],
         },
         sore_calf: {
-          readiness: '77% • Triceps sural & tendons déchargés',
+          readiness: 'Triceps sural & tendons déchargés',
           coachNote:
             "Alerte mollet en trail = zéro montée sur la pointe des pieds et zéro descente brusque pendant 72h. On bascule ce soir sur du vélo ou marche active, et on réduit le dénivelé négatif de la sortie longue de dimanche pour sécuriser le tendon d'Achille.",
           days: [
@@ -841,7 +841,7 @@
           ],
         },
         no_thursday: {
-          readiness: '89% • Semaine trail adaptée',
+          readiness: 'Semaine trail adaptée',
           coachNote:
             "Jeudi soir bloqué : Riles décale ton footing d'assimilation sur le vendredi midi, permettant de garder les jambes légères avant d'attaquer le bloc du week-end.",
           days: [
