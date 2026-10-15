@@ -396,6 +396,10 @@ ol {
   background: var(--border-soft);
 }
 
+.nav-links a.btn-primary {
+  color: #0f172a;
+}
+
 /* --------------------------------------------------------------------------
    BUTTONS
    -------------------------------------------------------------------------- */
@@ -549,7 +553,7 @@ ol {
 .trust-check {
   width: 18px;
   height: 18px;
-  background: var(--success-soft);
+  background: var(--bg-2);
   color: var(--success);
   border-radius: 50%;
   display: grid;
@@ -612,7 +616,7 @@ ol {
 .floating-badge {
   position: relative;
   margin-top: 16px;
-  background: var(--primary-soft);
+  background: var(--bg-2);
   border: 1px solid var(--primary-border);
   border-radius: var(--radius-md);
   padding: 12px 14px;
@@ -841,7 +845,7 @@ section.padded {
 }
 
 .goal-btn.active .goal-label {
-  color: var(--primary-dark);
+  color: var(--ink);
 }
 
 .scenario-list {
@@ -943,7 +947,7 @@ section.padded {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 600;
-  color: var(--primary-dark);
+  color: var(--ink);
   background: var(--primary-soft);
   border: 1px solid var(--primary-border);
   padding: 4px 9px;
@@ -1032,6 +1036,11 @@ section.padded {
 .day-card.rebalanced {
   background: var(--success-soft);
   border-color: rgba(16, 185, 129, 0.35);
+  color: var(--bg-dark);
+}
+.day-card.rebalanced .day-meta,
+.day-card.rebalanced .day-session {
+  color: var(--bg-dark);
 }
 .day-badge.rebalanced {
   background: var(--success);
@@ -1406,7 +1415,7 @@ section.padded {
 
 .comparison-row .cell.riles {
   background: var(--primary-soft);
-  color: var(--primary-dark);
+  color: var(--ink);
   margin: -16px -8px;
   padding: 16px 8px;
   border-left: 1px solid var(--primary-border);
@@ -1562,9 +1571,9 @@ section.padded {
   gap: 7px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--ink);
   font-size: 13px;
   font-weight: 500;
 }
@@ -1589,8 +1598,8 @@ section.padded {
 }
 
 .founder-right .modal-preview {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 28px 24px;
   backdrop-filter: blur(8px);
@@ -2261,7 +2270,7 @@ select.form-input {
   transform: translateX(-50%);
   max-width: 920px;
   width: calc(100% - 32px);
-  background: var(--ink);
+  background: var(--bg-dark);
   color: #fff;
   padding: 12px 16px;
   border-radius: var(--radius-lg);
