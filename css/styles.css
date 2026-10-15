@@ -234,10 +234,11 @@ ol {
 }
 
 .section-head h2 {
-  font-size: clamp(30px, 5vw, 48px);
+  font-size: clamp(24px, 5.6vw, 44px);
   font-weight: 800;
   color: var(--ink);
   margin-top: 8px;
+  max-width: 18ch;
 }
 
 .section-head p {
@@ -314,7 +315,7 @@ ol {
   top: 0;
   z-index: 50;
   height: auto;
-  background: rgba(248, 250, 252, 0.86);
+  background: rgba(12, 15, 18, 0.82);
   backdrop-filter: saturate(180%) blur(14px);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--border);
@@ -429,7 +430,7 @@ ol {
   background: var(--primary);
   color: #fff;
   border-color: var(--primary);
-  box-shadow: var(--shadow-brand);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn-primary:hover {
@@ -529,8 +530,8 @@ ol {
 .hero-trust {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  margin-top: 26px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .trust-item {
@@ -543,8 +544,8 @@ ol {
 }
 
 .trust-check {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: var(--success-soft);
   color: var(--success);
   border-radius: 50%;
@@ -564,9 +565,10 @@ ol {
 .phones-stage {
   position: relative;
   width: 100%;
-  height: 420px;
+  aspect-ratio: 4 / 5;
   max-width: min(420px, 100%);
   margin: 0 auto;
+  min-height: 280px;
 }
 
 .phone-frame {
@@ -943,12 +945,14 @@ section.padded {
   border: 1px solid var(--primary-border);
   padding: 4px 9px;
   border-radius: var(--radius-sm);
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 45%;
+  text-align: right;
 }
 
 .week-calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 6px;
 }
 
@@ -1015,7 +1019,7 @@ section.padded {
   background: var(--primary-soft);
   border-color: var(--primary-border);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-brand);
+  box-shadow: var(--shadow-lg);
 }
 .day-badge.adapted {
   background: var(--primary);
@@ -1049,7 +1053,7 @@ section.padded {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  color: var(--primary-dark);
+  color: var(--ink-soft);
   text-transform: uppercase;
   margin-bottom: 6px;
 }
@@ -1111,6 +1115,12 @@ section.padded {
     white-space: normal;
     max-width: 100%;
   }
+  .btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+    min-height: 44px;
+  }
   .nav-links {
     width: 100%;
     margin-left: 0;
@@ -1118,7 +1128,16 @@ section.padded {
     flex-wrap: wrap;
   }
   .week-calendar-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .day-card {
+    min-height: 84px;
+    padding: 8px 6px;
+  }
+  .day-name,
+  .day-meta {
+    font-size: 9px;
   }
   .simulator-card {
     padding: 18px 16px;
@@ -1243,7 +1262,7 @@ section.padded {
   color: var(--primary);
 }
 .metric-row-value.warn {
-  color: var(--success);
+  color: var(--warn);
 }
 
 /* pillars (3 source cells - asymmetric) */
@@ -1969,13 +1988,7 @@ select.form-input {
   border-radius: var(--radius-lg);
   padding: 16px 18px;
   margin-bottom: 20px;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 12px,
-    rgba(15, 23, 42, 0.02) 12px,
-    rgba(15, 23, 42, 0.02) 24px
-  );
+  background: var(--bg-2);
 }
 
 .bib-header {
