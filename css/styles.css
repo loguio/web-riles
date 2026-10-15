@@ -1107,7 +1107,7 @@ section.padded {
 @media (max-width: 640px) {
   .navbar-inner {
     flex-wrap: wrap;
-    height: auto;
+    height: auto !important;
     padding-top: 8px;
     padding-bottom: 8px;
   }
@@ -1120,6 +1120,21 @@ section.padded {
     text-align: center;
     line-height: 1.25;
     min-height: 44px;
+  }
+  .cookie-banner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    bottom: 8px;
+  }
+  .cookie-banner-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .cookie-banner-actions .btn-primary,
+  .cookie-banner-actions .btn-secondary {
+    white-space: normal;
+    width: auto;
   }
   .nav-links {
     width: 100%;
