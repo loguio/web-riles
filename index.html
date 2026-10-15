@@ -43,6 +43,7 @@
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
     <link rel="preconnect" href="/assets/fonts/" crossorigin />
+    <link rel="preload" as="image" href="./assets/maquettes/home-1.png" />
     <link rel="stylesheet" href="./css/styles.css" />
 
     <script type="application/ld+json">
@@ -177,6 +178,7 @@
                   width="466"
                   height="811"
                   loading="eager"
+                  fetchpriority="high"
                   decoding="async"
                 />
               </div>
@@ -550,7 +552,7 @@
               loading="lazy"
               decoding="async"
             />
-            <h4>Calibration sur ton historique</h4>
+            <h3>Calibration sur ton historique</h3>
             <p>Import Strava / Garmin, allures déduites de tes séances réelles.</p>
           </div>
           <div class="apercu-card">
@@ -562,7 +564,7 @@
               loading="lazy"
               decoding="async"
             />
-            <h4>Séance du jour + forme</h4>
+            <h3>Séance du jour + forme</h3>
             <p>Zones, distances, allures, check-in RPE. Une seule vue.</p>
           </div>
           <div class="apercu-card">
@@ -574,7 +576,7 @@
               loading="lazy"
               decoding="async"
             />
-            <h4>Volume semaine et objectif</h4>
+            <h3>Volume semaine et objectif</h3>
             <p>Progression de la prépa avec pourcentage restant jusqu'au jour J.</p>
           </div>
           <div class="apercu-card">
@@ -586,7 +588,7 @@
               loading="lazy"
               decoding="async"
             />
-            <h4>Profil et statistiques</h4>
+            <h3>Profil et statistiques</h3>
             <p>Distance totale, semaines actives, courses terminées, règles de vie.</p>
           </div>
         </div>
