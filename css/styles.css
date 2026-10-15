@@ -2028,18 +2028,6 @@ select.form-input {
   background: var(--primary-soft);
 }
 
-.bib-barcode {
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 3px;
-  color: var(--ink);
-  font-size: 11px;
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  margin-top: 8px;
-  opacity: 0.6;
-}
-
 .founder-offer-card {
   background: var(--primary-soft);
   border: 1px solid var(--primary-border);
@@ -2116,10 +2104,6 @@ select.form-input {
   color: var(--ink-soft);
   background: var(--bg-2);
   min-width: 0;
-}
-
-.bib-qr-block {
-  display: none;
 }
 
 /* --------------------------------------------------------------------------
