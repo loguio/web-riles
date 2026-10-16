@@ -153,10 +153,28 @@ test('analytics trackers only load after cookie consent', () => {
 function tokenMap(css) {
   const root = css.slice(css.indexOf(':root'), css.indexOf('}', css.indexOf(':root')));
   const map = {};
-  for (const m of root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,6})\s*;/g)) {
-    map[m[1]] = m[2];
+  for (const m of root.matchAll(/--([a-z0-9-]+):\s*(#[0-9a-fA-F]{3,6}|rgba?\([^)]*\))\s*;/g)) {
+    map[m[1]] = toHex(m[2]);
   }
   return map;
+}
+
+function toHex(value) {
+  const hex = value.match(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/);
+  if (hex) {
+    let h = hex[1];
+    if (h.length === 3)
+      h = h
+        .split('')
+        .map((c) => c + c)
+        .join('');
+    return `#${h}`;
+  }
+  const rgb = value.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (rgb) {
+    return `#${[1, 2, 3].map((i) => Number(rgb[i]).toString(16).padStart(2, '0')).join('')}`;
+  }
+  return value;
 }
 
 function hexToRgb(hex) {
@@ -197,6 +215,8 @@ test('design tokens preserve WCAG AA text and component contrast', () => {
     ['success', 'bg-2', 4.5],
     ['primary-dark', 'primary-soft', 4.5],
     ['primary-dark', 'bg-2', 4.5],
+    ['primary-dark', 'bg', 4.5],
+    ['primary', 'bg-2', 3],
     ['ink-soft', 'bg', 4.5],
     ['border-strong', 'bg-2', 3],
     ['border-strong', 'bg', 3],
@@ -233,19 +253,19 @@ test('mobile reflow guard: responsive overrides stay in CSS', () => {
 test('colour declarations reference tokens, not raw literals', () => {
   const css = read('css/styles.css');
   const allowed = [
-    /^#fff(f{0,1})$/i, // white text on dark surfaces / badges
+    /^#(?:fff|ffffff)$/i, // white text on dark surfaces / badges
     /^#0f172a$/i, // dark label on orange buttons
     /^#1a1a1a$/i, // phone bezels
-    /^#e2e8f0$/i, // legacy border inside tokens only
-    /^#cbd5e1$/i,
     /^rgba\(255,\s*255,\s*255,\s*[\d.]+\)$/,
     /^rgba\(15,\s*23,\s*42,\s*[\d.]+\)$/,
     /^rgba\(0,\s*0,\s*0,\s*[\d.]+\)$/,
   ];
+  const propRe =
+    /(?:^|[\s{;])((?:color|background|background-color|border|border-[a-z-]+|outline|outline-color|box-shadow|text-shadow|fill|stroke)\s*:\s*[^;]+)/;
   const offenders = [];
   css.split('\n').forEach((line, i) => {
     if (line.trim().startsWith('--')) return; // token definitions
-    const m = line.match(/(?:^|[\s{;])((?:color|background|background-color|border|border-[a-z-]+)\s*:\s*[^;]+)/);
+    const m = line.match(propRe);
     if (!m) return;
     const raw = m[1].match(/#[0-9a-fA-F]{3,8}|rgba?\([^)]*\)/g) || [];
     for (const value of raw) {
