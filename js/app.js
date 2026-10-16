@@ -88,6 +88,71 @@
     });
   }
 
+  function initTabs() {
+    const tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    const panels = Array.prototype.slice.call(document.querySelectorAll('.tab-panel'));
+    if (!tabs.length) return;
+
+    function activate(name, shouldFocus) {
+      tabs.forEach(function (tab) {
+        const isActive = tab.getAttribute('data-tab') === name;
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        tab.tabIndex = isActive ? 0 : -1;
+      });
+      panels.forEach(function (panel) {
+        panel.hidden = panel.id !== name;
+      });
+      if (shouldFocus) {
+        const active = tabs.find(function (tab) {
+          return tab.getAttribute('data-tab') === name;
+        });
+        if (active) active.focus();
+      }
+    }
+
+    tabs.forEach(function (tab) {
+      tab.tabIndex = tab.getAttribute('aria-selected') === 'true' ? 0 : -1;
+      tab.addEventListener('click', function () {
+        activate(tab.getAttribute('data-tab'));
+      });
+      tab.addEventListener('keydown', function (event) {
+        const index = tabs.indexOf(tab);
+        let next = null;
+        if (event.key === 'ArrowRight') next = tabs[(index + 1) % tabs.length];
+        else if (event.key === 'ArrowLeft') next = tabs[(index - 1 + tabs.length) % tabs.length];
+        else if (event.key === 'Home') next = tabs[0];
+        else if (event.key === 'End') next = tabs[tabs.length - 1];
+        if (next) {
+          event.preventDefault();
+          activate(next.getAttribute('data-tab'), true);
+        }
+      });
+    });
+
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        const id = link.getAttribute('href').slice(1);
+        if (
+          tabs.some(function (tab) {
+            return tab.getAttribute('data-tab') === id;
+          })
+        ) {
+          activate(id);
+        }
+      });
+    });
+
+    const hash = window.location.hash.replace('#', '');
+    if (
+      hash &&
+      tabs.some(function (tab) {
+        return tab.getAttribute('data-tab') === hash;
+      })
+    ) {
+      activate(hash);
+    }
+  }
+
   // ============================================================================
   // 1. DÉTECTION DES PARAMÈTRES URL (ANGLE MARKETING + UTM + REFERRAL)
   // ============================================================================
@@ -1361,6 +1426,7 @@
 
     // Animations d'entrée et révélations au scroll (GSAP si disponible)
     initMotion();
+    initTabs();
 
     // Consentement liste d'attente : horodatage ISO 8601 de la case cochée,
     // transmis avec la soumission du formulaire Netlify.

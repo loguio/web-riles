@@ -94,6 +94,7 @@
 
   --primary: #ff5722;
   --primary-dark: #b4230a;
+  --primary-hover: #ff6a3d;
   --primary-soft: #fff1e9;
   --primary-border: #ffd6c7;
 
@@ -654,7 +655,7 @@ ol {
 }
 
 .trust-check::before {
-  content: '✓';
+  content: none;
 }
 
 /* phone mockup stage */
@@ -2447,4 +2448,139 @@ ol {
 .modal-step-title,
 .brand-logo {
   font-family: 'Bricolage Grotesque', 'Archivo', sans-serif;
+}
+
+/* ==========================================================================
+   ICONS - Tabler (MIT), inline sprite, stroke-based
+   ========================================================================== */
+.icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: -0.12em;
+}
+.icon-sm {
+  width: 14px;
+  height: 14px;
+  vertical-align: -0.15em;
+}
+.btn .icon {
+  width: 18px;
+  height: 18px;
+}
+.trust-check .icon {
+  width: 12px;
+  height: 12px;
+}
+.trust-check .trust-icon {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+.scenario-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--ink-soft);
+}
+.scenario-btn.active .scenario-icon {
+  color: var(--primary-dark);
+}
+
+/* ==========================================================================
+   BUTTONS - real-system states (default / hover / active / focus / disabled)
+   ========================================================================== */
+.btn {
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  gap: 8px;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn[disabled],
+.btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-dark);
+}
+.btn-secondary {
+  border-color: var(--border-strong);
+}
+.btn-secondary:hover {
+  background: var(--border-soft);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--ink);
+}
+.btn-ghost:hover {
+  background: var(--border-soft);
+}
+.btn-sm {
+  height: 40px;
+  padding: 0 14px;
+}
+.btn-lg {
+  height: 48px;
+  padding: 0 22px;
+  font-size: 15px;
+}
+
+/* ==========================================================================
+   TABS - progressive disclosure so the page is clicked, not read
+   ========================================================================== */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 20px 0 4px;
+}
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-2);
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+.tab:hover {
+  color: var(--ink);
+  background: var(--border-soft);
+}
+.tab[aria-selected='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg-2);
+}
+.tab:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.tab-panel[hidden] {
+  display: none;
 }
