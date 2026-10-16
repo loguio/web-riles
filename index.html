@@ -105,7 +105,7 @@
     <header class="navbar">
       <div class="navbar-inner">
         <a href="#" class="brand-logo" aria-label="Riles BETA - Accueil">
-          <span class="brand-icon" aria-hidden="true"></span>
+          <img class="brand-mark" src="./assets/logo-mark.svg" alt="" width="32" height="32" />
           Riles
           <small>BETA</small>
         </a>
@@ -134,12 +134,11 @@
                 >ZÉRO CROIX ROUGE • ZÉRO CULPABILITÉ</span
               >
               <h1 id="hero-title" class="hero-title">
-                Ton plan running se recalcule quand
-                <span class="highlight">ta vraie vie</span> déraille.
+                Ton plan se recalcule quand
+                <span class="highlight">ta semaine</span> déraille.
               </h1>
               <p id="hero-subtitle" class="hero-subtitle">
-                Boulot tard, nuit de 5h ou imprévu jeudi ? Arrête d'abandonner ton plan. Parle au
-                coach IA : il rééquilibre ta semaine sans te griller.
+                Décris ton imprévu. Le coach rééquilibre la semaine, sans culpabilité.
               </p>
               <div class="hero-ctas">
                 <a href="#simulateur" class="btn btn-primary btn-lg">Tester le simulateur</a>
@@ -197,12 +196,12 @@
 
           <div class="hero-trust" role="list">
             <span class="trust-item" role="listitem"
-              ><span class="trust-check" aria-hidden="true"></span> Calibré sur tes 6 derniers mois
-              d'activités Strava / Garmin</span
+              ><span class="trust-check" aria-hidden="true"></span> 6 mois d'historique Strava /
+              Garmin</span
             >
             <span class="trust-item" role="listitem"
-              ><span class="trust-check" aria-hidden="true"></span> Modèle de charge Banister (ATL /
-              CTL / TSB) + règle des +10 %</span
+              ><span class="trust-check" aria-hidden="true"></span> Charge Banister, règle des +10
+              %</span
             >
             <span class="trust-item" role="listitem"
               ><span class="trust-check" aria-hidden="true"></span> Pas de CB pour tester le
@@ -391,64 +390,34 @@
       <section class="science-section">
         <div class="container">
           <div class="section-head">
-            <h2>Ce que l'IA fait quand tu lui dis « j'ai que 30 min ce soir ».</h2>
-            <p>
-              Pas de prédictions. Un pipeline déterministe, calibré sur tes propres données, révisé
-              à chaque séance.
-            </p>
+            <h2>Une méthode lisible, pas une boîte noire.</h2>
+            <p>Tes données, un modèle de charge, des règles fixes. Rien d'inventé.</p>
           </div>
 
           <div class="science-grid">
             <div>
-              <h3>Chaque décision est lisible, pas lue en boule de cristal.</h3>
+              <h3>Chaque décision est expliquée.</h3>
               <p>
-                Le plan n'est jamais généré du vide : il repart de tes 6 derniers mois d'activités
-                et du modèle de charge Banister. Quand tu décales une séance, l'IA recompose la
-                semaine entière dans le respect de 3 règles visibles :
-              </p>
-              <ul class="science-list">
-                <li>
-                  <strong>Règle des +10 %.</strong> Aucune semaine ne peut augmenter de plus de 10 %
-                  en volume ou intensité, quelle que soit la pression pour rattraper.
-                </li>
-                <li>
-                  <strong>Cycles 3 : 1.</strong> Trois semaines de charges croissantes, puis une
-                  semaine d'assimilation à -22 %.
-                </li>
-                <li>
-                  <strong>Affûtage final.</strong> Diminution progressive 0,75 puis 0,55 jusqu'au
-                  jour J, sans charger démesurément.
-                </li>
-              </ul>
-              <p class="u-mt-16">
-                Tes jours verrouillés via tes règles de vie ("jamais le jeudi", "samedi jour de
-                marché") sont sanctuarisés sur tout le cycle.
+                Le plan repart de tes 6 derniers mois et du modèle Banister. Décale une séance : la
+                semaine est recomposée dans l'ordre.
               </p>
             </div>
             <div class="metric-stack" role="group" aria-label="Modèle de charge Banister">
               <div class="metric-row">
-                <span class="metric-row-name">ATL • Fatigue aiguë</span>
+                <span class="metric-row-name">Fatigue aiguë</span>
                 <span class="metric-row-value warn">7 j</span>
               </div>
               <div class="metric-row">
-                <span class="metric-row-name">CTL • Condition chronique</span>
+                <span class="metric-row-name">Condition</span>
                 <span class="metric-row-value warn">42 j</span>
               </div>
               <div class="metric-row">
-                <span class="metric-row-name">TSB • Forme</span>
+                <span class="metric-row-name">Forme</span>
                 <span class="metric-row-value accent">CTL − ATL</span>
               </div>
               <div class="metric-row">
                 <span class="metric-row-name">Readiness</span>
                 <span class="metric-row-value">0 à 100</span>
-              </div>
-              <div class="metric-row">
-                <span class="metric-row-name">Fenêtre d'analyse</span>
-                <span class="metric-row-value">6 mois</span>
-              </div>
-              <div class="metric-row">
-                <span class="metric-row-name">Zones de travail</span>
-                <span class="metric-row-value">5 zones</span>
               </div>
             </div>
           </div>
@@ -456,29 +425,18 @@
           <div class="pillars">
             <div class="pillar">
               <span class="pillar-index">Allures</span>
-              <h3>Calibrées sur tes sorties, pas sur ton rêve</h3>
-              <p>
-                VMA, seuil, allure cible : jamais déduites d'un objectif souhaité, toujours de tes
-                séances réelles et de ta fréquence cardiaque observée. Résultat : 5 allures
-                réellement tenables.
-              </p>
+              <h3>Calibrées sur tes sorties</h3>
+              <p>VMA, seuil et allure cible déduits de tes séances réelles.</p>
             </div>
             <div class="pillar">
               <span class="pillar-index">Vigilance</span>
-              <h3>Garde-fous médicaux intégrés</h3>
-              <p>
-                Detecté durant ton chat : douleurs thoraciques, oppression, vertiges, signal
-                d'entorse ou aigu. Le coach se met en mode soin et te redirige vers un
-                professionnel.
-              </p>
+              <h3>Garde-fous médicaux</h3>
+              <p>Douleur ou vertige : le coach passe en mode soin.</p>
             </div>
             <div class="pillar">
               <span class="pillar-index">RPE</span>
-              <h3>Ressenti réel à chaque séance</h3>
-              <p>
-                Check-in à l'échelle 1-10 après ta sortie. La charge ressentie se croise avec la
-                charge prévue pour sécuriser la suite du plan.
-              </p>
+              <h3>Ressenti réel</h3>
+              <p>Check-in 1-10 après chaque sortie.</p>
             </div>
           </div>
         </div>
@@ -491,10 +449,7 @@
         <div class="container">
           <div class="section-head">
             <h2>Les plans figés qui ne pardonnent aucun imprévu.</h2>
-            <p>
-              Ce n'est pas un manque de volonté : c'est parce que la majorité des plans partent du
-              principe qu'on a une vie de pro. Voici ce qui change avec Riles.
-            </p>
+            <p>La plupart des plans supposent une vie de pro. Voici ce qui change.</p>
           </div>
 
           <div class="comparison-list">
@@ -508,24 +463,6 @@
               <div class="row-label">Recalcule sur imprévu</div>
               <div class="cell no">Non</div>
               <div class="cell no hide-mobile">Non</div>
-              <div class="cell riles ok">Oui</div>
-            </div>
-            <div class="comparison-row">
-              <div class="row-label">Adapté à tes données réelles</div>
-              <div class="cell no">Rarement</div>
-              <div class="cell no hide-mobile">Données en vrac, coach muet</div>
-              <div class="cell riles ok">Oui</div>
-            </div>
-            <div class="comparison-row">
-              <div class="row-label">Plan qui verrouille tes jours</div>
-              <div class="cell no">Non</div>
-              <div class="cell no hide-mobile">Non</div>
-              <div class="cell riles ok">Oui</div>
-            </div>
-            <div class="comparison-row">
-              <div class="row-label">Charge calculée (TSS / RPE)</div>
-              <div class="cell no">Non</div>
-              <div class="cell no hide-mobile">Parfois</div>
               <div class="cell riles ok">Oui</div>
             </div>
             <div class="comparison-row">
@@ -544,61 +481,34 @@
       <section id="apercu" class="apercu-section">
         <div class="container">
           <div class="section-head">
-            <h2>Pensée pour te libérer la tête, pas pour t'inonder de graphiques.</h2>
-            <p>
-              Découvre l'interface actuelle de la bêta : quelques secondes par jour pour garder un
-              plan toujours aligné avec ta forme.
-            </p>
+            <h2>Une app claire, pas un tableau de bord.</h2>
+            <p>L'essentiel en un écran : la séance du jour et ta forme.</p>
           </div>
 
           <div class="apercu-grid">
             <div class="apercu-card">
               <img
-                src="./assets/maquettes/onboarding-4.png"
-                alt="App Riles - calibration sur les 6 derniers mois d'activités (bêta)"
-                width="477"
-                height="823"
-                loading="lazy"
-                decoding="async"
-              />
-              <h3>Calibration sur ton historique</h3>
-              <p>Import Strava / Garmin, allures déduites de tes séances réelles.</p>
-            </div>
-            <div class="apercu-card">
-              <img
                 src="./assets/maquettes/home-1.png"
-                alt="App Riles - écran d'accueil avec séance du jour et état de forme"
+                alt="App Riles, écran d'accueil avec la séance du jour"
                 width="466"
                 height="811"
                 loading="lazy"
                 decoding="async"
               />
-              <h3>Séance du jour + forme</h3>
-              <p>Zones, distances, allures, check-in RPE. Une seule vue.</p>
+              <h3>Séance du jour</h3>
+              <p>Zones, distance, allure et check-in RPE sur un seul écran.</p>
             </div>
             <div class="apercu-card">
               <img
-                src="./assets/maquettes/home-2.png"
-                alt="App Riles - volume semaine et progression de l'objectif"
-                width="469"
-                height="807"
+                src="./assets/maquettes/onboarding-4.png"
+                alt="App Riles, calibration à partir de l'historique"
+                width="477"
+                height="823"
                 loading="lazy"
                 decoding="async"
               />
-              <h3>Volume semaine et objectif</h3>
-              <p>Progression de la prépa avec pourcentage restant jusqu'au jour J.</p>
-            </div>
-            <div class="apercu-card">
-              <img
-                src="./assets/maquettes/profil-1.png"
-                alt="App Riles - profil, objectif actif et statistiques"
-                width="466"
-                height="817"
-                loading="lazy"
-                decoding="async"
-              />
-              <h3>Profil et statistiques</h3>
-              <p>Distance totale, semaines actives, courses terminées, règles de vie.</p>
+              <h3>Calibration</h3>
+              <p>Allures déduites de tes séances réelles, pas d'un objectif rêvé.</p>
             </div>
           </div>
         </div>
@@ -611,12 +521,8 @@
         <div class="container">
           <div class="founder-grid">
             <div>
-              <h2>Rejoins la bêta. Tarif préférentiel pour les premiers inscrits.</h2>
-              <p class="sub">
-                On ouvre la bêta par vagues pour calibrer le coach sur des questions réelles. En
-                t'inscrivant tu accèdes au simulateur interactif complet et au vrai plan calibré sur
-                tes données, sans CB.
-              </p>
+              <h2>Rejoins la bêta.</h2>
+              <p class="sub">Tarif préférentiel pour les premiers inscrits. Sans CB.</p>
               <div class="pill-row">
                 <span class="pill">✓ Scan Strava / Garmin en quelques secondes</span>
                 <span class="pill">✓ Plan validé par le modèle Banister</span>
@@ -632,38 +538,22 @@
                 </button>
                 <a href="#simulateur" class="btn btn-secondary btn-lg">Tester le simulateur</a>
               </div>
-              <p class="footnote">
-                Note : tarif fondateur indicatif. Les fonctionnalités Pro, la synchronisation
-                complète des montres COROS / Polar / Suunto et l'édition stricte des abonnements
-                arrivent en H2 2026.
-              </p>
+              <p class="footnote">Fonctionnalités Pro et COROS / Polar / Suunto en H2 2026.</p>
             </div>
             <div class="founder-right">
               <div class="modal-preview">
                 <h3>Ce qui t'attend dans la bêta</h3>
-                <p>
-                  App Expo / React Native, déjà opérationnelle pour les membres bêta invités. iOS et
-                  Android à venir au store.
-                </p>
-                <ul class="founder-feature-list">
-                  <li>4 onglets : Accueil, Calendrier, Running Club, Profil</li>
-                  <li>Chat modal avec le coach IA et recalcul en direct</li>
-                  <li>Roadmap macro-cycle en 4 phases (socle, seuil, pic, affûtage)</li>
-                  <li>Check-in RPE et règles de vie verrouillées</li>
-                </ul>
+                <p>App déjà opérationnelle pour les invités. iOS et Android à venir.</p>
                 <div class="founder-offer-card">
                   <div class="founder-fire-badge">Avantage bêta</div>
                   <div class="founder-offer-copy">
-                    Statut de membre fondateur réservé à cause bêta. Tarif indicatif : 49 euros par
-                    an prévu au lieu de 99 euros par an, à valider au lancement.
+                    Tarif indicatif : 49 €/an prévu au lieu de 99 €/an, à valider au lancement.
                   </div>
                   <div class="founder-price">
                     <s>99 €/an</s>49 €/an
                     <span class="founder-price-note">(indicatif)</span>
                   </div>
-                  <div class="founder-offer-note">
-                    Pas de CB aujourd'hui. Engagement prévu à l'ouverture de la bêta.
-                  </div>
+                  <div class="founder-offer-note">Pas de CB aujourd'hui.</div>
                 </div>
               </div>
             </div>
@@ -718,7 +608,7 @@
 
         <div class="modal-brand-header">
           <div class="modal-brand-left">
-            <span class="brand-icon" aria-hidden="true"></span>
+            <img class="brand-mark" src="./assets/logo-mark.svg" alt="" width="32" height="32" />
             <span>Ton plan, à ton rythme</span>
           </div>
           <span id="modal-step-counter" class="modal-step-counter">Étape 1 / 2</span>

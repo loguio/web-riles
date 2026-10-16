@@ -278,24 +278,21 @@
   const MARKETING_ANGLES = {
     guilt: {
       eyebrow: 'ZÉRO CROIX ROUGE • ZÉRO CULPABILITÉ',
-      titleHtml:
-        'Ton plan running se recalcule quand <span class="highlight">ta vraie vie</span> déraille.',
-      subtitle:
-        'Boulot tard, nuit de 5h ou imprévu jeudi ? Parle au coach IA : il rééquilibre ta semaine sans culpabilité.',
+      titleHtml: 'Ton plan se recalcule quand <span class="highlight">ta semaine</span> déraille.',
+      subtitle: 'Décris ton imprévu. Le coach rééquilibre la semaine, sans culpabilité.',
     },
     injury: {
-      eyebrow: 'PRÉVENTION SURCHARGE & MODÈLE PHYSIOLOGIQUE',
+      eyebrow: 'Prévention surcharge et charge physiologique',
       titleHtml:
         'Quand ton corps dit stop, forcer la séance reste le chemin le plus court <span class="highlight">vers la blessure</span>.',
       subtitle:
-        "Riles croise tes 6 mois Strava et Garmin et ta charge d'entraînement pour adapter tes allures et protéger tes tendons.",
+        'Six mois de Strava et Garmin suffisent pour adapter tes allures et protéger tes tendons.',
     },
     garmin: {
       eyebrow: 'Compatible Garmin, Strava, Apple',
       titleHtml:
         'Ta montre te dit quoi courir. Avec Riles, <span class="highlight">tu peux négocier la semaine</span>.',
-      subtitle:
-        'Ta montre ignore tes contraintes. Dis-le en une phrase : Riles recalcule séance et week-end.',
+      subtitle: 'Dis ton imprévu en une phrase. Riles recalcule la séance et le week-end.',
     },
   };
 

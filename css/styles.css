@@ -11,6 +11,17 @@
    -------------------------------------------------------------------------- */
 
 @font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('../assets/fonts/bricolage-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
   font-family: 'Archivo';
   font-style: normal;
   font-weight: 400 700;
@@ -75,20 +86,20 @@
   --bg-2: #ffffff;
   --bg-dark: #0f172a;
   --ink: #0f172a;
-  --ink-soft: #556376;
-  --ink-faint: #5b6b82;
-  --border: #e2e8f0;
-  --border-soft: #e8edf3;
-  --border-strong: #7c8797;
+  --ink-soft: #475467;
+  --ink-faint: #667085;
+  --border: #d0d5dd;
+  --border-soft: #eaecf0;
+  --border-strong: #667085;
 
   --primary: #ff5722;
-  --primary-dark: #c53e10;
-  --primary-soft: #fff5f2;
-  --primary-border: #ffe4dc;
+  --primary-dark: #b4230a;
+  --primary-soft: #fff1e9;
+  --primary-border: #ffd6c7;
 
-  --success: #0e7490;
-  --success-soft: #ecfeff;
-  --success-ink: #155e75;
+  --success: #0f766e;
+  --success-soft: #ecfdf9;
+  --success-ink: #115e59;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -360,7 +371,7 @@ ol {
 .angle-pill.active {
   background: var(--primary);
   border-color: var(--ink);
-  color: #0f172a;
+  color: var(--ink);
 }
 
 /* --------------------------------------------------------------------------
@@ -405,23 +416,12 @@ ol {
   color: var(--ink);
 }
 
-.brand-icon {
+.brand-mark {
   width: 32px;
   height: 32px;
-  background: var(--primary);
-  color: #fff;
-  font-family: 'Archivo', sans-serif;
-  font-style: italic;
-  font-weight: 900;
-  font-size: 18px;
-  display: grid;
-  place-items: center;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
-}
-
-.brand-icon::before {
-  content: 'R';
+  display: block;
 }
 
 .brand-logo small {
@@ -458,7 +458,7 @@ ol {
 }
 
 .nav-links a.btn-primary {
-  color: #0f172a;
+  color: var(--ink);
   white-space: normal;
   text-align: center;
   line-height: 1.25;
@@ -497,7 +497,7 @@ ol {
 
 .btn-primary {
   background: var(--primary);
-  color: #0f172a;
+  color: var(--ink);
   border-color: var(--ink);
   box-shadow: var(--shadow-lg);
 }
@@ -505,7 +505,7 @@ ol {
 .btn-primary:hover {
   background: var(--primary);
   border-color: var(--ink);
-  color: #0f172a;
+  color: var(--ink);
   transform: translateY(-1px);
 }
 
@@ -983,7 +983,7 @@ ol {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
   text-transform: uppercase;
 }
 
@@ -1438,8 +1438,9 @@ ol {
 
 .apercu-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+  max-width: 760px;
 }
 
 .apercu-card {
@@ -1796,7 +1797,7 @@ ol {
 .choice-card.active .choice-check {
   background: var(--ink);
   border-color: var(--ink);
-  color: #0f172a;
+  color: var(--ink);
 }
 .choice-card.active .choice-check::after {
   content: '\2713';
@@ -2434,4 +2435,16 @@ ol {
   height: 1px;
   transform: translateX(-50%);
   background: var(--border-strong);
+}
+
+/* Brand display face */
+.hero-title,
+.section-head h2,
+.science-grid h3,
+.pillar h3,
+.founder-section h2,
+.apercu-card h3,
+.modal-step-title,
+.brand-logo {
+  font-family: 'Bricolage Grotesque', 'Archivo', sans-serif;
 }
