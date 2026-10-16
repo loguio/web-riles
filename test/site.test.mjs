@@ -248,8 +248,46 @@ test('mobile reflow guard: responsive overrides stay in CSS', () => {
     'readiness pill must wrap instead of overflow',
   );
   assert.match(css, /--border-strong:/, 'interactive boundary token must exist');
-  assert.match(css, /\.btn-sm \{[\s\S]*?min-height: 44px/, 'small buttons keep a 44px target');
-  assert.match(css, /\.btn-lg \{[\s\S]*?min-height: 48px/, 'large buttons keep a 48px target');
+  assert.match(css, /\.btn-sm \{[\s\S]*?height: 44px/, 'small buttons keep a 44px target');
+  assert.match(css, /\.btn-lg \{[\s\S]*?height: 48px/, 'large buttons keep a 48px target');
+});
+
+test('no conflicting duplicate declarations in CSS', () => {
+  const css = read('css/styles.css')
+    .replace(/@media[^{]*\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}/g, '')
+    .replace(/@font-face\s*\{[^}]*\}/g, '');
+  const seen = new Set();
+  const conflicts = [];
+  css.split('}').forEach((chunk) => {
+    if (!chunk.includes('{')) return;
+    const [rawSel, rawBody] = chunk.split('{');
+    const selector = rawSel.trim().split('\n').pop().trim();
+    if (!selector || selector.startsWith('@') || selector.includes(',')) return;
+    rawBody
+      .split(';')
+      .map((decl) => decl.split(':')[0].trim())
+      .filter((prop) => prop && !prop.startsWith('--'))
+      .forEach((prop) => {
+        const key = `${selector}|${prop}`;
+        if (seen.has(key)) conflicts.push(key);
+        else seen.add(key);
+      });
+  });
+  assert.deepEqual(conflicts, [], `conflicting declarations: ${conflicts.join(', ')}`);
+});
+
+test('selected toggle labels stay legible on the ink fill', () => {
+  const css = read('css/styles.css');
+  assert.match(
+    css,
+    /\.goal-btn\.active \.goal-label \{\s*color: var\(--bg-2\);/,
+    'selected goal label must use light text',
+  );
+  assert.match(
+    css,
+    /\.scenario-btn\.active \.scenario-title \{\s*color: var\(--bg-2\);/,
+    'selected scenario title must use light text',
+  );
 });
 
 test('interactive state and landmarks are exposed to assistive tech', () => {
