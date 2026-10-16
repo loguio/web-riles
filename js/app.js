@@ -279,7 +279,7 @@
     guilt: {
       eyebrow: 'ZÉRO CROIX ROUGE • ZÉRO CULPABILITÉ',
       titleHtml:
-        'Le premier plan running qui s\'adapte à <span class="highlight">ta vraie vie</span> en 10 secondes.',
+        'Ton plan running se recalcule quand <span class="highlight">ta vraie vie</span> déraille.',
       subtitle:
         'Boulot tard, nuit de 5h ou imprévu jeudi ? Parle au coach IA : il rééquilibre ta semaine sans culpabilité.',
     },
@@ -291,9 +291,9 @@
         "Riles croise tes 6 mois Strava et Garmin et ta charge d'entraînement pour adapter tes allures et protéger tes tendons.",
     },
     garmin: {
-      eyebrow: 'COMPATIBLE GARMIN • STRAVA • APPLE',
+      eyebrow: 'Compatible Garmin, Strava, Apple',
       titleHtml:
-        'Ta montre te dit quoi courir. Riles est le premier coach <span class="highlight">avec qui tu peux négocier</span>.',
+        'Ta montre te dit quoi courir. Avec Riles, <span class="highlight">tu peux négocier la semaine</span>.',
       subtitle:
         'Ta montre ignore tes contraintes. Dis-le en une phrase : Riles recalcule séance et week-end.',
     },
@@ -371,7 +371,7 @@
         bad_sleep: {
           readiness: 'Protection nerveuse activée',
           coachNote:
-            "Forcer de la VMA après une nuit de 5h multiplie par 3 le risque de blessure sans gain cardio. On remplace aujourd'hui par 35 min d'aérobie très souple (Z1/Z2) et on décale la qualité à samedi.",
+            "Forcer de la VMA après une nuit de 5h augmente le risque de blessure sans gain cardio. On remplace aujourd'hui par 35 min d'aérobie très souple (Z1/Z2) et on décale la qualité à samedi.",
           days: [
             { d: 'Lun', title: 'Repos', meta: 'Récup', status: 'done' },
             { d: 'Mar', title: 'Footing Z2', meta: '45m • 5:25/km', status: 'done' },
@@ -671,7 +671,7 @@
         bad_sleep: {
           readiness: 'Assimilation prioritaire',
           coachNote:
-            "En prépa marathon, le sommeil est ton premier entraînement. Dormir 1h de plus ce soir te fera progresser 3 fois plus qu'une séance bâclée. On coupe aujourd'hui et on lisse le volume sur jeudi et samedi.",
+            "En prépa marathon, le sommeil compte comme une séance. Dormir 1h de plus ce soir soutient la qualité mieux qu'une séance bâclée. On coupe aujourd'hui et on lisse le volume sur jeudi et samedi.",
           days: [
             { d: 'Lun', title: 'Repos', meta: 'Récup', status: 'done' },
             { d: 'Mar', title: 'Endurance', meta: '1h00 • 11 km', status: 'done' },
@@ -787,7 +787,7 @@
             'Semaine orientée dénivelé et renforcement musculaire excentrique. Clique sur un imprévu pour voir comment Riles réajuste la séance de côtes et préserve tes jambes pour le week-end.',
           days: [
             { d: 'Lun', title: 'Repos', meta: 'Récup passive', status: 'done' },
-            { d: 'Mar', title: 'Footing D+', meta: '50m • 8 km • 350m D+', status: 'done' },
+            { d: 'Mar', title: 'Footing D+', meta: '50m, 8 km, 350m D+', status: 'done' },
             {
               d: 'Mer',
               title: 'Répétitions Côtes',
@@ -796,11 +796,11 @@
             },
             { d: 'Jeu', title: 'Footing plat Z2', meta: '45m • Zéro D+', status: 'normal' },
             { d: 'Ven', title: 'Repos', meta: 'Mobilité & gainage', status: 'normal' },
-            { d: 'Sam', title: 'Pré-fatigue', meta: '1h00 • 10 km • 400m D+', status: 'normal' },
+            { d: 'Sam', title: 'Pré-fatigue', meta: '1h00, 10 km, 400m D+', status: 'normal' },
             {
               d: 'Dim',
               title: 'Sortie Longue Trail',
-              meta: '2h45 • 22 km • 1 100m D+',
+              meta: '2h45, 22 km, 1 100m D+',
               status: 'normal',
             },
           ],
@@ -811,7 +811,7 @@
             "Tu n'as que 30 min ce soir : au lieu d'1h10, on fait 30 min d'escaliers ou de côte raide en bas de chez toi (8 montées dynamiques + descente souple) pour garder la puissance. J'ajoute 200m de D+ sur ta sortie trail de dimanche !",
           days: [
             { d: 'Lun', title: 'Repos', meta: 'Récup passive', status: 'done' },
-            { d: 'Mar', title: 'Footing D+', meta: '50m • 8 km • 350m D+', status: 'done' },
+            { d: 'Mar', title: 'Footing D+', meta: '50m, 8 km, 350m D+', status: 'done' },
             {
               d: 'Mer',
               title: 'Escaliers / Côte',
@@ -821,11 +821,11 @@
             },
             { d: 'Jeu', title: 'Footing plat Z2', meta: '45m • Zéro D+', status: 'normal' },
             { d: 'Ven', title: 'Repos', meta: 'Mobilité', status: 'normal' },
-            { d: 'Sam', title: 'Pré-fatigue', meta: '1h00 • 10 km • 400m D+', status: 'normal' },
+            { d: 'Sam', title: 'Pré-fatigue', meta: '1h00, 10 km, 400m D+', status: 'normal' },
             {
               d: 'Dim',
               title: 'SL Trail + D+',
-              meta: '3h00 • 24 km • 1 300m D+',
+              meta: '3h00, 24 km, 1 300m D+',
               status: 'rebalanced',
               badge: '+200m D+ compensé',
             },
@@ -837,7 +837,7 @@
             'Enchaîner des côtes et descentes raides sur une nuit de 5h détruit les fibres musculaires sans surcompensation. On remplace par 35 min de footing plat très souple, et on reporte le travail de dénivelé à samedi.',
           days: [
             { d: 'Lun', title: 'Repos', meta: 'Récup passive', status: 'done' },
-            { d: 'Mar', title: 'Footing D+', meta: '50m • 8 km • 350m D+', status: 'done' },
+            { d: 'Mar', title: 'Footing D+', meta: '50m, 8 km, 350m D+', status: 'done' },
             {
               d: 'Mer',
               title: 'Footing Plat Doux',
@@ -869,7 +869,7 @@
             {
               d: 'Dim',
               title: 'Sortie Longue Trail',
-              meta: '2h30 • 20 km • 900m D+',
+              meta: '2h30, 20 km, 900m D+',
               status: 'normal',
             },
           ],
@@ -880,7 +880,7 @@
             "Alerte mollet en trail = zéro montée sur la pointe des pieds et zéro descente brusque pendant 72h. On bascule ce soir sur du vélo ou marche active, et on réduit le dénivelé négatif de la sortie longue de dimanche pour sécuriser le tendon d'Achille.",
           days: [
             { d: 'Lun', title: 'Repos', meta: 'Récup passive', status: 'done' },
-            { d: 'Mar', title: 'Footing D+', meta: '50m • 8 km • 350m D+', status: 'done' },
+            { d: 'Mar', title: 'Footing D+', meta: '50m, 8 km, 350m D+', status: 'done' },
             {
               d: 'Mer',
               title: 'Vélo / Marche Z1',
@@ -912,7 +912,7 @@
             {
               d: 'Dim',
               title: 'Trail D+ modéré',
-              meta: '2h15 • 18 km • 600m D+',
+              meta: '2h15, 18 km, 600m D+',
               status: 'rebalanced',
               badge: 'D- allégé',
             },
@@ -924,7 +924,7 @@
             "Jeudi soir bloqué : Riles décale ton footing d'assimilation sur le vendredi midi, permettant de garder les jambes légères avant d'attaquer le bloc du week-end.",
           days: [
             { d: 'Lun', title: 'Repos', meta: 'Récup passive', status: 'done' },
-            { d: 'Mar', title: 'Footing D+', meta: '50m • 8 km • 350m D+', status: 'done' },
+            { d: 'Mar', title: 'Footing D+', meta: '50m, 8 km, 350m D+', status: 'done' },
             {
               d: 'Mer',
               title: 'Répétitions Côtes',
@@ -948,14 +948,14 @@
             {
               d: 'Sam',
               title: 'Pré-fatigue',
-              meta: '55m • 9 km • 350m D+',
+              meta: '55m, 9 km, 350m D+',
               status: 'rebalanced',
               badge: 'Ajusté',
             },
             {
               d: 'Dim',
               title: 'Sortie Longue Trail',
-              meta: '2h45 • 22 km • 1 100m D+',
+              meta: '2h45, 22 km, 1 100m D+',
               status: 'normal',
             },
           ],
@@ -989,7 +989,7 @@
     const calendarGridEl = document.getElementById('sim-calendar-grid');
 
     if (goalLabelEl) goalLabelEl.textContent = goalObj.label;
-    if (readinessEl) readinessEl.textContent = '⚡ ' + scenarioObj.readiness;
+    if (readinessEl) readinessEl.textContent = ' ' + scenarioObj.readiness;
     if (coachTextEl) coachTextEl.textContent = scenarioObj.coachNote;
 
     if (calendarGridEl) {
@@ -1120,7 +1120,7 @@
             ? customTxt
             : APP_LABELS[state.selectedApp] || 'Campus Coach';
         const watchTxt = WATCH_LABELS[state.selectedWatch] || 'Montre Garmin';
-        summaryText.textContent = 'Objectif ' + goalTxt + ' • ' + appTxt + ' • ' + watchTxt;
+        summaryText.textContent = 'Objectif ' + goalTxt + ', ' + appTxt + ', ' + watchTxt;
       }
 
       // Focus automatique sur l'email
