@@ -618,11 +618,17 @@ ol {
   margin-top: 28px;
 }
 
+.trust-band {
+  padding: 18px 0;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+}
+
 .hero-trust {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin-top: 26px;
+  margin-top: 0;
 }
 
 .trust-item {
