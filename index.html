@@ -73,9 +73,9 @@
   <body>
     <a class="skip-link" href="#main-content">Aller au contenu principal</a>
     <!-- =========================================================================
-       PREVIEW BAR (A/B angle testing). Hidden by default, shown on localhost
-       or ?preview=1 in the query string.
-       ========================================================================== -->
+ PREVIEW BAR (A/B angle testing). Hidden by default, shown on localhost
+ or ?preview=1 in the query string.
+ ========================================================================== -->
     <div
       id="angle-switcher-bar"
       class="angle-switcher-bar"
@@ -100,8 +100,8 @@
     </div>
 
     <!-- =========================================================================
-       NAVBAR
-       ========================================================================== -->
+ NAVBAR
+ ========================================================================== -->
     <header class="navbar">
       <div class="navbar-inner">
         <a href="#" class="brand-logo" aria-label="Riles BETA - Accueil">
@@ -121,10 +121,10 @@
     </header>
 
     <!-- =========================================================================
-       HERO - Asymmetric split (text left, one phone right).
-       The eyebrow/title/subtitle are rewritten by app.js based on ?angle=;
-       the inlined title MUST keep the <span class="highlight"> wrapper.
-       ========================================================================== -->
+ HERO - Asymmetric split (text left, one phone right).
+ The eyebrow/title/subtitle are rewritten by app.js based on ?angle=;
+ the inlined title MUST keep the <span class="highlight"> wrapper.
+ ========================================================================== -->
     <main id="main-content">
       <section class="hero">
         <div class="container">
@@ -134,8 +134,8 @@
                 >ZÉRO CROIX ROUGE • ZÉRO CULPABILITÉ</span
               >
               <h1 id="hero-title" class="hero-title">
-                Le premier plan running qui s'adapte à
-                <span class="highlight">ta vraie vie</span> en 10 secondes.
+                Ton plan running se recalcule quand
+                <span class="highlight">ta vraie vie</span> déraille.
               </h1>
               <p id="hero-subtitle" class="hero-subtitle">
                 Boulot tard, nuit de 5h ou imprévu jeudi ? Arrête d'abandonner ton plan. Parle au
@@ -154,11 +154,6 @@
             </div>
             <div class="hero-right">
               <div class="phones-stage">
-                <div class="floating-badge">
-                  <span class="coach-icon">💬</span>
-                  <strong>IMPRÉVU DÉTECTÉ</strong>
-                  <div class="coach-line">« J'ai que 30 min ce soir » → Semaine recalculée ✓</div>
-                </div>
                 <div class="phone-frame phone-main-wrap">
                   <img
                     class="phone-main"
@@ -190,6 +185,16 @@
 
       <section class="trust-band" aria-label="Garanties produit">
         <div class="container">
+          <div class="compat-inner">
+            <span class="compat-label">Données réelles connectées</span>
+            <div class="compat-chips">
+              <span class="compat-chip">Strava (historique 6 mois)</span>
+              <span class="compat-chip">Garmin Connect</span>
+              <span class="compat-chip">Apple Santé</span>
+              <span class="compat-chip">Bientôt : COROS, Polar, Suunto → Roadmap H2 2026</span>
+            </div>
+          </div>
+
           <div class="hero-trust" role="list">
             <span class="trust-item" role="listitem"
               ><span class="trust-check" aria-hidden="true"></span> Calibré sur tes 6 derniers mois
@@ -208,35 +213,15 @@
       </section>
 
       <!-- =========================================================================
-       COMPAT STRIP - only connectors that actually exist in the backend
-       ========================================================================== -->
-      <div class="compat-strip">
-        <div class="container">
-          <div class="compat-inner">
-            <span class="compat-label">Données réelles connectées</span>
-            <div class="compat-chips">
-              <span class="compat-chip"
-                ><span class="emoji">🟠</span> Strava (historique 6 mois)</span
-              >
-              <span class="compat-chip"><span class="emoji">⌚</span> Garmin Connect</span>
-              <span class="compat-chip"><span class="emoji">🍎</span> Apple Santé</span>
-              <span class="compat-chip"
-                ><span class="emoji">Adds on</span> COROS, Polar, Suunto → Roadmap H2 2026</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- trust row lives under the hero, not inside it -->
-
+ COMPAT STRIP - only connectors that actually exist in the backend
+ ========================================================================== -->
       <!-- =========================================================================
-       SIMULATOR
-       ========================================================================== -->
+ SIMULATOR
+ ========================================================================== -->
       <section id="simulateur" class="simulator-section">
         <div class="container">
           <div class="section-head">
-            <span class="kicker">SIMULATEUR INTERACTIF SANS COMPTE</span>
+            <span class="kicker">Simulateur interactif sans compte</span>
             <h2>Clique sur un imprévu et regarde ton plan s'adapter en direct.</h2>
             <p>
               Voici un exemple calibré sur tes vraies données quand une journée de travail percute
@@ -249,7 +234,7 @@
             <div class="sim-steps-grid">
               <!-- Left: goals then scenarios -->
               <div>
-                <p class="sim-step-label">1. Choisis ta prépa actuelle</p>
+                <p class="sim-step-label">Choisis ta prépa actuelle</p>
                 <div class="goal-selector">
                   <button type="button" class="goal-btn" aria-pressed="false" data-sim-goal="10k">
                     <span class="goal-label">10 km</span>
@@ -279,7 +264,7 @@
                   </button>
                 </div>
 
-                <p class="sim-step-label u-mt-20">2. Clique sur ton imprévu de mercredi</p>
+                <p class="sim-step-label u-mt-20">Clique sur ton imprévu de mercredi</p>
                 <ul class="scenario-list">
                   <li>
                     <button
@@ -288,7 +273,6 @@
                       aria-pressed="false"
                       data-sim-scenario="initial"
                     >
-                      <span class="scenario-emoji">📅</span>
                       <span class="scenario-text-box">
                         <span class="scenario-title">Semaine initiale prévue</span>
                         <span class="scenario-sub"
@@ -304,7 +288,6 @@
                       aria-pressed="false"
                       data-sim-scenario="late_work_30m"
                     >
-                      <span class="scenario-emoji">🕒</span>
                       <span class="scenario-text-box">
                         <span class="scenario-title"
                           >« Je sors tard du boulot, j'ai que 30 min »</span
@@ -320,7 +303,6 @@
                       aria-pressed="false"
                       data-sim-scenario="bad_sleep"
                     >
-                      <span class="scenario-emoji">😴</span>
                       <span class="scenario-text-box">
                         <span class="scenario-title">« Nuit de 5h / Jambes lourdes ce matin »</span>
                         <span class="scenario-sub"
@@ -336,7 +318,6 @@
                       aria-pressed="false"
                       data-sim-scenario="sore_calf"
                     >
-                      <span class="scenario-emoji">🦵</span>
                       <span class="scenario-text-box">
                         <span class="scenario-title">« Mollet un peu tendu depuis hier »</span>
                         <span class="scenario-sub">Signal faible de surcharge tendineuse</span>
@@ -350,7 +331,6 @@
                       aria-pressed="false"
                       data-sim-scenario="no_thursday"
                     >
-                      <span class="scenario-emoji">🍻</span>
                       <span class="scenario-text-box">
                         <span class="scenario-title">« Impossible de courir le jeudi soir »</span>
                         <span class="scenario-sub">Ajout d'une règle de vie permanente</span>
@@ -367,17 +347,17 @@
                     <p id="sim-output-goal-label" class="sim-output-goal">
                       Objectif Semi-Marathon (1h45)
                     </p>
-                    <span id="sim-readiness-pill" class="readiness-pill"
-                      >⚡ Stimulus seuil sauvé en 30 min</span
+                    <span id="sim-readiness-pill" class="readiness-pill">
+                      Stimulus seuil sauvé en 30 min</span
                     >
                   </div>
                   <div class="u-mb-10">
-                    <div class="sim-output-label">SEMAINE RECALCULÉE EN TEMPS RÉEL</div>
+                    <div class="sim-output-label">Semaine recalculée en temps réel</div>
                   </div>
                   <div id="sim-calendar-grid" class="week-calendar-grid"></div>
                   <div class="coach-bubble">
                     <div class="coach-bubble-header">
-                      <span>✨ ARBITRAGE DU COACH IA</span>
+                      <span>Arbitrage du coach IA</span>
                       <span>0 surcharge • Forme préservée</span>
                     </div>
                     <p id="sim-coach-text" class="coach-bubble-text"></p>
@@ -387,7 +367,8 @@
                   <div class="sim-fake-door-text">
                     <strong>Tu veux voir ce que donne Riles sur TES vraies allures ?</strong>
                     <span
-                      >Scan automatique de tes 6 derniers mois Strava / Garmin en 30 secondes.</span
+                      >Scan automatique de tes 6 derniers mois Strava / Garmin en quelques
+                      secondes.</span
                     >
                   </div>
                   <button
@@ -405,15 +386,15 @@
       </section>
 
       <!-- =========================================================================
-       SCIENCE / METHODE (honest real-science claims)
-       ========================================================================== -->
+ SCIENCE / METHODE (honest real-science claims)
+ ========================================================================== -->
       <section class="science-section">
         <div class="container">
           <div class="section-head">
             <h2>Ce que l'IA fait quand tu lui dis « j'ai que 30 min ce soir ».</h2>
             <p>
-              Pas de prédiction bisou-magique. Un pipeline déterministe, calibré sur tes propres
-              données, révisé à chaque séance.
+              Pas de prédictions. Un pipeline déterministe, calibré sur tes propres données, révisé
+              à chaque séance.
             </p>
           </div>
 
@@ -474,7 +455,7 @@
 
           <div class="pillars">
             <div class="pillar">
-              <span class="pillar-index">ALLURES</span>
+              <span class="pillar-index">Allures</span>
               <h3>Calibrées sur tes sorties, pas sur ton rêve</h3>
               <p>
                 VMA, seuil, allure cible : jamais déduites d'un objectif souhaité, toujours de tes
@@ -483,7 +464,7 @@
               </p>
             </div>
             <div class="pillar">
-              <span class="pillar-index">VIGILANCE</span>
+              <span class="pillar-index">Vigilance</span>
               <h3>Garde-fous médicaux intégrés</h3>
               <p>
                 Detecté durant ton chat : douleurs thoraciques, oppression, vertiges, signal
@@ -504,8 +485,8 @@
       </section>
 
       <!-- =========================================================================
-       COMPARISON
-       ========================================================================== -->
+ COMPARISON
+ ========================================================================== -->
       <section id="comparatif" class="comparison-section">
         <div class="container">
           <div class="section-head">
@@ -558,15 +539,15 @@
       </section>
 
       <!-- =========================================================================
-       APP PREVIEW
-       ========================================================================== -->
+ APP PREVIEW
+ ========================================================================== -->
       <section id="apercu" class="apercu-section">
         <div class="container">
           <div class="section-head">
             <h2>Pensée pour te libérer la tête, pas pour t'inonder de graphiques.</h2>
             <p>
-              Découvre l'interface actuelle de la bêta : moins de 15 secondes par jour pour garder
-              un plan toujours aligné avec ta forme.
+              Découvre l'interface actuelle de la bêta : quelques secondes par jour pour garder un
+              plan toujours aligné avec ta forme.
             </p>
           </div>
 
@@ -624,23 +605,20 @@
       </section>
 
       <!-- =========================================================================
-       FOUNDER / WAITLIST BAND
-       ========================================================================== -->
+ FOUNDER / WAITLIST BAND
+ ========================================================================== -->
       <section class="founder-section">
         <div class="container">
           <div class="founder-grid">
             <div>
-              <h2>
-                Rejoins le premier peloton.
-                <span class="accent">Tarif préférentiel pour les inscrits bêta.</span>
-              </h2>
+              <h2>Rejoins la bêta. Tarif préférentiel pour les premiers inscrits.</h2>
               <p class="sub">
                 On ouvre la bêta par vagues pour calibrer le coach sur des questions réelles. En
                 t'inscrivant tu accèdes au simulateur interactif complet et au vrai plan calibré sur
                 tes données, sans CB.
               </p>
               <div class="pill-row">
-                <span class="pill">✓ Scan Strava / Garmin en 30 secondes</span>
+                <span class="pill">✓ Scan Strava / Garmin en quelques secondes</span>
                 <span class="pill">✓ Plan validé par le modèle Banister</span>
                 <span class="pill">✓ Sans CB, sans engagement</span>
               </div>
@@ -674,7 +652,7 @@
                   <li>Check-in RPE et règles de vie verrouillées</li>
                 </ul>
                 <div class="founder-offer-card">
-                  <div class="founder-fire-badge">Privilège premier peloton</div>
+                  <div class="founder-fire-badge">Avantage bêta</div>
                   <div class="founder-offer-copy">
                     Statut de membre fondateur réservé à cause bêta. Tarif indicatif : 49 euros par
                     an prévu au lieu de 99 euros par an, à valider au lancement.
@@ -695,8 +673,8 @@
     </main>
 
     <!-- =========================================================================
-       FOOTER
-       ========================================================================== -->
+ FOOTER
+ ========================================================================== -->
     <footer class="footer">
       <div class="container">
         <div class="footer-top">
@@ -718,14 +696,14 @@
             <a href="./confidentialite.html">Politique de confidentialité</a>
             <a href="./mentions-legales.html">Mentions légales</a>
           </nav>
-          <div class="footer-copy">Service en pré-lancement • Build prototype</div>
+          <div class="footer-copy">Service en pré-lancement</div>
         </div>
       </div>
     </footer>
 
     <!-- =========================================================================
-       WAITLIST MODAL (3 étapes)
-       ========================================================================== -->
+ WAITLIST MODAL (3 étapes)
+ ========================================================================== -->
     <div
       id="waitlist-modal"
       class="modal-backdrop"
@@ -766,7 +744,6 @@
               aria-pressed="true"
               data-choice-goal="semi"
             >
-              <span class="choice-card-icon">🏅</span>
               <span class="choice-card-body">
                 <span class="choice-card-title">Semi-Marathon</span>
                 <span class="choice-card-sub">21,1 km • Chrono ou 1er défi</span>
@@ -779,15 +756,13 @@
               aria-pressed="false"
               data-choice-goal="marathon"
             >
-              <span class="choice-card-icon">🏃</span>
               <span class="choice-card-body">
                 <span class="choice-card-title">Marathon</span>
-                <span class="choice-card-sub">42,195 km • Le graal d'endurance</span>
+                <span class="choice-card-sub">42,195 km • Le défi distance</span>
               </span>
               <span class="choice-check"></span>
             </button>
             <button type="button" class="choice-card" aria-pressed="false" data-choice-goal="10k">
-              <span class="choice-card-icon">⚡</span>
               <span class="choice-card-body">
                 <span class="choice-card-title">10 km / 5 km</span>
                 <span class="choice-card-sub">Vitesse, VMA & allures</span>
@@ -795,7 +770,6 @@
               <span class="choice-check"></span>
             </button>
             <button type="button" class="choice-card" aria-pressed="false" data-choice-goal="trail">
-              <span class="choice-card-icon">🌲</span>
               <span class="choice-card-body">
                 <span class="choice-card-title">Trail & Nature</span>
                 <span class="choice-card-sub">Dénivelé, D+ & gestion d'allure</span>
@@ -808,7 +782,6 @@
               aria-pressed="false"
               data-choice-goal="reprise"
             >
-              <span class="choice-card-icon">🛡️</span>
               <span class="choice-card-body">
                 <span class="choice-card-title">Reprise / Zéro Blessure</span>
                 <span class="choice-card-sub"
@@ -824,15 +797,15 @@
           </label>
           <div class="u-mb-16">
             <select id="form-current-app" class="custom-modern-select">
-              <option value="campus" selected>🧢 Campus Coach</option>
-              <option value="runna">🏃‍♂️ Runna</option>
-              <option value="runmotion">🏔️ RunMotion Coach</option>
-              <option value="kiprun">👟 Kiprun Pacer (Decathlon)</option>
-              <option value="garmin_coach">⌚ Garmin Coach / Suggestions de la montre</option>
-              <option value="pdf_excel">📄 Plan PDF / Tableau Excel</option>
-              <option value="club_coach">🎽 Entraîneur de Club / Nolio</option>
-              <option value="feeling">🎯 Au feeling (sans plan fixe)</option>
-              <option value="autre">✨ Autre application ou méthode</option>
+              <option value="campus" selected>Campus Coach</option>
+              <option value="runna">Runna</option>
+              <option value="runmotion">RunMotion Coach</option>
+              <option value="kiprun">Kiprun Pacer (Decathlon)</option>
+              <option value="garmin_coach">Garmin Coach / Suggestions de la montre</option>
+              <option value="pdf_excel">Plan PDF / Tableau Excel</option>
+              <option value="club_coach">Entraîneur de Club / Nolio</option>
+              <option value="feeling">Au feeling (sans plan fixe)</option>
+              <option value="autre">Autre application ou méthode</option>
             </select>
           </div>
           <div id="form-other-app-wrapper" class="u-mt-8 is-hidden">
@@ -849,12 +822,12 @@
           </label>
           <div class="u-mb-20">
             <select id="form-watch" class="custom-modern-select">
-              <option value="garmin" selected>⌚ Garmin (Forerunner, Fenix, Epix...)</option>
-              <option value="apple_watch">🍎 Apple Watch (Ultra, Series, SE)</option>
-              <option value="coros">🧭 COROS (Pace, Apex, Vertix)</option>
-              <option value="polar">❄️ Polar (Pacer, Vantage, Grit...)</option>
-              <option value="suunto">⛰️ Suunto (Race, Peak, Vertical...)</option>
-              <option value="phone_only">📱 Téléphone seul en poche (Strava / Nike)</option>
+              <option value="garmin" selected>Garmin (Forerunner, Fenix, Epix...)</option>
+              <option value="apple_watch">Apple Watch (Ultra, Series, SE)</option>
+              <option value="coros">COROS (Pace, Apex, Vertix)</option>
+              <option value="polar">Polar (Pacer, Vantage, Grit...)</option>
+              <option value="suunto">Suunto (Race, Peak, Vertical...)</option>
+              <option value="phone_only">Téléphone seul en poche (Strava / Nike)</option>
             </select>
           </div>
 
@@ -869,9 +842,9 @@
             ← Modifier mon profil
           </button>
           <div class="summary-pill-banner">
-            <span class="summary-pill-label">PROFIL ENTRAÎNEMENT PRÊT</span>
+            <span class="summary-pill-label">Profil entraînement prêt</span>
             <span id="summary-pill-text" class="summary-pill-text"
-              >Objectif Semi-Marathon • Campus Coach • Montre Garmin</span
+              >Objectif Semi-Marathon, Campus Coach, Montre Garmin</span
             >
           </div>
 
@@ -905,7 +878,7 @@
             <div class="form-group">
               <label class="modal-section-label" for="form-email">Ton adresse email</label>
               <div class="input-with-icon">
-                <span class="input-icon">✉️</span>
+                <span class="input-icon"></span>
                 <input
                   type="email"
                   id="form-email"
@@ -938,7 +911,7 @@
             </p>
 
             <div class="form-trust-footer">
-              <span>🔒 Pas de spam</span>
+              <span> Pas de spam</span>
               <span>✓ Annulation en un clic</span>
               <span>✓ Zéro CB requise</span>
             </div>
@@ -947,19 +920,8 @@
 
         <!-- STEP 3 -->
         <div id="modal-step-3" hidden>
-          <div class="race-bib-ticket">
-            <div class="bib-header">
-              <span>RILES ATHLETICS • VAGUE BÊTA 2026</span>
-              <span class="bib-tag">BÊTA</span>
-            </div>
-            <div class="bib-number">RILES &bull; B&Eacute;TA 2026</div>
-            <div class="bib-category" id="bib-category-text">CATÉGORIE : SEMI-MARATHON</div>
-            <div class="bib-athlete" id="bib-athlete-text">ATHLÈTE : email@exemple.com</div>
-            <div class="bib-footer">✓ ACCÈS BÊTA VALIDÉ</div>
-          </div>
-
           <div class="founder-offer-card">
-            <div class="founder-fire-badge">🔥 PRIVILÈGE PREMIER PELOTON</div>
+            <div class="founder-fire-badge">Avantage bêta</div>
             <div class="founder-spots u-mb-8">Réservé aux inscrits de la bêta</div>
             <div class="founder-offer-title">Bloquer -50 % à vie sur l'abonnement Pro</div>
             <div class="founder-price">
@@ -970,12 +932,12 @@
               Tarif membre fondateur prévu, validé au lancement. Pas de CB aujourd'hui.
             </div>
             <button type="button" id="claim-founder-btn" class="btn btn-primary u-full u-mt-12">
-              Verrouiller mon statut Membre Fondateur à -50 % (49 €/an)
+              Verrouiller -50 %
             </button>
           </div>
 
           <div class="share-box">
-            <strong>🚀 Fais monter ton dossard dans la file</strong>
+            <strong>Fais monter ton dossard dans la file</strong>
             <span class="share-box-copy"
               >Partage le lien pour informer tes proches : quand quelqu'un teste, tu gagnes 50
               places pour la prochaine vague.</span
@@ -1007,8 +969,8 @@
     </div>
 
     <!-- =========================================================================
-       GHOST FORM (Netlify discovery only)
-       ========================================================================== -->
+ GHOST FORM (Netlify discovery only)
+ ========================================================================== -->
     <form name="riles-founder-intent" data-netlify="true" hidden>
       <input type="text" name="email" />
       <input type="text" name="angle" />
@@ -1017,8 +979,8 @@
     </form>
 
     <!-- =========================================================================
-       COOKIE BANNER
-       ========================================================================== -->
+ COOKIE BANNER
+ ========================================================================== -->
     <div
       id="cookie-consent-banner"
       class="cookie-banner"
