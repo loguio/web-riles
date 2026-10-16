@@ -81,7 +81,7 @@
       class="angle-switcher-bar"
       role="region"
       aria-label="Prévisualisation marketing"
-      style="display: none"
+      hidden
     >
       <div class="angle-switcher-inner">
         <span>Mode test marketing : clique pour prévisualiser les 3 accroches A/B.</span>
@@ -169,11 +169,7 @@
               </div>
             </div>
             <div class="hero-right">
-              <div
-                class="phones-stage"
-                role="img"
-                aria-label="Aperçu de l'application Riles sur mobile"
-              >
+              <div class="phones-stage">
                 <div class="floating-badge">
                   <span class="coach-icon">💬</span>
                   <strong>IMPRÉVU DÉTECTÉ</strong>
@@ -280,9 +276,7 @@
                   </button>
                 </div>
 
-                <p class="sim-step-label" style="margin-top: 20px">
-                  2. Clique sur ton imprévu de mercredi
-                </p>
+                <p class="sim-step-label u-mt-20">2. Clique sur ton imprévu de mercredi</p>
                 <ul class="scenario-list">
                   <li>
                     <button
@@ -367,26 +361,15 @@
               <div>
                 <div class="sim-output" aria-live="polite" aria-atomic="false">
                   <div class="sim-output-header">
-                    <p id="sim-output-goal-label" class="sim-output-goal" style="font-size: 18px">
+                    <p id="sim-output-goal-label" class="sim-output-goal">
                       Objectif Semi-Marathon (1h45)
                     </p>
                     <span id="sim-readiness-pill" class="readiness-pill"
                       >⚡ Stimulus seuil sauvé en 30 min</span
                     >
                   </div>
-                  <div style="margin-bottom: 10px">
-                    <div
-                      style="
-                        font-size: 11px;
-                        color: var(--ink-soft);
-                        font-weight: 600;
-                        letter-spacing: 0.12em;
-                        text-transform: uppercase;
-                        font-family: var(--font-mono, 'JetBrains Mono');
-                      "
-                    >
-                      SEMAINE RECALCULÉE EN TEMPS RÉEL
-                    </div>
+                  <div class="u-mb-10">
+                    <div class="sim-output-label">SEMAINE RECALCULÉE EN TEMPS RÉEL</div>
                   </div>
                   <div id="sim-calendar-grid" class="week-calendar-grid"></div>
                   <div class="coach-bubble">
@@ -406,9 +389,8 @@
                   </div>
                   <button
                     type="button"
-                    class="btn btn-primary btn-lg btn-block"
+                    class="btn btn-primary btn-lg btn-block u-mt-12"
                     data-open-waitlist="simulator_bottom_cta"
-                    style="margin-top: 12px"
                   >
                     Générer mon vrai plan sur-mesure →
                   </button>
@@ -454,7 +436,7 @@
                   jour J, sans charger démesurément.
                 </li>
               </ul>
-              <p style="margin-top: 16px">
+              <p class="u-mt-16">
                 Tes jours verrouillés via tes règles de vie ("jamais le jeudi", "samedi jour de
                 marché") sont sanctuarisés sur tout le cycle.
               </p>
@@ -774,7 +756,7 @@
             On personnalise l'exemple pour voir ce que Riles ferait sur ta semaine.
           </p>
 
-          <div class="card-options-grid" style="margin-bottom: 20px">
+          <div class="card-options-grid u-mb-20">
             <button
               type="button"
               class="choice-card active"
@@ -837,7 +819,7 @@
           <label class="modal-section-label" for="form-current-app">
             Comment prépares-tu tes courses aujourd'hui ?
           </label>
-          <div style="margin-bottom: 16px">
+          <div class="u-mb-16">
             <select id="form-current-app" class="custom-modern-select">
               <option value="campus" selected>🧢 Campus Coach</option>
               <option value="runna">🏃‍♂️ Runna</option>
@@ -850,20 +832,19 @@
               <option value="autre">✨ Autre application ou méthode</option>
             </select>
           </div>
-          <div id="form-other-app-wrapper" style="display: none; margin-top: 8px">
+          <div id="form-other-app-wrapper" class="u-mt-8 is-hidden">
             <input
               type="text"
               id="form-other-app-text"
               placeholder="Quelle app / méthode utilises-tu ?"
-              class="form-input-lg"
-              style="padding-left: 14px"
+              class="form-input-lg u-pl-14"
             />
           </div>
 
-          <label class="modal-section-label" for="form-watch" style="margin-top: 8px">
+          <label class="modal-section-label u-mt-8" for="form-watch">
             Quelle montre ou GPS utilises-tu pour courir ?
           </label>
-          <div style="margin-bottom: 20px">
+          <div class="u-mb-20">
             <select id="form-watch" class="custom-modern-select">
               <option value="garmin" selected>⌚ Garmin (Forerunner, Fenix, Epix...)</option>
               <option value="apple_watch">🍎 Apple Watch (Ultra, Series, SE)</option>
@@ -874,18 +855,13 @@
             </select>
           </div>
 
-          <button
-            type="button"
-            id="btn-next-step"
-            class="btn btn-primary btn-lg"
-            style="width: 100%"
-          >
+          <button type="button" id="btn-next-step" class="btn btn-primary btn-lg u-full">
             Continuer →
           </button>
         </div>
 
         <!-- STEP 2 -->
-        <div id="modal-step-2" style="display: none">
+        <div id="modal-step-2" hidden>
           <button type="button" id="btn-back-step" class="btn-step-back">
             ← Modifier mon profil
           </button>
@@ -907,7 +883,7 @@
             method="POST"
             data-netlify="true"
             netlify-honeypot="bot-field"
-            style="margin: 0"
+            class="u-flush"
           >
             <input type="hidden" name="form-name" value="riles-beta-waitlist" />
             <input type="hidden" name="bot-field" />
@@ -948,16 +924,11 @@
             </div>
             <input type="hidden" id="form-consent-timestamp" name="consent_timestamp" value="" />
 
-            <button
-              type="submit"
-              id="btn-submit-waitlist"
-              class="btn btn-primary btn-lg"
-              style="width: 100%"
-            >
+            <button type="submit" id="btn-submit-waitlist" class="btn btn-primary btn-lg u-full">
               Valider mon accès bêta →
             </button>
 
-            <p class="form-legal-note" style="margin-top: 10px">
+            <p class="form-legal-note u-mt-10">
               Données traitées selon notre
               <a href="./confidentialite.html">politique de confidentialité</a>. Tu peux te
               désinscrire à tout moment.
@@ -972,7 +943,7 @@
         </div>
 
         <!-- STEP 3 -->
-        <div id="modal-step-3" style="display: none">
+        <div id="modal-step-3" hidden>
           <div class="race-bib-ticket">
             <div class="bib-header">
               <span>RILES ATHLETICS • VAGUE BÊTA 2026</span>
@@ -986,34 +957,23 @@
 
           <div class="founder-offer-card">
             <div class="founder-fire-badge">🔥 PRIVILÈGE PREMIER PELOTON</div>
-            <div class="founder-spots" style="margin-bottom: 8px">
-              Réservé aux inscrits de la bêta
-            </div>
-            <div style="font-weight: 800; font-size: 17px; color: var(--ink)">
-              Bloquer -50 % à vie sur l'abonnement Pro
-            </div>
+            <div class="founder-spots u-mb-8">Réservé aux inscrits de la bêta</div>
+            <div class="founder-offer-title">Bloquer -50 % à vie sur l'abonnement Pro</div>
             <div class="founder-price">
               <s>99 €/an</s>49 €/an
-              <span style="font-size: 12px; color: var(--ink-faint); font-weight: 400"
-                >(indicatif)</span
-              >
+              <span class="founder-price-note">(indicatif)</span>
             </div>
             <div class="founder-offer-note">
               Tarif membre fondateur prévu, validé au lancement. Pas de CB aujourd'hui.
             </div>
-            <button
-              type="button"
-              id="claim-founder-btn"
-              class="btn btn-primary"
-              style="width: 100%; margin-top: 12px"
-            >
+            <button type="button" id="claim-founder-btn" class="btn btn-primary u-full u-mt-12">
               Verrouiller mon statut Membre Fondateur à -50 % (49 €/an)
             </button>
           </div>
 
           <div class="share-box">
             <strong>🚀 Fais monter ton dossard dans la file</strong>
-            <span style="font-size: 13px; color: var(--ink-soft)"
+            <span class="share-box-copy"
               >Partage le lien pour informer tes proches : quand quelqu'un teste, tu gagnes 50
               places pour la prochaine vague.</span
             >

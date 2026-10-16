@@ -1095,16 +1095,16 @@
     if (modal) modal.setAttribute('aria-labelledby', 'modal-step-title-' + stepNumber);
 
     if (stepNumber === 1) {
-      if (s1) s1.style.display = 'block';
-      if (s2) s2.style.display = 'none';
-      if (s3) s3.style.display = 'none';
+      if (s1) s1.hidden = false;
+      if (s2) s2.hidden = true;
+      if (s3) s3.hidden = true;
       if (seg1) seg1.classList.add('active');
       if (seg2) seg2.classList.remove('active');
       if (counter) counter.textContent = 'Étape 1 / 2';
     } else if (stepNumber === 2) {
-      if (s1) s1.style.display = 'none';
-      if (s2) s2.style.display = 'block';
-      if (s3) s3.style.display = 'none';
+      if (s1) s1.hidden = true;
+      if (s2) s2.hidden = false;
+      if (s3) s3.hidden = true;
       if (seg1) seg1.classList.add('active');
       if (seg2) seg2.classList.add('active');
       if (counter) counter.textContent = 'Étape 2 / 2';
@@ -1129,9 +1129,9 @@
         if (emailInput) emailInput.focus();
       }, 100);
     } else if (stepNumber === 3) {
-      if (s1) s1.style.display = 'none';
-      if (s2) s2.style.display = 'none';
-      if (s3) s3.style.display = 'block';
+      if (s1) s1.hidden = true;
+      if (s2) s2.hidden = true;
+      if (s3) s3.hidden = false;
       if (seg1) seg1.classList.add('active');
       if (seg2) seg2.classList.add('active');
       if (counter) counter.textContent = 'Dossard Officiel ✓';
@@ -1385,7 +1385,7 @@
 
     const switcherBar = document.getElementById('angle-switcher-bar');
     if (switcherBar && isLocal) {
-      switcherBar.style.display = 'block';
+      switcherBar.hidden = false;
     }
 
     applyMarketingAngle(state.angle, false);
@@ -1448,7 +1448,7 @@
         const otherWrap = document.getElementById('form-other-app-wrapper');
         const otherInput = document.getElementById('form-other-app-text');
         if (otherWrap) {
-          otherWrap.style.display = appSelect.value === 'autre' ? 'block' : 'none';
+          otherWrap.classList.toggle('is-hidden', appSelect.value !== 'autre');
           if (appSelect.value === 'autre' && otherInput) {
             otherInput.focus();
           }
