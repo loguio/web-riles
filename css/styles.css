@@ -93,8 +93,8 @@
   --border-strong: #667085;
 
   --primary: #ff5722;
-  --primary-dark: #b4230a;
-  --primary-hover: #ff6a3d;
+  --primary-dark: #c2410c;
+  --primary-hover: #e64a19;
   --primary-soft: #fff1e9;
   --primary-border: #ffd6c7;
 
@@ -502,8 +502,15 @@ ol {
 
 .btn-primary {
   background: var(--primary);
-  color: var(--ink);
+  color: var(--bg-2);
   border-color: var(--primary);
+}
+.btn-primary:not(.btn-sm) {
+  font-size: 19px;
+  font-weight: 700;
+}
+.btn-primary.btn-sm {
+  color: var(--ink);
 }
 
 .btn-secondary:hover {
