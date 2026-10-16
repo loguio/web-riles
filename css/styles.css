@@ -146,6 +146,23 @@ body.modal-open {
   overflow: hidden;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--bg-2);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 12px;
+}
+
 h1,
 h2,
 h3,
@@ -358,6 +375,10 @@ ol {
   flex-shrink: 0;
 }
 
+.brand-icon::before {
+  content: 'R';
+}
+
 .brand-logo small {
   font-weight: 700;
   font-size: 11px;
@@ -416,6 +437,7 @@ ol {
   color: var(--ink);
   text-decoration: none;
   white-space: nowrap;
+  min-height: 44px;
   transition:
     transform var(--dur) var(--ease),
     background var(--dur) var(--ease),
@@ -468,7 +490,7 @@ ol {
 .btn-sm {
   padding: 8px 14px;
   font-size: 13px;
-  min-height: 40px;
+  min-height: 44px;
 }
 .btn-lg {
   padding: 14px 22px;
@@ -568,8 +590,8 @@ ol {
 }
 
 .trust-check {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   background: var(--success-soft);
   color: var(--success);
   border-radius: 50%;
@@ -578,6 +600,10 @@ ol {
   font-size: 11px;
   font-weight: 700;
   flex-shrink: 0;
+}
+
+.trust-check::before {
+  content: '✓';
 }
 
 /* phone mockup stage */
@@ -2092,6 +2118,17 @@ ol {
   list-style: none;
 }
 
+.founder-feature-list li {
+  display: flex;
+  gap: 10px;
+}
+
+.founder-feature-list li::before {
+  content: '→';
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
 .founder-offer-copy {
   font-size: 13px;
   color: var(--ink-soft);
@@ -2255,6 +2292,7 @@ ol {
 .cookie-banner-text {
   flex: 1;
   color: rgba(255, 255, 255, 0.85);
+  background: var(--bg-dark);
   line-height: 1.4;
 }
 

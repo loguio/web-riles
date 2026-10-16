@@ -11,6 +11,84 @@
   };
 
   // ============================================================================
+  // 0. MOUVEMENT (GSAP) - progressif, désactivé si prefers-reduced-motion
+  // ============================================================================
+  function prefersReducedMotion() {
+    return (
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
+  }
+
+  function gsapIsReady() {
+    return typeof window.gsap !== 'undefined' && !prefersReducedMotion();
+  }
+
+  function initMotion() {
+    if (!gsapIsReady()) return;
+    const gsap = window.gsap;
+
+    gsap.from(['.hero-eyebrow', '.hero-title', '.hero-subtitle', '.hero-trust', '.hero-ctas'], {
+      y: 18,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.08,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+    });
+    gsap.from('.phones-stage', {
+      y: 24,
+      opacity: 0,
+      duration: 0.9,
+      delay: 0.15,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+    });
+
+    const revealTargets = document.querySelectorAll(
+      '.compat-strip, .simulator-card, .science-section .pillar, .comparison-section .section-head, .apercu-card, .founder-grid > *',
+    );
+    if ('IntersectionObserver' in window && revealTargets.length) {
+      const Observer = window.IntersectionObserver;
+      const observer = new Observer(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            gsap.fromTo(
+              entry.target,
+              { y: 22, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                ease: 'power2.out',
+                clearProps: 'transform,opacity',
+              },
+            );
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px' },
+      );
+      revealTargets.forEach(function (el) {
+        observer.observe(el);
+      });
+    }
+  }
+
+  function pulseSimulatorCards() {
+    if (!gsapIsReady()) return;
+    window.gsap.from('.day-card', {
+      y: 8,
+      opacity: 0,
+      duration: 0.32,
+      stagger: 0.035,
+      ease: 'power2.out',
+      clearProps: 'transform,opacity',
+    });
+  }
+
+  // ============================================================================
   // 1. DÉTECTION DES PARAMÈTRES URL (ANGLE MARKETING + UTM + REFERRAL)
   // ============================================================================
   const urlParams = new URLSearchParams(window.location.search);
@@ -892,15 +970,16 @@
 
     // Boutons d'objectif
     document.querySelectorAll('[data-sim-goal]').forEach(function (btn) {
-      btn.classList.toggle('active', btn.getAttribute('data-sim-goal') === state.selectedGoal);
+      const isActive = btn.getAttribute('data-sim-goal') === state.selectedGoal;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
 
     // Boutons de scénario
     document.querySelectorAll('[data-sim-scenario]').forEach(function (btn) {
-      btn.classList.toggle(
-        'active',
-        btn.getAttribute('data-sim-scenario') === state.selectedScenario,
-      );
+      const isActive = btn.getAttribute('data-sim-scenario') === state.selectedScenario;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
 
     // En-tête de sortie
@@ -939,6 +1018,7 @@
           );
         })
         .join('');
+      pulseSimulatorCards();
     }
   }
 
@@ -980,7 +1060,9 @@
   function syncModalCardsUI() {
     // 1. Cartes d'objectif
     document.querySelectorAll('[data-choice-goal]').forEach(function (card) {
-      card.classList.toggle('active', card.getAttribute('data-choice-goal') === state.selectedGoal);
+      const isActive = card.getAttribute('data-choice-goal') === state.selectedGoal;
+      card.classList.toggle('active', isActive);
+      card.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
     const hiddenGoal = document.getElementById('form-hidden-goal');
     if (hiddenGoal) hiddenGoal.value = state.selectedGoal;
@@ -1242,7 +1324,9 @@
     const btn = document.getElementById('claim-founder-btn');
     if (btn) {
       btn.textContent = '✓ Tarif Membre Fondateur (-50%) verrouillé pour toi !';
-      btn.style.background = '#036b4d';
+      btn.style.background = 'var(--success-ink)';
+      btn.style.borderColor = 'var(--success-ink)';
+      btn.style.color = 'var(--bg-2)';
       btn.disabled = true;
     }
   }
@@ -1277,6 +1361,9 @@
       if (img.complete && img.naturalWidth === 0) swap();
     }
     document.querySelectorAll('img').forEach(guardImage);
+
+    // Animations d'entrée et révélations au scroll (GSAP si disponible)
+    initMotion();
 
     // Consentement liste d'attente : horodatage ISO 8601 de la case cochée,
     // transmis avec la soumission du formulaire Netlify.
