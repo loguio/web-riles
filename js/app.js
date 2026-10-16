@@ -7,6 +7,7 @@
     POSTHOG_HOST: 'https://eu.i.posthog.com',
     GA4_MEASUREMENT_ID: '',
     EXTERNAL_WEBHOOK_URL: '',
+    API_BASE: document.querySelector('meta[name="api-base"]')?.content?.trim() || '',
     ALLOW_ANGLE_SWITCHER_IN_PROD: false,
   };
 
@@ -1239,6 +1240,18 @@
     }
   }
 
+  async function submitWaitlistToApi(payload) {
+    const base = (cfg.API_BASE || '').replace(/\/$/, '');
+    if (!base) return null;
+    const res = await fetch(base + '/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok && res.status !== 409) throw new Error('waitlist api ' + res.status);
+    return await res.json().catch(() => ({ status: 'created' }));
+  }
+
   async function handleWaitlistSubmit(e) {
     e.preventDefault();
     const form = e.target;
@@ -1291,16 +1304,40 @@
       });
     }
 
-    // 1. Envoi natif à Netlify Forms
-    const formData = new FormData(form);
+    // 1. Capture API en priorité (survit aux plafonds Netlify, rate-limited côté serveur).
+    const payload = {
+      email: email,
+      goal: state.selectedGoal,
+      source: triggerSource || 'hero_secondary_cta',
+      angle: state.angle,
+      utmSource: state.utmSource,
+      utmMedium: state.utmMedium,
+      utmCampaign: state.utmCampaign,
+      consentAt: consentTs && consentTs.value ? consentTs.value : new Date().toISOString(),
+    };
+    let capturedByApi = false;
     try {
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString(),
-      });
+      const result = await submitWaitlistToApi(payload);
+      if (result) {
+        capturedByApi = true;
+        trackEvent('waitlist_api_captured', { status: result.status ?? 'created' });
+      }
     } catch (err) {
-      console.info('[Netlify Forms] Mode local détecté :', err.message);
+      console.info('[Waitlist API] Indisponible, bascule sur Netlify Forms :', err.message);
+    }
+
+    // 1bis. Bascule Netlify Forms (backup) si l'API est absente ou en erreur.
+    if (!capturedByApi) {
+      const formData = new FormData(form);
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString(),
+        });
+      } catch (err) {
+        console.info('[Netlify Forms] Mode local détecté :', err.message);
+      }
     }
 
     // 2. Envoi optionnel vers un Webhook externe
