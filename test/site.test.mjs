@@ -248,6 +248,44 @@ test('mobile reflow guard: responsive overrides stay in CSS', () => {
     'readiness pill must wrap instead of overflow',
   );
   assert.match(css, /--border-strong:/, 'interactive boundary token must exist');
+  assert.match(css, /\.btn-sm \{[\s\S]*?min-height: 44px/, 'small buttons keep a 44px target');
+  assert.match(css, /\.btn-lg \{[\s\S]*?min-height: 48px/, 'large buttons keep a 48px target');
+});
+
+test('interactive state and landmarks are exposed to assistive tech', () => {
+  const html = read('index.html');
+  assert.match(html, /<main[ >]/, 'page must expose a main landmark');
+  assert.match(
+    html,
+    /class="skip-link" href="#main-content"/,
+    'skip link must target main content',
+  );
+  assert.match(
+    html,
+    /aria-pressed="(true|false)"[^>]*data-sim-goal/,
+    'simulator goals need aria-pressed',
+  );
+  assert.match(
+    html,
+    /aria-pressed="(true|false)"[^>]*data-sim-scenario/,
+    'simulator scenarios need aria-pressed',
+  );
+  assert.match(
+    html,
+    /class="sim-output" aria-live="polite"/,
+    'simulator output must be a live region',
+  );
+  assert.match(html, /id="referral-link-input"[\s\S]*?aria-label=/, 'referral input needs a name');
+});
+
+test('GSAP is self-hosted and loaded before app.js', () => {
+  const html = read('index.html');
+  const gsapAt = html.indexOf('js/vendor/gsap.min.js');
+  const appAt = html.indexOf('js/app.js');
+  assert.ok(gsapAt !== -1, 'GSAP bundle must be self-hosted');
+  assert.ok(appAt !== -1, 'app.js must be present');
+  assert.ok(gsapAt < appAt, 'GSAP must load before app.js');
+  assert.match(html, /<script src="\.\/js\/app\.js" defer>/, 'app.js must be deferred');
 });
 
 test('colour declarations reference tokens, not raw literals', () => {
