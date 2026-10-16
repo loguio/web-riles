@@ -2530,3 +2530,48 @@ ol {
 .icon-sprite {
   display: none;
 }
+
+/* Mobile: keep targets accessible but shrink the visual footprint */
+@media (max-width: 640px) {
+  .btn {
+    height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+  .btn.btn-primary {
+    height: 44px;
+    padding: 0 16px;
+  }
+  .btn-lg {
+    height: 46px;
+    padding: 0 16px;
+  }
+  .btn-sm {
+    height: 36px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hero-ctas .btn {
+    width: auto;
+    align-self: flex-start;
+  }
+  /* the mobile nav CTA becomes a compact outlined action */
+  .nav-links a.btn-primary {
+    height: 40px;
+    padding: 0 14px;
+    background: var(--bg-2);
+    color: var(--ink);
+    border-color: var(--border-strong);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .nav-links a.btn-primary:hover {
+    background: var(--border-soft);
+    filter: none;
+  }
+}
