@@ -14,7 +14,10 @@
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#FF5722" />
-    <meta name="api-base" content="" />
+    <!-- Build-time env injection slot for API_BASE (no CSP change): replace the
+         `content` attribute below during the build (e.g. sed/envsubst on
+         $API_BASE). The client reads this meta tag at runtime. -->
+    <meta name="api-base" content="" data-build-slot="API_BASE" />
 
     <link rel="canonical" href="https://riles.run/" />
 
@@ -44,7 +47,46 @@
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
 
     <link rel="preconnect" href="/assets/fonts/" crossorigin />
+    <!-- LCP image already preloaded below -->
     <link rel="preload" as="image" href="./assets/maquettes/home-1.png" />
+    <!-- Self-hosted fonts (CSP 'self' only, no external fonts): preload every
+         weight/subset actually used so type render is not blocked by CSS. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="./assets/fonts/bricolage-latin.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="./assets/fonts/archivo-latin.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="./assets/fonts/archivo-latin-ext.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="./assets/fonts/archivo-vietnamese.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="./assets/fonts/jetbrains-latin.woff2"
+      crossorigin
+    />
+    <!-- Critical CSS first: stylesheet before any deferred script. -->
     <link rel="stylesheet" href="./css/styles.css" />
 
     <script type="application/ld+json">

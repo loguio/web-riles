@@ -7,7 +7,17 @@
     POSTHOG_HOST: 'https://eu.i.posthog.com',
     GA4_MEASUREMENT_ID: '',
     EXTERNAL_WEBHOOK_URL: '',
-    API_BASE: document.querySelector('meta[name="api-base"]')?.content?.trim() || '',
+    // Build-time env injection slot (no CSP change): at build, replace the
+    // `content` attribute of <meta name="api-base"> in index.html with the
+    // API base URL. The meta tag is the only injection point; API_BASE below
+    // reads it at runtime, so no inline script and no CSP relaxation required.
+    // Supported build placeholders in the meta content: %API_BASE%, {{API_BASE}}, __API_BASE__.
+    API_BASE: (function () {
+      // Build-time slot: an unexpanded placeholder must behave like "unset"
+      // so the client transparently falls back to Netlify Forms locally.
+      const raw = document.querySelector('meta[name="api-base"]')?.content?.trim() || '';
+      return /^(__API_BASE__|%API_BASE%|\{\{\s*API_BASE\s*\}\})$/i.test(raw) ? '' : raw;
+    })(),
     ALLOW_ANGLE_SWITCHER_IN_PROD: false,
   };
 
@@ -169,6 +179,7 @@
     hasInteractedWithSim: false,
     submittedEmail: '',
     founderOfferClaimed: false,
+    waitlistTriggerSource: 'hero_secondary_cta',
   };
 
   // ============================================================================
@@ -1205,6 +1216,7 @@
 
   function openWaitlistModal(triggerSource) {
     trackEvent('fake_door_clicked', { trigger_source: triggerSource });
+    state.waitlistTriggerSource = triggerSource || 'hero_secondary_cta';
 
     const modal = document.getElementById('waitlist-modal');
     if (!modal) return;
@@ -1240,10 +1252,12 @@
     }
   }
 
+  // API-first capture: posting to the backend waitlist endpoint keeps us under
+  // Netlify Forms' per-site submission caps. Netlify Forms is the backup path.
   async function submitWaitlistToApi(payload) {
     const base = (cfg.API_BASE || '').replace(/\/$/, '');
     if (!base) return null;
-    const res = await fetch(base + '/waitlist', {
+    const res = await fetch(base + '/api/v1/waitlist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -1275,6 +1289,8 @@
     }
 
     state.submittedEmail = email;
+
+    const triggerSource = state.waitlistTriggerSource || 'hero_secondary_cta';
 
     let reportedApp = state.selectedApp || 'campus';
     if (state.selectedApp === 'autre') {
