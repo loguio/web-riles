@@ -163,6 +163,47 @@ body.modal-open {
   left: 12px;
 }
 
+/* Layout utilities (replace inline styles) */
+.u-mt-8 {
+  margin-top: 8px;
+}
+.u-mt-10 {
+  margin-top: 10px;
+}
+.u-mt-12 {
+  margin-top: 12px;
+}
+.u-mt-16 {
+  margin-top: 16px;
+}
+.u-mt-20 {
+  margin-top: 20px;
+}
+.u-mb-8 {
+  margin-bottom: 8px;
+}
+.u-mb-10 {
+  margin-bottom: 10px;
+}
+.u-mb-16 {
+  margin-bottom: 16px;
+}
+.u-mb-20 {
+  margin-bottom: 20px;
+}
+.u-full {
+  width: 100%;
+}
+.u-pl-14 {
+  padding-left: 14px;
+}
+.u-flush {
+  margin: 0;
+}
+.is-hidden {
+  display: none;
+}
+
 h1,
 h2,
 h3,
@@ -272,6 +313,10 @@ ol {
   position: sticky;
   top: 0;
   z-index: 5;
+  display: block;
+}
+
+.angle-switcher-bar[hidden] {
   display: none;
 }
 
@@ -934,10 +979,19 @@ ol {
 }
 
 .sim-output-goal {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--ink);
   margin: 0;
+}
+
+.sim-output-label {
+  font-size: 11px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-mono, 'JetBrains Mono');
 }
 
 .readiness-pill {
@@ -2154,6 +2208,17 @@ ol {
   color: var(--ink);
   display: block;
   margin-bottom: 8px;
+}
+
+.share-box-copy {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.founder-offer-title {
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--ink);
 }
 
 .share-input-row {
