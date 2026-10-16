@@ -87,14 +87,15 @@
   --bg-dark: #0f172a;
   --ink: #0f172a;
   --ink-soft: #475467;
-  --ink-faint: #667085;
+  --ink-faint: #5b6675;
   --border: #d0d5dd;
   --border-soft: #eaecf0;
   --border-strong: #667085;
 
   --primary: #ff5722;
-  --primary-dark: #c2410c;
-  --primary-hover: #e64a19;
+  --primary-strong: #cf3f0a;
+  --primary-strong-hover: #b2320a;
+  --primary-dark: #9a3412;
   --primary-soft: #fff1e9;
   --primary-border: #ffd6c7;
 
@@ -455,31 +456,18 @@ ol {
   background: var(--border-soft);
 }
 
-.nav-links a.btn-primary {
-  height: 44px;
-  padding: 0 20px;
-  border-radius: 999px;
-  font-weight: 600;
-  color: var(--ink);
-  white-space: normal;
-  text-align: center;
-  line-height: 1.25;
-}
-
 /* --------------------------------------------------------------------------
    BUTTONS
    -------------------------------------------------------------------------- */
 
 .btn {
-  position: relative;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   height: 44px;
-  padding: 0 20px;
-  border-radius: 999px;
+  padding: 0 18px;
+  border-radius: var(--radius-md);
   border: 1px solid transparent;
   background: var(--bg-2);
   color: var(--ink);
@@ -488,34 +476,38 @@ ol {
   font-weight: 600;
   font-size: 14px;
   line-height: 1;
+  cursor: pointer;
   transition:
-    border-radius 180ms var(--ease),
     background var(--dur) var(--ease),
     border-color var(--dur) var(--ease),
     box-shadow var(--dur) var(--ease),
-    color var(--dur) var(--ease);
+    color var(--dur) var(--ease),
+    transform 80ms var(--ease);
 }
-
 .btn:active {
   transform: translateY(1px);
 }
+.btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  box-shadow: none;
+}
 
 .btn-primary {
-  background: var(--primary);
-  color: var(--bg-2);
-  border-color: var(--primary);
+  background: var(--primary-strong);
+  color: #fff;
+  border-color: var(--primary-strong);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.16);
 }
-.btn-primary:not(.btn-sm) {
-  font-size: 19px;
-  font-weight: 700;
-}
-.btn-primary.btn-sm {
-  color: var(--ink);
-}
-
-.btn-secondary:hover {
-  border-color: var(--ink);
-  background: var(--border-soft);
+.btn-primary:hover {
+  background: var(--primary-strong-hover);
+  border-color: var(--primary-strong-hover);
+  color: #fff;
 }
 
 .btn-block {
@@ -575,7 +567,7 @@ ol {
 }
 
 .hero-title .highlight {
-  color: var(--primary-dark);
+  color: var(--primary-strong);
 }
 
 .hero-subtitle {
@@ -990,7 +982,7 @@ ol {
 .day-badge {
   display: inline-block;
   max-width: 100%;
-  overflow-wrap: anywhere;
+  hyphens: auto;
   font-family:
     'Archivo',
     -apple-system,
@@ -2403,75 +2395,35 @@ ol {
 }
 
 /* ==========================================================================
-   BUTTONS - real-system states (default / hover / active / focus / disabled)
+   BUTTONS - sizes, icon sizing and states
    ========================================================================== */
-/* Material state layer: 8% hover, 12% pressed, drawn from the label colour */
-.btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: currentColor;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 120ms var(--ease);
-}
-.btn:hover::after {
-  opacity: 0.08;
-}
-.btn:active::after {
-  opacity: 0.12;
-}
-.btn:active {
-  border-radius: var(--radius-md);
-}
-.btn:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
-}
-.btn[disabled],
-.btn:disabled {
-  background: var(--border-soft);
-  border-color: transparent;
-  color: var(--ink-faint);
-  box-shadow: none;
-  pointer-events: none;
-}
-.btn[disabled]::after,
-.btn:disabled::after {
-  opacity: 0;
-}
 .btn .icon {
-  width: 20px;
-  height: 20px;
-}
-.btn-primary {
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.16);
-}
-.btn-primary:hover {
-  background: var(--primary-hover);
-  border-color: var(--primary-hover);
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.2);
+  width: 18px;
+  height: 18px;
 }
 .btn-secondary {
   color: var(--ink);
   border-color: var(--border-strong);
   background: var(--bg-2);
 }
-
+.btn-secondary:hover {
+  border-color: var(--ink);
+  background: var(--border-soft);
+  color: var(--ink);
+}
 .btn-sm {
-  height: 44px;
-  padding: 0 16px;
+  height: 40px;
+  padding: 0 14px;
   font-size: 13px;
 }
 .btn-lg {
   height: 48px;
-  padding: 0 24px;
+  padding: 0 22px;
   font-size: 15px;
-  gap: 10px;
 }
 .btn-lg .icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 
 /* ==========================================================================
@@ -2490,7 +2442,7 @@ ol {
   height: 44px;
   padding: 0 18px;
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  border-radius: var(--radius-md);
   background: var(--bg-2);
   color: var(--ink-soft);
   font: inherit;
@@ -2527,10 +2479,10 @@ ol {
   stroke-width: 2.4;
 }
 .btn .icon {
-  stroke-width: 1.9;
+  stroke-width: 2.2;
 }
 .btn-lg .icon {
-  stroke-width: 1.75;
+  stroke-width: 2;
 }
 .scenario-icon {
   stroke-width: 1.75;
@@ -2548,9 +2500,6 @@ ol {
   border-color: var(--success-ink);
   color: var(--bg-2);
   box-shadow: none;
-}
-.btn-locked::after {
-  opacity: 0;
 }
 
 /* Loading spinner */
@@ -2574,4 +2523,8 @@ ol {
 
 .modal-close .icon {
   stroke-width: 1.9;
+}
+
+.icon-sprite {
+  display: none;
 }
