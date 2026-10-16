@@ -86,7 +86,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -98,7 +97,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -108,11 +106,23 @@
         <path d="M13 6l6 6" />
       </symbol>
       <symbol
+        id="icon-arrow-left"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M5 12l14 0" />
+        <path d="M5 12l6 6" />
+        <path d="M5 12l6 -6" />
+      </symbol>
+      <symbol
         id="icon-calendar-event"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -128,7 +138,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -140,7 +149,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -155,7 +163,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -173,7 +180,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -186,7 +192,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -200,7 +205,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -214,7 +218,6 @@
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="1.9"
         stroke-linecap="round"
         stroke-linejoin="round"
       >
@@ -222,6 +225,29 @@
         <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
         <path d="M12 12m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" />
         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+      </symbol>
+      <symbol
+        id="icon-x"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
+      </symbol>
+      <symbol
+        id="icon-loader"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 3a9 9 0 1 0 9 9" />
       </symbol>
     </svg>
 
@@ -264,8 +290,8 @@
         </a>
         <nav class="nav-links" aria-label="Navigation principale">
           <a href="#simulateur">Tester le simulateur</a>
-          <a href="#comparatif">Pourquoi Riles ?</a>
-          <a href="#apercu">Aperçu de l'app</a>
+          <a href="#comparatif">Comparatif</a>
+          <a href="#apercu">App</a>
           <a href="#" class="btn btn-primary btn-sm" data-open-waitlist="navbar_cta"
             ><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg
             >Rejoindre la bêta</a
@@ -360,7 +386,11 @@
               <span class="compat-chip"
                 ><svg class="icon icon-sm" aria-hidden="true">
                   <use href="#icon-calendar-event"></use></svg
-                >Bientôt : COROS, Polar, Suunto → Roadmap H2 2026</span
+                >Bientôt : COROS, Polar, Suunto
+                <svg class="icon icon-sm" aria-hidden="true">
+                  <use href="#icon-arrow-right"></use>
+                </svg>
+                Roadmap H2 2026</span
               >
             </div>
           </div>
@@ -801,9 +831,18 @@
               <h2>Rejoins la bêta.</h2>
               <p class="sub">Tarif préférentiel pour les premiers inscrits. Sans CB.</p>
               <div class="pill-row">
-                <span class="pill">✓ Scan Strava / Garmin en quelques secondes</span>
-                <span class="pill">✓ Plan validé par le modèle Banister</span>
-                <span class="pill">✓ Sans CB, sans engagement</span>
+                <span class="pill"
+                  ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg>
+                  Scan Strava / Garmin en quelques secondes</span
+                >
+                <span class="pill"
+                  ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg>
+                  Plan validé par le modèle Banister</span
+                >
+                <span class="pill"
+                  ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg>
+                  Sans CB, sans engagement</span
+                >
               </div>
               <div class="founder-cta-bar">
                 <button
@@ -884,7 +923,7 @@
     >
       <div class="modal-card">
         <button type="button" id="modal-close-btn" class="modal-close" aria-label="Fermer">
-          ×
+          <svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg>
         </button>
 
         <div class="modal-brand-header">
@@ -919,7 +958,9 @@
                 <span class="choice-card-title">Semi-Marathon</span>
                 <span class="choice-card-sub">21,1 km • Chrono ou 1er défi</span>
               </span>
-              <span class="choice-check"></span>
+              <span class="choice-check" aria-hidden="true"
+                ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg
+              ></span>
             </button>
             <button
               type="button"
@@ -931,21 +972,27 @@
                 <span class="choice-card-title">Marathon</span>
                 <span class="choice-card-sub">42,195 km • Le défi distance</span>
               </span>
-              <span class="choice-check"></span>
+              <span class="choice-check" aria-hidden="true"
+                ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg
+              ></span>
             </button>
             <button type="button" class="choice-card" aria-pressed="false" data-choice-goal="10k">
               <span class="choice-card-body">
                 <span class="choice-card-title">10 km / 5 km</span>
                 <span class="choice-card-sub">Vitesse, VMA & allures</span>
               </span>
-              <span class="choice-check"></span>
+              <span class="choice-check" aria-hidden="true"
+                ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg
+              ></span>
             </button>
             <button type="button" class="choice-card" aria-pressed="false" data-choice-goal="trail">
               <span class="choice-card-body">
                 <span class="choice-card-title">Trail & Nature</span>
                 <span class="choice-card-sub">Dénivelé, D+ & gestion d'allure</span>
               </span>
-              <span class="choice-check"></span>
+              <span class="choice-check" aria-hidden="true"
+                ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg
+              ></span>
             </button>
             <button
               type="button"
@@ -959,7 +1006,9 @@
                   >Régularité, reprise progressive & protection des tendons</span
                 >
               </span>
-              <span class="choice-check"></span>
+              <span class="choice-check" aria-hidden="true"
+                ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg
+              ></span>
             </button>
           </div>
 
@@ -1003,14 +1052,16 @@
           </div>
 
           <button type="button" id="btn-next-step" class="btn btn-primary btn-lg u-full">
-            Continuer →
+            Continuer
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
           </button>
         </div>
 
         <!-- STEP 2 -->
         <div id="modal-step-2" hidden>
           <button type="button" id="btn-back-step" class="btn-step-back">
-            ← Modifier mon profil
+            <svg class="icon" aria-hidden="true"><use href="#icon-arrow-left"></use></svg> Modifier
+            mon profil
           </button>
           <div class="summary-pill-banner">
             <span class="summary-pill-label">Profil entraînement prêt</span>
@@ -1072,7 +1123,8 @@
             <input type="hidden" id="form-consent-timestamp" name="consent_timestamp" value="" />
 
             <button type="submit" id="btn-submit-waitlist" class="btn btn-primary btn-lg u-full">
-              Valider mon accès bêta →
+              Valider mon accès bêta
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
             </button>
 
             <p class="form-legal-note u-mt-10">
@@ -1083,8 +1135,14 @@
 
             <div class="form-trust-footer">
               <span> Pas de spam</span>
-              <span>✓ Annulation en un clic</span>
-              <span>✓ Zéro CB requise</span>
+              <span
+                ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg>
+                Annulation en un clic</span
+              >
+              <span
+                ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg>
+                Zéro CB requise</span
+              >
             </div>
           </form>
         </div>
@@ -1130,7 +1188,7 @@
                 href="#"
                 target="_blank"
                 rel="noopener"
-                class="btn btn-success btn-sm"
+                class="btn btn-secondary btn-sm"
                 >WhatsApp</a
               >
             </div>

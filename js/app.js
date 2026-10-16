@@ -1060,7 +1060,7 @@
           const badgeHtml = day.badge
             ? '<span class="day-badge ' + day.status + '">' + day.badge + '</span>'
             : day.status === 'done'
-              ? '<span class="day-badge done">✓ Fait</span>'
+              ? '<span class="day-badge done"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg> Fait</span>'
               : '';
           return (
             '<div class="day-card ' +
@@ -1196,7 +1196,7 @@
       if (s3) s3.hidden = false;
       if (seg1) seg1.classList.add('active');
       if (seg2) seg2.classList.add('active');
-      if (counter) counter.textContent = 'Dossard Officiel ✓';
+      if (counter) counter.textContent = 'Dossard officiel';
     }
   }
 
@@ -1251,6 +1251,15 @@
     if (consentBox && !consentBox.checked) return;
     const consentTs = document.getElementById('form-consent-timestamp');
     if (consentTs && !consentTs.value) consentTs.value = new Date().toISOString();
+
+    const submitBtn = document.getElementById('btn-submit-waitlist');
+    const submitLabel = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+      submitBtn.innerHTML =
+        '<svg class="icon icon-spin" aria-hidden="true"><use href="#icon-loader"></use></svg> Envoi...';
+    }
 
     state.submittedEmail = email;
 
@@ -1315,6 +1324,13 @@
       } catch (err) {
         console.warn('[Webhook externe] Erreur :', err.message);
       }
+    }
+
+    // Restaure l'état du bouton une fois les envois terminés
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.removeAttribute('aria-busy');
+      submitBtn.innerHTML = submitLabel;
     }
 
     // 3. Bascule sur l'étape 3 : Le Dossard Digital Bêta officiel
@@ -1385,10 +1401,9 @@
 
     const btn = document.getElementById('claim-founder-btn');
     if (btn) {
-      btn.textContent = '✓ Tarif Membre Fondateur (-50%) verrouillé pour toi !';
-      btn.style.background = 'var(--success-ink)';
-      btn.style.borderColor = 'var(--success-ink)';
-      btn.style.color = 'var(--bg-2)';
+      btn.innerHTML =
+        '<svg class="icon" aria-hidden="true"><use href="#icon-check"></use></svg> Tarif fondateur -50 % verrouillé';
+      btn.classList.add('btn-locked');
       btn.disabled = true;
     }
   }
@@ -1618,7 +1633,7 @@
         const input = document.getElementById('referral-link-input');
         if (input && navigator.clipboard) {
           navigator.clipboard.writeText(input.value);
-          copyRefBtn.textContent = 'Copié ✓';
+          copyRefBtn.textContent = 'Copié';
           trackEvent('referral_link_copied');
           setTimeout(function () {
             copyRefBtn.textContent = 'Copier';
