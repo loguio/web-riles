@@ -11,7 +11,7 @@ Sources:
 
 - [x] Reflow 1.4.10 no horizontal overflow at every width 320-768 (Playwright verified).
 - [x] Contrast 1.4.3 button primary text dark `#0f172a` on `#ff5722` (5.64:1).
-- [x] Token contrast: `--ink-faint #64748b`, `--success #047857`, `--primary-dark #c53e10`.
+- [x] Token contrast: `--ink-faint #5b6b82`, `--success #0e7490`, `--primary-dark #c53e10`.
 - [x] Cookie banner stacks under 640px, max-height 40vh, actions wrap.
 - [x] Mobile nav CTA wraps; navbar height auto; no clipped arrow.
 - [x] Week calendar collapses to 2 columns under 640px, all text >= 11px.
