@@ -511,6 +511,16 @@
           <button
             class="tab"
             role="tab"
+            id="tab-clubs"
+            aria-selected="false"
+            aria-controls="clubs"
+            data-tab="clubs"
+          >
+            <svg class="icon" aria-hidden="true"><use href="#icon-run"></use></svg>Clubs
+          </button>
+          <button
+            class="tab"
+            role="tab"
             id="tab-beta"
             aria-selected="false"
             aria-controls="beta"
@@ -858,6 +868,102 @@
       </section>
 
       <!-- =========================================================================
+ COMMUNITY / RUNNING CLUBS - group runs + monthly challenges (backend
+ CommunityModule: GET /community/runs, /community/challenges).
+ ========================================================================== -->
+      <section
+        id="clubs"
+        class="clubs-section tab-panel"
+        role="tabpanel"
+        aria-labelledby="tab-clubs"
+        hidden
+      >
+        <div class="container">
+          <div class="section-head">
+            <h2>Cours avec les autres, sans lâcher ton plan.</h2>
+            <p>
+              Rejoins une sortie de club près de chez toi. La sortie est commune, l'intensité reste
+              la tienne : Riles garde tes zones calibrées sur tes séances. Et chaque mois, un
+              nouveau défi à relever.
+            </p>
+          </div>
+
+          <div class="clubs-grid">
+            <article class="clubs-card">
+              <p class="clubs-card-caption">Exemple de sortie de club</p>
+              <div class="clubs-card-head">
+                <h3>Riles Paris</h3>
+                <span class="clubs-chip clubs-chip-theme">
+                  <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-run"></use></svg>
+                  Sortie longue en groupe
+                </span>
+              </div>
+              <ul class="clubs-run-meta">
+                <li>
+                  <svg class="icon icon-sm" aria-hidden="true">
+                    <use href="#icon-calendar-event"></use>
+                  </svg>
+                  Mar. 20 oct. à 18h30
+                </li>
+                <li>
+                  <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-route"></use></svg>
+                  Parc des Buttes-Chaumont, Paris
+                </li>
+              </ul>
+              <div class="clubs-run-foot">
+                <span class="clubs-avatars" aria-hidden="true">
+                  <span class="clubs-avatar">CD</span>
+                  <span class="clubs-avatar">LM</span>
+                  <span class="clubs-avatar">TB</span>
+                  <span class="clubs-avatar clubs-avatar-more">+</span>
+                </span>
+                <p class="clubs-run-note">Chacun court dans sa zone, on se retrouve au départ.</p>
+              </div>
+              <button
+                type="button"
+                class="btn btn-primary clubs-cta"
+                data-open-waitlist="clubs_cta"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                Rejoindre la bêta
+              </button>
+            </article>
+
+            <article class="clubs-card">
+              <p class="clubs-card-caption">Exemple de défi mensuel</p>
+              <div class="clubs-card-head">
+                <h3>100 km en octobre</h3>
+                <span class="clubs-chip">Défi du mois</span>
+              </div>
+              <div
+                class="clubs-progress"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="42"
+                aria-label="Progression du défi, 42 km sur 100"
+              >
+                <div class="clubs-progress-fill"></div>
+              </div>
+              <div class="clubs-progress-legend">
+                <span>42 km courus</span>
+                <span>Objectif 100 km</span>
+              </div>
+              <p class="clubs-challenge-note">
+                Ta progression se calcule automatiquement sur tes séances terminées dans le mois.
+              </p>
+              <ul class="clubs-metric-chips" role="list" aria-label="Métriques de défi disponibles">
+                <li class="clubs-metric-chip">Distance</li>
+                <li class="clubs-metric-chip">Durée</li>
+                <li class="clubs-metric-chip">Dénivelé</li>
+                <li class="clubs-metric-chip">Séances</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
  FOUNDER / WAITLIST BAND
  ========================================================================== -->
       <section
@@ -871,7 +977,7 @@
           <div class="founder-grid">
             <div>
               <h2>Rejoins la bêta.</h2>
-              <p class="sub">Tarif préférentiel pour les premiers inscrits. Sans CB.</p>
+              <p class="sub">Tarif fondateur pour les premiers inscrits. Sans CB.</p>
               <div class="pill-row">
                 <span class="pill"
                   ><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check"></use></svg>
@@ -900,7 +1006,7 @@
                   simulateur</a
                 >
               </div>
-              <p class="footnote">Fonctionnalités Pro et COROS / Polar / Suunto en H2 2026.</p>
+              <p class="footnote">Fonctionnalités PRO et COROS / Polar / Suunto en H2 2026.</p>
             </div>
             <div class="founder-right">
               <div class="modal-preview">
@@ -915,7 +1021,9 @@
                     <s>99 €/an</s>49 €/an
                     <span class="founder-price-note">(indicatif)</span>
                   </div>
-                  <div class="founder-offer-note">Pas de CB aujourd'hui.</div>
+                  <div class="founder-offer-note">
+                    Pas de CB aujourd'hui. Essai PRO 14 jours au lancement.
+                  </div>
                 </div>
               </div>
             </div>
@@ -1193,7 +1301,7 @@
           <div class="founder-offer-card">
             <div class="founder-fire-badge">Avantage bêta</div>
             <div class="founder-spots u-mb-8">Réservé aux inscrits de la bêta</div>
-            <div class="founder-offer-title">Bloquer -50 % à vie sur l'abonnement Pro</div>
+            <div class="founder-offer-title">Bloquer -50 % à vie sur l'abonnement PRO</div>
             <div class="founder-price">
               <s>99 €/an</s>49 €/an
               <span class="founder-price-note">(indicatif)</span>

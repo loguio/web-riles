@@ -57,7 +57,7 @@
     });
 
     const revealTargets = document.querySelectorAll(
-      '.compat-strip, .simulator-card, .science-section .pillar, .comparison-section .section-head, .apercu-card, .founder-grid > *',
+      '.compat-strip, .simulator-card, .science-section .pillar, .comparison-section .section-head, .apercu-card, .clubs-section .section-head, .clubs-card, .founder-grid > *',
     );
     if ('IntersectionObserver' in window && revealTargets.length) {
       const Observer = window.IntersectionObserver;
@@ -85,6 +85,45 @@
         observer.observe(el);
       });
     }
+  }
+
+  function initClubsTracking() {
+    const section = document.getElementById('clubs');
+    if (!section) return;
+    let fired = false;
+    function fireOnce() {
+      if (fired || section.hidden) return;
+      fired = true;
+      trackEvent('clubs_section_view');
+    }
+    if (!('IntersectionObserver' in window)) {
+      // Fallback sans IntersectionObserver : ne compte la vue que lorsque
+      // l'onglet Clubs est réellement visible (jamais pendant qu'il est hidden).
+      if (!section.hidden) {
+        fireOnce();
+        return;
+      }
+      const watcher = new window.MutationObserver(function () {
+        if (!section.hidden) {
+          fireOnce();
+          watcher.disconnect();
+        }
+      });
+      watcher.observe(section, { attributes: true, attributeFilter: ['hidden'] });
+      return;
+    }
+    const Observer = window.IntersectionObserver;
+    const observer = new Observer(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          fireOnce();
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(section);
   }
 
   function pulseSimulatorCards() {
@@ -1495,6 +1534,7 @@
     // Animations d'entrée et révélations au scroll (GSAP si disponible)
     initMotion();
     initTabs();
+    initClubsTracking();
 
     // Consentement liste d'attente : horodatage ISO 8601 de la case cochée,
     // transmis avec la soumission du formulaire Netlify.
@@ -1673,7 +1713,7 @@
       waitlistForm.addEventListener('submit', handleWaitlistSubmit);
     }
 
-    // Bouton d'intention d'achat Membre Fondateur -50%
+    // Bouton d'intention d'achat — offre fondateur PRO (-50 %)
     const founderBtn = document.getElementById('claim-founder-btn');
     if (founderBtn) {
       founderBtn.addEventListener('click', handleFounderOfferClaim);

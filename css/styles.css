@@ -1437,6 +1437,185 @@ ol {
 }
 
 /* --------------------------------------------------------------------------
+   COMMUNITY / RUNNING CLUBS
+   -------------------------------------------------------------------------- */
+
+.clubs-section {
+  background: var(--bg);
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 72px;
+}
+
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.clubs-card {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.clubs-card-caption {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.clubs-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.clubs-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.clubs-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--border-soft);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.clubs-chip-theme {
+  background: var(--primary-soft);
+  border-color: var(--primary-border);
+}
+
+.clubs-run-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.clubs-run-meta li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.clubs-run-meta .icon {
+  color: var(--ink-faint);
+}
+
+.clubs-run-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.clubs-avatars {
+  display: flex;
+}
+
+.clubs-avatar {
+  width: 32px;
+  height: 32px;
+  margin-left: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-2);
+  background: var(--border-soft);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.clubs-avatar:first-child {
+  margin-left: 0;
+}
+
+.clubs-avatar-more {
+  background: var(--primary);
+}
+
+.clubs-run-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.clubs-progress {
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--border-soft);
+  overflow: hidden;
+}
+
+.clubs-progress-fill {
+  width: 42%;
+  height: 100%;
+  background: var(--primary);
+}
+
+.clubs-progress-legend {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.clubs-challenge-note {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.clubs-metric-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.clubs-metric-chip {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--border-soft);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.clubs-cta {
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .clubs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
    WAITLIST / FOUNDER - FULL BAND CTA
    -------------------------------------------------------------------------- */
 
@@ -2267,7 +2446,8 @@ ol {
   .science-section,
   .simulator-section,
   .comparison-section,
-  .apercu-section {
+  .apercu-section,
+  .clubs-section {
     padding: 64px 0;
   }
 }
@@ -2360,6 +2540,7 @@ ol {
 .pillar h3,
 .founder-section h2,
 .apercu-card h3,
+.clubs-card h3,
 .modal-step-title,
 .brand-logo {
   font-family: 'Bricolage Grotesque', 'Archivo', sans-serif;
