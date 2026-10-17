@@ -39,9 +39,9 @@ the mapping note in §4.
 | 6 | `index.html:912` (`founder-offer-copy`) | `Tarif indicatif : 49 €/an prévu au lieu de 99 €/an, à valider au lancement.` | Re-express as PRO discount: `Offre fondateur : -50 % à vie sur l'abonnement PRO (tarif indicatif, à valider au lancement). Essai 14 jours inclus.` | **YES** — discount %, grandfathering, trial overlap. |
 | 7 | `index.html:914-916` (`founder-price`) | `<s>99 €/an</s>49 €/an` + `(indicatif)` | `<s>99 €/an</s>49 €/an (indicatif)` retained, but only valid if 49/99 are the confirmed PRO prices. Add "PRO" label. | **YES** — final PRO price + strike anchor. |
 | 8 | `index.html:918` (`founder-offer-note`) | `Pas de CB aujourd'hui.` | `Pas de CB aujourd'hui. Essai PRO 14 jours au lancement, sans engagement.` | **YES** — trial + card policy. |
-| 9 | `index.html:1185` (waitlist modal `form-trust-footer`) | `Zéro CB requise` | Card-policy copy, missed in the first pass. Keep for BASIC/beta; PRO variant: `Zéro CB requise à l'inscription — carte demandée seulement au lancement de l'essai PRO de 14 jours.` (or split: BASIC `Zéro CB` + PRO `essai 14 jours, carte à la fin de l'essai`). | **YES** — beta no-card policy + when the PRO card is collected. |
+| 9 | `index.html:1181,1185` (waitlist modal `form-trust-footer`) | `Annulation en un clic` (1181) + `Zéro CB requise` (1185) | Card-policy **and** cancellation copy in the same trust-footer block, both missed in the first pass. Keep for BASIC/beta; the PRO variant must state when the card is collected and that the 14-day trial cancels in one click: `Zéro CB requise à l'inscription — carte demandée seulement au lancement de l'essai PRO de 14 jours. Résiliable en un clic.` (or split: BASIC `Zéro CB` + PRO `essai 14 jours, carte à la fin de l'essai, annulation en un clic`). | **YES** — beta no-card policy + trial cancellation terms. |
 | 10 | `index.html:1195` (`founder-spots`) | `Réservé aux inscrits de la bêta` | Keep, but qualify as `Réservé aux inscrits de la bêta (offre fondateur PRO)`. | **PARTIAL** — offer naming. |
-| 11 | `index.html:1196` (`founder-offer-title`) | `Bloquer -50 % à vie sur l'abonnement Pro` | `Bloquer -50 % à vie sur l'abonnement PRO` (casing) — and confirm "-50 % à vie" survives the BASIC/PRO split. | **YES** — grandfathering + casing. |
+| 11 | `index.html:1196` (`founder-offer-title`) | `Bloquer -50 % à vie sur l'abonnement Pro` | `Bloquer -50 % à vie sur l'abonnement PRO` (casing) — and confirm "-50 % à vie" survives the BASIC/PRO split. | **PARTIAL** — grandfathering is **YES**; the `Pro`→`PRO` casing sub-part is safe now (see §3). |
 | 12 | `index.html:1197-1199` (modal `founder-price`) | `<s>99 €/an</s>49 €/an` + `(indicatif)` | Same as #7; must match PRO pricing exactly. | **YES** — final PRO price. |
 | 13 | `index.html:1201-1203` (`founder-offer-note`) | `Tarif membre fondateur prévu, validé au lancement. Pas de CB aujourd'hui.` | `Tarif membre fondateur PRO prévu, validé au lancement. Pas de CB aujourd'hui.` | **YES** — final terms. |
 | 14 | `index.html:1204-1206` (`#claim-founder-btn`) | `Verrouiller -50 %` | `Verrouiller l'offre fondateur PRO` (or keep `-50 %` if grandfathered). | **YES** — whether -50 % is locked. |
@@ -57,16 +57,23 @@ the mapping note in §4.
 
 **Blocked on final paywall terms (do not touch yet):** #1, #3, #4, #6, #7, #8, #9,
 #11, #12, #13, #14, #18, #19, #21. These all hard-code a price, a percentage, a
-trial window, or a card policy that is not yet final.
+trial window, or a card policy that is not yet final. #3 and #11 are blocked only
+for their gated core; each also has a safe naming sub-part (below).
 
 **Safe to align on naming now (still DRAFT until applied):** #5 (PRO casing),
-#20 (comment).
+#11 (PRO casing), #20 (comment).
 
-**Naming-only sub-parts of otherwise-blocked rows (safe to apply now):** rows #3,
-#4 and #8 each contain a casing/naming change that does **not** depend on final
-terms, and it is separable from the part that does. #4 and #8 introduce/standardize
-the `PRO` token; #3 only renames `Tarif préférentiel` → `Tarif fondateur` (no `PRO`
-token). Apply only those sub-parts if a naming fix is needed before terms land.
+**Naming-only sub-part of an otherwise-blocked row (safe to apply now):** #3 only —
+it renames `Tarif préférentiel` → `Tarif fondateur` (no `PRO` token), which is
+separable from the "sans CB during beta" question that gates the row.
+
+**Correction — no safe-now sub-part in #4 / #8.** An earlier draft claimed #4 and
+#8 "introduce/standardize the `PRO` token" as a separable naming change. That is
+factually wrong: neither anchor contains a `Pro`/`PRO` token today — `index.html:886`
+is `Sans CB, sans engagement` and `index.html:918` is `Pas de CB aujourd'hui.`. The
+`PRO` token appears **only** inside the gated trial sentences of the proposed
+variants (`PRO : essai 14 jours…`), so it is inseparable from the trial copy. #4 and
+#8 stay fully blocked; do not touch them before terms land.
 
 Everything else is **PARTIAL** — needs the terms doc but is low-risk.
 
