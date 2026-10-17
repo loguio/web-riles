@@ -1713,7 +1713,7 @@
       waitlistForm.addEventListener('submit', handleWaitlistSubmit);
     }
 
-    // Bouton d'intention d'achat Membre Fondateur -50%
+    // Bouton d'intention d'achat — offre fondateur PRO (-50 %)
     const founderBtn = document.getElementById('claim-founder-btn');
     if (founderBtn) {
       founderBtn.addEventListener('click', handleFounderOfferClaim);
