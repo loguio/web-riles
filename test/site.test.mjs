@@ -313,6 +313,44 @@ test('interactive state and landmarks are exposed to assistive tech', () => {
   assert.match(html, /id="referral-link-input"[\s\S]*?aria-label=/, 'referral input needs a name');
 });
 
+test('clubs section tab wiring, progressbar ARIA and single-funnel CTA stay intact', () => {
+  const html = read('index.html');
+
+  // Tab <-> panel wiring: the Clubs tab controls #clubs, and #clubs names itself
+  // via that tab. Renaming either side must fail this test.
+  assert.match(
+    html,
+    /id="tab-clubs"[^>]*aria-controls="clubs"[^>]*data-tab="clubs"/,
+    'Clubs tab must control the #clubs panel',
+  );
+  assert.match(
+    html,
+    /<section[^>]*id="clubs"[\s\S]*?aria-labelledby="tab-clubs"/,
+    '#clubs panel must be labelled by the Clubs tab',
+  );
+
+  // Challenge progressbar must keep its full ARIA contract.
+  assert.match(
+    html,
+    /role="progressbar"[\s\S]*?aria-valuemin="0"[\s\S]*?aria-valuemax="100"[\s\S]*?aria-valuenow="42"[\s\S]*?aria-label="[^"]+"/,
+    'challenge progressbar must expose min/max/now/name',
+  );
+
+  // A <ul> carrying an aria-label needs role="list": Safari/VoiceOver drop the
+  // implicit list role once list-style is removed.
+  assert.match(
+    html,
+    /<ul[^>]*role="list"[^>]*aria-label="Métriques de défi disponibles"/,
+    'labelled metric list must keep role="list"',
+  );
+
+  // The Clubs CTA must funnel through the waitlist (one fake_door_clicked with
+  // trigger_source "clubs_cta"), not a second redundant analytics event.
+  assert.match(html, /data-open-waitlist="clubs_cta"/, 'Clubs CTA must open the waitlist');
+  assert.doesNotMatch(html, /data-clubs-cta/, 'no leftover clubs-only CTA hook');
+  assert.doesNotMatch(read('js/app.js'), /clubs_cta_clicked/, 'no redundant clubs CTA event');
+});
+
 test('GSAP is self-hosted and loaded before app.js', () => {
   const html = read('index.html');
   const gsapAt = html.indexOf('js/vendor/gsap.min.js');

@@ -90,8 +90,26 @@
   function initClubsTracking() {
     const section = document.getElementById('clubs');
     if (!section) return;
-    if (!('IntersectionObserver' in window)) {
+    let fired = false;
+    function fireOnce() {
+      if (fired || section.hidden) return;
+      fired = true;
       trackEvent('clubs_section_view');
+    }
+    if (!('IntersectionObserver' in window)) {
+      // Fallback sans IntersectionObserver : ne compte la vue que lorsque
+      // l'onglet Clubs est réellement visible (jamais pendant qu'il est hidden).
+      if (!section.hidden) {
+        fireOnce();
+        return;
+      }
+      const watcher = new window.MutationObserver(function () {
+        if (!section.hidden) {
+          fireOnce();
+          watcher.disconnect();
+        }
+      });
+      watcher.observe(section, { attributes: true, attributeFilter: ['hidden'] });
       return;
     }
     const Observer = window.IntersectionObserver;
@@ -99,7 +117,7 @@
       function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          trackEvent('clubs_section_view');
+          fireOnce();
           observer.unobserve(entry.target);
         });
       },
@@ -1647,13 +1665,6 @@
     document.querySelectorAll('[data-open-waitlist]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         openWaitlistModal(btn.getAttribute('data-open-waitlist'));
-      });
-    });
-
-    // Section Clubs : intention de rejoindre depuis la section communauté
-    document.querySelectorAll('[data-clubs-cta]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        trackEvent('clubs_cta_clicked');
       });
     });
 
