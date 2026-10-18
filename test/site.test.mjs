@@ -365,8 +365,7 @@ test('no emojis in shipped sources (use icons instead)', () => {
   // Hard design rule: emojis are banned in copy, markup, code and metadata.
   // Symbols must come from the single project icon family (the Tabler sprite
   // in index.html). See .opencode/skills/taste/SKILL.md section 3.D.
-  const emoji =
-    /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{20E3}]/gu;
+  const emoji = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{20E3}]/gu;
   const files = [
     'index.html',
     'confidentialite.html',
