@@ -156,10 +156,20 @@ Unless the design read picks a real design system (Section 2.A), these are the d
 - **NEVER hand-roll SVG icons.** If a glyph is missing, install a second library or compose from primitives - do not draw icon paths from scratch.
 - **One family per project.** Do not mix Phosphor with Lucide in the same component tree.
 - **Standardize `strokeWidth` globally** (e.g. `1.5` or `2.0`).
+- **Static HTML projects (this repo, `web-riles`):** the icon source is the inline Tabler sprite in `index.html` (`<svg class="icon-sprite">` with `#icon-*` symbols). Add missing glyphs to that sprite from Tabler Icons; render with `<svg class="icon" aria-hidden="true"><use href="#icon-name"></use></svg>`. Do not introduce a CDN icon script or a second icon family.
 
-### 3.D Emoji Policy
+### 3.D NO EMOJIS (hard rule, no override)
 
-Discouraged by default in code, markup, and visible text. Replace symbols with icon-library glyphs. **Override:** allow emojis only when the user explicitly asks for a playful / chat-style / social-native vibe - and even then use them sparingly with intent.
+**Emojis are banned.** This is not "discouraged", not "use sparingly", and there is no playful / chat-style / social-native override. Every symbol that would be an emoji must be a real icon from the project's single icon family (Section 3.C).
+
+- **Banned everywhere in shipped work:** visible copy, headings, eyebrows, buttons, labels, badges, pills, toasts, empty states, form placeholders, alt text, `aria-label`, `title`, meta / OG / social descriptions, email and SMS templates.
+- **Banned in code and docs:** comments, commit messages, PR bodies, changelogs, README files, test names, seed data. A rocket in a commit message is still a violation.
+- **No text-symbol substitutes:** arrow, check-mark, star, bullet, lightning-bolt and heart glyphs (U+2192, U+2713, U+2605, U+2022, U+26A1, U+2665) are not icons. Use the icon family, or plain text.
+- **No flavor emoji in marketing copy:** rocket, sparkles, fire, droplet, meditation and moon (U+1F680, U+2728, U+1F525, U+1F4A7, U+1F9D8, U+1F319) before a feature name is the most common violation in this repo. Rewrite the label or use an icon.
+- **If the icon exists:** use it, with `aria-hidden="true"` + `focusable="false"` when decorative.
+- **If the icon does not exist:** add the glyph from the project's icon library. Never fall back to an emoji, and never hand-roll the SVG path.
+- **Icon-only controls need a name:** `aria-label` or visually-hidden text on the control; the icon itself stays `aria-hidden="true"`.
+- **Mechanical check:** scan every shipped file for `[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]` before delivering. In this repo `npm test` enforces it (`no emojis in shipped sources`).
 
 ### 3.E Responsiveness & Layout Mechanics
 
@@ -666,6 +676,7 @@ Avoid these signatures unless the brief explicitly asks for them.
 
 ### 9.E External Resources & Components
 
+- **NO emojis.** Not in copy, markup, code, comments, alt text, or metadata. Replace with an icon from the project's single family (Section 3.D). No override.
 - **NO hand-rolled SVG icons.** Use Phosphor / HugeIcons / Radix / Tabler. Lucide on explicit request only.
 - **Hand-rolled decorative SVGs strongly discouraged** as default (see Section 4.8).
 - **NO div-based fake screenshots.** Never build a fake product UI out of `<div>` rectangles to simulate a screenshot. Use real images, generated images, or skip the preview.
@@ -1051,6 +1062,7 @@ Run this matrix before outputting code. This is the last filter.
 - [ ] **Empty / loading / error** states provided?
 - [ ] **Cards omitted** in favor of spacing where possible?
 - [ ] **Icons** from an allowed library only (Phosphor / HugeIcons / Radix / Tabler), no hand-rolled SVG paths?
+- [ ] **ZERO emojis** anywhere in shipped files (copy, markup, code, comments, alt text, metadata). Every symbol is an icon from the single project family (Section 3.D)?
 - [ ] **Motion** isolated in client-leaf components with `'use client'` at the top, memoized?
 - [ ] **No AI Tells** from Section 9 (Inter as default, AI-purple, three-equal cards, Jane Doe, Acme, "Quietly in use at")?
 - [ ] **Core Web Vitals** plausibly hit (LCP < 2.5s, INP < 200ms, CLS < 0.1)?

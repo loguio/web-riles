@@ -361,6 +361,35 @@ test('GSAP is self-hosted and loaded before app.js', () => {
   assert.match(html, /<script src="\.\/js\/app\.js" defer>/, 'app.js must be deferred');
 });
 
+test('no emojis in shipped sources (use icons instead)', () => {
+  // Hard design rule: emojis are banned in copy, markup, code and metadata.
+  // Symbols must come from the single project icon family (the Tabler sprite
+  // in index.html). See .opencode/skills/taste/SKILL.md section 3.D.
+  const emoji =
+    /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{20E3}]/gu;
+  const files = [
+    'index.html',
+    'confidentialite.html',
+    'mentions-legales.html',
+    'css/styles.css',
+    'js/app.js',
+  ];
+  const offenders = [];
+  for (const f of files) {
+    read(f)
+      .split('\n')
+      .forEach((line, i) => {
+        const found = line.match(emoji);
+        if (found) offenders.push(`${f}:${i + 1}: ${[...new Set(found)].join(' ')}`);
+      });
+  }
+  assert.deepEqual(
+    offenders,
+    [],
+    `emojis are banned; replace them with an icon:\n${offenders.join('\n')}`,
+  );
+});
+
 test('colour declarations reference tokens, not raw literals', () => {
   const css = read('css/styles.css');
   const allowed = [
